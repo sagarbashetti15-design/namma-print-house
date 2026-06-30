@@ -1,0 +1,158 @@
+.social-proof-section {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.sp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.sp-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.sp-header {
+  min-width: 150px;
+}
+
+.sp-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.sp-subtitle {
+  font-size: 0.75rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.ig-grid-container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 5px;
+  width: 100%;
+}
+
+.ig-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.sp-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.testimonials-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.testimonials-list {
+  display: flex;
+  gap: 15px;
+  flex: 1;
+}
+
+.testimonial-card {
+  flex: 1;
+  border: 1px solid #eaeaea;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fcfcfc;
+  display: flex;
+  flex-direction: column;
+}
+
+.stars {
+  color: #F8B400;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.t-text {
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.t-author {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.sp-nav-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #999;
+}
+
+.sp-nav-btn:hover {
+  color: #000;
+}
+
+.sp-nav-btn.left {
+  position: absolute;
+  left: -25px;
+}
+
+.sp-nav-btn.right {
+  position: absolute;
+  right: -25px;
+}
+
+@media (max-width: 1024px) {
+  .sp-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .sp-left {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .sp-header {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .ig-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+  
+  .testimonials-list {
+    flex-direction: column;
+  }
+}

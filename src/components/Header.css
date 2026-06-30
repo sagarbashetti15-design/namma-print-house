@@ -1,0 +1,349 @@
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: #0a0a0a;
+  border-bottom: 1px solid #222;
+  transition: all var(--transition-base);
+}
+
+.header-scrolled {
+  box-shadow: var(--shadow-sm);
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* ─── Campaign Banner ─── */
+.campaign-banner {
+  background: linear-gradient(90deg, #F8B400, #FFE066, #F8B400);
+  background-size: 200% 100%;
+  animation: campaignShimmer 3s linear infinite;
+  padding: 10px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes campaignShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.campaign-banner-text {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.header-top-bar {
+  background-color: #000;
+  font-size: 0.72rem;
+  color: var(--color-primary);
+  padding: 6px 0;
+  display: block;
+  text-align: center;
+  border-bottom: 1px solid #111;
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+}
+
+.top-bar-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.promo-ticker-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  animation: promo-slide-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  flex-wrap: wrap;
+  line-height: 1.4;
+}
+
+.promo-code-badge {
+  background: linear-gradient(135deg, #FFB400, #ff8c00);
+  color: #000;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 8px rgba(255, 180, 0, 0.4);
+  font-size: 0.7rem;
+  display: inline-block;
+  user-select: none;
+}
+
+.promo-code-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 180, 0, 0.65);
+  background: #fff;
+}
+
+@keyframes promo-slide-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.header-main {
+  padding: 15px 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.mobile-menu-btn {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  background: var(--color-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-sub {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.desktop-nav {
+  display: none;
+  gap: 25px;
+}
+
+@media (min-width: 1024px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+.nav-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  position: relative;
+  padding: 5px 0;
+  color: #fff;
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: var(--color-primary);
+  transition: width var(--transition-base);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-bar {
+  display: none;
+  background-color: #222;
+  border-radius: 4px;
+  padding: 8px 12px;
+  align-items: center;
+  gap: 10px;
+  width: 300px;
+  border: 1px solid var(--color-border-light);
+  transition: border-color var(--transition-fast);
+}
+
+.search-bar:focus-within {
+  border-color: var(--color-primary);
+}
+
+@media (min-width: 768px) {
+  .search-bar {
+    display: flex;
+  }
+}
+
+.search-icon {
+  color: var(--color-text-muted);
+}
+
+.search-bar input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.85rem;
+  outline: none;
+  color: #fff;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.action-btn:hover {
+  transform: scale(1.1);
+  color: var(--color-primary-hover);
+}
+
+.action-label {
+  display: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+@media (min-width: 1024px) {
+  .action-label {
+    display: block;
+  }
+}
+
+.cart-btn {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+/* Mobile Sidebar Overlay */
+.mobile-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-sidebar-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Sidebar Drawer */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--color-background-primary);
+  z-index: 201;
+  box-shadow: var(--shadow-lg);
+  transition: left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-sidebar.open {
+  left: 0;
+}
+
+.mobile-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.close-btn {
+  color: var(--color-text-secondary);
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+.mobile-nav a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.mobile-nav hr {
+  border: none;
+  border-top: 1px solid var(--color-border-light);
+  margin: 10px 0;
+}

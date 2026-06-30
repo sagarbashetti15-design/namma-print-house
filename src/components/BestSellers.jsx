@@ -1,0 +1,80 @@
+import React, { useRef } from 'react';
+import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { products } from '../data/catalog';
+import { useWishlist } from '../context/WishlistContext';
+import './BestSellers.css';
+
+const bestSellers = [
+  // Men's favorites
+  products.find(p => p.id === 'm11'),
+  products.find(p => p.id === 'm3'),
+  // Women's favorites
+  products.find(p => p.id === 'w1'),
+  products.find(p => p.id === 'w11'),
+  // Couples matching
+  products.find(p => p.id === 'cp1'),
+  products.find(p => p.id === 'cp11'),
+  // Kannada collection
+  products.find(p => p.id === 'k2'),
+  products.find(p => p.id === 'k3')
+].filter(Boolean);
+
+const BestSellers = () => {
+  const scrollRef = useRef(null);
+  const { toggleWishlist, isInWishlist } = useWishlist();
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section className="bestsellers-section">
+      <div className="container">
+        <h2 className="section-heading text-center">
+          BEST <span>SELLERS</span>
+        </h2>
+        
+        <div className="bestsellers-carousel-wrapper">
+          <button className="bs-nav-btn left" onClick={() => scroll('left')}>
+            <ChevronLeft size={24} />
+          </button>
+          
+          <div className="bestsellers-scroll-area" ref={scrollRef}>
+            {bestSellers.map(product => {
+              const isWished = isInWishlist(product.id);
+              return (
+                <div key={product.id} className="bs-card">
+                  <Link to={`/product/${product.id}`} className="bs-image-wrap">
+                    <img src={product.image} alt={product.title} className="bs-image" />
+                    <button 
+                      className="bs-wishlist-btn" 
+                      style={{ color: isWished ? 'var(--color-error)' : '' }}
+                      onClick={(e) => { e.preventDefault(); toggleWishlist(product); }}
+                    >
+                      <Heart size={16} fill={isWished ? 'currentColor' : 'none'} />
+                    </button>
+                  </Link>
+                  <Link to={`/product/${product.id}`} className="bs-info">
+                    <p className="bs-title">{product.title}</p>
+                    <p className="bs-price">₹{product.price}</p>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+          
+          <button className="bs-nav-btn right" onClick={() => scroll('right')}>
+            <ChevronRight size={24} />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default BestSellers;
