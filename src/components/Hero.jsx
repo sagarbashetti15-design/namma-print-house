@@ -42,10 +42,13 @@ const Hero = () => {
   return (
     <section className="hero">
       {/* Layer 0: 3D Blurred Deep Background */}
-      <div 
+      <img 
+        src={currentBg}
         className="hero-bg-blur"
-        style={{ backgroundImage: `url(${currentBg})` }}
-      ></div>
+        alt="Hero Background"
+        fetchPriority="high"
+        decoding="sync"
+      />
 
       {/* Layer 1: Sharp 3D Floating Model (Zoomed out on the right) */}
       <div 

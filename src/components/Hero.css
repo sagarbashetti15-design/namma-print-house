@@ -17,6 +17,8 @@
   height: 120%;
   background-size: cover;
   background-position: center;
+  object-fit: cover;
+  object-position: center;
   filter: blur(40px) brightness(0.4);
   z-index: 0;
   animation: bgPulse 15s infinite alternate ease-in-out;
