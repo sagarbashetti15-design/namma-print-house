@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from \'react\';\nimport { useCatalog } from \'../context/CatalogContext\';
+import React, { useState, useEffect } from 'react';
+import { useCatalog } from '../context/CatalogContext';
 import { Search, Heart, ShoppingBag, Menu, User, X, Sun, Moon } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
