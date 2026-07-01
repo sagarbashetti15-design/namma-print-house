@@ -179,12 +179,22 @@ const AdminDashboardSecure = () => {
   // Load catalog and marketing state on mount
   useEffect(() => {
     const cached = localStorage.getItem('nph_catalog');
+    let loadedCatalog = [];
     if (cached) {
-      setLocalCatalog(JSON.parse(cached));
+      const parsed = JSON.parse(cached);
+      const m1 = parsed.find(p => p.id === 'm1');
+      // Bust cache if XS size is missing
+      if (m1 && !m1.sizes.includes('XS')) {
+        localStorage.setItem('nph_catalog', JSON.stringify(initialStaticProducts));
+        loadedCatalog = initialStaticProducts;
+      } else {
+        loadedCatalog = parsed;
+      }
     } else {
       localStorage.setItem('nph_catalog', JSON.stringify(initialStaticProducts));
-      setLocalCatalog(initialStaticProducts);
+      loadedCatalog = initialStaticProducts;
     }
+    setLocalCatalog(loadedCatalog);
     
     const storedMarketing = localStorage.getItem('nph_marketing');
     if (storedMarketing) {
