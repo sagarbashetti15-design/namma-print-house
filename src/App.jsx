@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
 
 import Header from './components/Header'
@@ -29,6 +29,43 @@ import AdminDashboardSecure from './pages/AdminDashboardSecure'
 import ScrollToTop from './components/ScrollToTop'
 import AdminDashboard from './pages/AdminDashboard'
 import axios from 'axios'
+
+const AppContent = () => {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
+
+  return (
+    <div className="app-container">
+      {!isAdmin && <Header />}
+      <main style={{ minHeight: isAdmin ? '100vh' : '60vh' }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/category/:categoryId" element={<CategoryPage />} />
+          <Route path="/product/:productId" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/shipping" element={<ShippingPolicy />} />
+          <Route path="/returns" element={<ReturnRefundPolicy />} />
+          <Route path="/terms" element={<TermsConditions />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/bulk" element={<BulkOrders />} />
+          <Route path="/faq" element={<FAQs />} />
+          <Route path="/size-guide" element={<SizeGuide />} />
+          <Route path="/care" element={<CareInstructions />} />
+          <Route path="/track-order" element={<TrackOrder />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin-secure-portal" element={<AdminDashboardSecure />} />
+        </Routes>
+      </main>
+      {!isAdmin && <Footer />}
+      {!isAdmin && <WhatsAppButton />}
+    </div>
+  );
+};
 
 function App() {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -67,39 +104,10 @@ function App() {
         <WishlistProvider>
           <Router>
             <ScrollToTop />
-            <div className="app-container">
-
-            <Header />
-            <main style={{ minHeight: '60vh' }}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/category/:categoryId" element={<CategoryPage />} />
-                <Route path="/product/:productId" element={<ProductDetail />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="/search" element={<SearchPage />} />
-                <Route path="/wishlist" element={<WishlistPage />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/shipping" element={<ShippingPolicy />} />
-                <Route path="/returns" element={<ReturnRefundPolicy />} />
-                <Route path="/terms" element={<TermsConditions />} />
-                <Route path="/privacy" element={<PrivacyPolicy />} />
-                <Route path="/bulk" element={<BulkOrders />} />
-                <Route path="/faq" element={<FAQs />} />
-                <Route path="/size-guide" element={<SizeGuide />} />
-                <Route path="/care" element={<CareInstructions />} />
-                <Route path="/track-order" element={<TrackOrder />} />
-                <Route path="/admin" element={<AdminDashboard />} />
-                <Route path="/admin-secure-portal" element={<AdminDashboardSecure />} />
-              </Routes>
-            </main>
-            <Footer />
-            <WhatsAppButton />
-          </div>
-        </Router>
-      </WishlistProvider>
-    </CartProvider>
+            <AppContent />
+          </Router>
+        </WishlistProvider>
+      </CartProvider>
     </ToastProvider>
   )
 }
