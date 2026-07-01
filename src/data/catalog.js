@@ -876,9 +876,10 @@ try {
   if (cached) {
     const parsed = JSON.parse(cached);
     const customTee = parsed.find(p => p.id === 'custom-tee');
+    const m1 = parsed.find(p => p.id === 'm1');
     
-    // Bust cache if custom tee is missing visual customizer flag
-    if (customTee && !customTee.isVisualCustomizer) {
+    // Bust cache if custom tee is missing visual customizer flag or sizes are missing
+    if ((customTee && !customTee.isVisualCustomizer) || (m1 && !m1.sizes.includes('XS'))) {
       localStorage.setItem('nph_catalog', JSON.stringify(initialProducts));
       dynamicProducts = initialProducts;
     } else {
