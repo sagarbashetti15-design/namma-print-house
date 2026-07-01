@@ -9,7 +9,7 @@ export const useCatalog = () => useContext(CatalogContext);
 
 export const CatalogProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [marketing, setMarketing] = useState(null);
+  const [marketing, setMarketing] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
