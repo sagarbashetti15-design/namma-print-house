@@ -19,10 +19,6 @@ const Footer = () => {
           </p>
           <div className="social-links">
             <a href="https://www.instagram.com/namma_print_house2k26" target="_blank" rel="noopener noreferrer" className="social-link">IG</a>
-            <a href="#" className="social-link">FB</a>
-            <a href="#" className="social-link">TW</a>
-            <a href="#" className="social-link">YT</a>
-            <a href="mailto:nammaprinthouse2k26@gmail.com" className="social-link"><Mail size={18} /></a>
           </div>
           <div className="footer-contact-info" style={{ marginTop: '15px', fontSize: '0.85rem', color: '#bbb', display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <p>📍 Bengaluru</p>

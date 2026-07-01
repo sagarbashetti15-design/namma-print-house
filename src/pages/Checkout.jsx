@@ -350,6 +350,17 @@ ${itemsText}
     return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(msg)}`;
   };
 
+  // Auto-redirect to WhatsApp on success
+  useEffect(() => {
+    if (step === 3 && lastPlacedOrder) {
+      const waLink = generateWhatsAppLink();
+      const timer = setTimeout(() => {
+        window.open(waLink, '_blank');
+      }, 1500); // 1.5 second delay so they see the success screen
+      return () => clearTimeout(timer);
+    }
+  }, [step, lastPlacedOrder]);
+
   return (
     <div className="container checkout-container">
       {step < 3 && (
@@ -536,37 +547,12 @@ ${itemsText}
           <p style={{ color: '#525252' }}>Thank you for shopping at Namma Print House.</p>
           <p style={{ color: '#0d2850', fontSize: '1.2rem' }}>Your order number is: <strong style={{ color: '#f8b400' }}>#{placedOrderId || '#NPH-123456'}</strong></p>
           
-          {/* WhatsApp Direct Action Button */}
-          <div className="success-details-card" style={{ maxWidth: '500px', margin: '30px auto', padding: '25px', backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid rgba(13, 40, 80, 0.05)', textAlign: 'left', boxShadow: '0 4px 15px rgba(0,0,0,0.03)' }}>
-            <h4 style={{ margin: '0 0 10px 0', color: '#0d2850', fontFamily: 'Outfit', fontWeight: 700, borderBottom: '1px solid rgba(13, 40, 80, 0.08)', paddingBottom: '8px', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '0.5px' }}>🚀 Start Custom Printing</h4>
-            <p style={{ fontSize: '0.85rem', color: '#555', marginBottom: '20px', lineHeight: '1.5' }}>
-              Your order payment has been successfully authorized. To initiate custom printing immediately, click below to send your structured order specifications and design images directly to the print house on WhatsApp.
+          {/* WhatsApp Direct Action Button (Removed as per user request to be automatic) */}
+          <div className="success-details-card" style={{ maxWidth: '500px', margin: '30px auto', padding: '20px', backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid rgba(13, 40, 80, 0.05)', textAlign: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.03)' }}>
+            <h4 style={{ margin: '0 0 10px 0', color: '#0d2850', fontFamily: 'Outfit', fontWeight: 700 }}>🚀 Order Details Sent!</h4>
+            <p style={{ fontSize: '0.9rem', color: '#555', margin: '0' }}>
+              Your order specifications have been automatically redirected to WhatsApp for printing confirmation.
             </p>
-            <a 
-              href={generateWhatsAppLink()} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="primary-btn"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                backgroundColor: '#25D366',
-                color: '#fff',
-                textDecoration: 'none',
-                padding: '14px',
-                borderRadius: '6px',
-                fontWeight: 700,
-                textAlign: 'center',
-                fontSize: '1rem',
-                border: 'none',
-                boxShadow: '0 4px 12px rgba(37, 211, 102, 0.25)',
-                transition: 'transform 0.2s'
-              }}
-            >
-              💬 SEND DETAILS TO WHATSAPP
-            </a>
           </div>
 
           <div className="success-details-card" style={{ maxWidth: '500px', margin: '30px auto', padding: '20px', backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid rgba(13, 40, 80, 0.05)', textAlign: 'left' }}>
