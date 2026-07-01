@@ -33,7 +33,8 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Marketing config from live Firestore database\n  const { marketing: marketingConfig } = useCatalog();
+  // Marketing config from live Firestore database
+  const { marketing: marketingConfig } = useCatalog();
 
   // Build dynamic promo messages (inject active promo code if deployed)
   const basePromoMessages = [
