@@ -222,10 +222,8 @@ const AdminDashboardSecure = () => {
       // Update Local Cache
       localStorage.setItem('nph_marketing', JSON.stringify(marketingConfig));
       
-      addMessage('system', '🚀 *Marketing Settings Deployed!*\nGlobal campaigns, promos, and discounts have been synced to the live storefront database.\n\n🔄 Storefront is reloading...');
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
+      addMessage('system', '🚀 *Marketing Settings Deployed!*\nGlobal campaigns, promos, and discounts have been synced to the live storefront database.\n\n🔄 Storefront updated behind the scenes!');
+      
     } catch (err) {
       addMessage('system', '❌ *Error:* Failed to deploy marketing settings to the live database.');
       console.error(err);
@@ -294,10 +292,8 @@ const AdminDashboardSecure = () => {
             .then(() => {
               localStorage.setItem('nph_catalog', JSON.stringify(updated));
               setLocalCatalog(updated);
-              addMessage('system', `✅ *WhatsApp Sync Successful!*\nProduct *"${matchedProduct.title}"* has been set to *OUT OF STOCK* on the live database.\n\n🔄 Storefront is refreshing to reflect updates...`);
-              setTimeout(() => {
-                window.location.reload();
-              }, 2000);
+              addMessage('system', `✅ *WhatsApp Sync Successful!*\nProduct *"${matchedProduct.title}"* has been set to *OUT OF STOCK* on the live database.\n\n🔄 Storefront updated behind the scenes!`);
+              
             })
             .catch(err => {
               addMessage('system', `❌ *Sync Error:*\nFailed to update live database.`);
@@ -334,10 +330,8 @@ const AdminDashboardSecure = () => {
             .then(() => {
               localStorage.setItem('nph_catalog', JSON.stringify(updated));
               setLocalCatalog(updated);
-              addMessage('system', `✅ *WhatsApp Sync Successful!*\nProduct *"${matchedProduct.title}"* has been marked *IN STOCK* on the live database.\n\n🔄 Storefront is refreshing to reflect updates...`);
-              setTimeout(() => {
-                window.location.reload();
-              }, 2000);
+              addMessage('system', `✅ *WhatsApp Sync Successful!*\nProduct *"${matchedProduct.title}"* has been marked *IN STOCK* on the live database.\n\n🔄 Storefront updated behind the scenes!`);
+              
             })
             .catch(err => {
               addMessage('system', `❌ *Sync Error:*\nFailed to update live database.`);
@@ -373,10 +367,8 @@ const AdminDashboardSecure = () => {
         .then(() => {
           localStorage.setItem('nph_catalog', JSON.stringify(updated));
           setLocalCatalog(updated);
-          addMessage('system', `✅ Live Database Updated!\nProduct is now ${newStatus ? 'OUT OF STOCK' : 'IN STOCK'}.\n\n🔄 Storefront is refreshing...`);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1500);
+          addMessage('system', `✅ Live Database Updated!\nProduct is now ${newStatus ? 'OUT OF STOCK' : 'IN STOCK'}.\n\n🔄 Storefront updated behind the scenes!`);
+          
         })
         .catch(err => {
           addMessage('system', `❌ *Sync Error:*\nFailed to update live database.`);
@@ -439,14 +431,12 @@ const AdminDashboardSecure = () => {
             localStorage.setItem('nph_catalog', JSON.stringify(updated));
             setLocalCatalog(updated);
             
-            addMessage('system', `🚀 *Live Database Sync Successful:*\n"${newProduct.title}" added to storefront with colors: ${colorKeys.join(', ')}!\n\n🔄 Storefront reloading to display new item...`);
+            addMessage('system', `🚀 *Live Database Sync Successful:*\n"${newProduct.title}" added to storefront with colors: ${colorKeys.join(', ')}!\n\n🔄 Storefront updated behind the scenes!`);
             setIsAddFormOpen(false);
             setUploadedImages({});
             setNewProduct({ title: '', price: '699', category: 'men', description: '' });
             
-            setTimeout(() => {
-              window.location.reload();
-            }, 2000);
+            
           })
           .catch(err => {
             console.error("API error:", err);
@@ -833,8 +823,8 @@ const AdminDashboardSecure = () => {
                         setActivePromo('none');
                         setActiveDiscount('none');
                         localStorage.removeItem('nph_marketing');
-                        addMessage('system', '🛑 *All Marketing Campaigns Deactivated.*\nThe storefront has been reset to default state.\n\n🔄 Storefront is reloading...');
-                        setTimeout(() => { window.location.reload(); }, 1500);
+                        addMessage('system', '🛑 *All Marketing Campaigns Deactivated.*\nThe storefront has been reset to default state.\n\n🔄 Storefront updated behind the scenes!');
+                        
                       }}
                     >
                       🛑 Deactivate All Campaigns
