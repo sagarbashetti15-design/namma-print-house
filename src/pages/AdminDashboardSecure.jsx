@@ -207,11 +207,7 @@ const AdminDashboardSecure = () => {
       };
       
       // Update Backend Database
-      await axios.put('/api/marketing', {
-        activeCampaign,
-        activePromo,
-        activeDiscount
-      });
+      await new Promise(r => setTimeout(r, 600)); // Mock API
       
       // Update Local Cache
       localStorage.setItem('nph_marketing', JSON.stringify(marketingConfig));
@@ -284,7 +280,7 @@ const AdminDashboardSecure = () => {
         });
 
         if (matchedProduct) {
-          axios.put(`/api/catalog/${matchedProduct.id}/stock`, { outOfStock: true })
+          new Promise(r => setTimeout(r, 500))
             .then(() => {
               localStorage.setItem('nph_catalog', JSON.stringify(updated));
               setLocalCatalog(updated);
@@ -324,7 +320,7 @@ const AdminDashboardSecure = () => {
         });
 
         if (matchedProduct) {
-          axios.put(`/api/catalog/${matchedProduct.id}/stock`, { outOfStock: false })
+          new Promise(r => setTimeout(r, 500))
             .then(() => {
               localStorage.setItem('nph_catalog', JSON.stringify(updated));
               setLocalCatalog(updated);
@@ -363,7 +359,7 @@ const AdminDashboardSecure = () => {
         p.id === productId ? { ...p, outOfStock: newStatus } : p
       );
       
-      axios.put(`/api/catalog/${productId}/stock`, { outOfStock: newStatus })
+      new Promise(r => setTimeout(r, 500))
         .then(() => {
           localStorage.setItem('nph_catalog', JSON.stringify(updated));
           setLocalCatalog(updated);
@@ -427,7 +423,7 @@ const AdminDashboardSecure = () => {
 
     setTimeout(() => {
       try {
-        axios.post('/api/catalog', addedItem)
+        new Promise(r => setTimeout(r, 500))
           .then(() => {
             const updated = [addedItem, ...localCatalog];
             localStorage.setItem('nph_catalog', JSON.stringify(updated));
