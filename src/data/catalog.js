@@ -875,9 +875,17 @@ try {
   const cached = localStorage.getItem('nph_catalog');
   if (cached) {
     const parsed = JSON.parse(cached);
-    dynamicProducts = parsed.filter(p => p.id !== 'w10');
-    if (parsed.length !== dynamicProducts.length) {
-      localStorage.setItem('nph_catalog', JSON.stringify(dynamicProducts));
+    const customTee = parsed.find(p => p.id === 'custom-tee');
+    
+    // Bust cache if custom tee is missing visual customizer flag
+    if (customTee && !customTee.isVisualCustomizer) {
+      localStorage.setItem('nph_catalog', JSON.stringify(initialProducts));
+      dynamicProducts = initialProducts;
+    } else {
+      dynamicProducts = parsed.filter(p => p.id !== 'w10');
+      if (parsed.length !== dynamicProducts.length) {
+        localStorage.setItem('nph_catalog', JSON.stringify(dynamicProducts));
+      }
     }
   } else {
     localStorage.setItem('nph_catalog', JSON.stringify(initialProducts));
