@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
+import { QRCodeSVG } from 'qrcode.react';
 import './Checkout.css';
 
 const Checkout = () => {
@@ -15,9 +16,10 @@ const Checkout = () => {
   const [discountAmount, setDiscountAmount] = useState(0);
   const [couponError, setCouponError] = useState('');
 
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('card');
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('upi');
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [placedOrderId, setPlacedOrderId] = useState('');
+  const [utrNumber, setUtrNumber] = useState('');
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -260,8 +262,13 @@ const Checkout = () => {
       
       setStep(2);
     } else if (step === 2) {
+      if (utrNumber.trim().length < 12) {
+        showToast("Please enter a valid 12-digit UPI Transaction ID (UTR)", "warning");
+        return;
+      }
+
       setIsProcessingPayment(true);
-      const duration = 3000;
+      const duration = 2000;
       
       setTimeout(() => {
         setIsProcessingPayment(false);
@@ -295,7 +302,8 @@ const Checkout = () => {
             };
           }),
           total: grandTotal,
-          paymentMethod: selectedPaymentMethod.toUpperCase(),
+          paymentMethod: 'UPI',
+          utrNumber: utrNumber.trim(),
           status: 'Order Confirmed',
           timestamp: Date.now()
         };
@@ -336,6 +344,7 @@ const Checkout = () => {
 📌 *Order ID:* #${lastPlacedOrder.id}
 📅 *Date:* ${lastPlacedOrder.date}
 💰 *Total Amount Paid:* ₹${lastPlacedOrder.total} via *${lastPlacedOrder.paymentMethod}*
+✅ *Transaction ID (UTR):* ${lastPlacedOrder.utrNumber}
 
 👤 *CUSTOMER DETAILS:*
    - *Name:* ${formData.firstName} ${formData.lastName}
@@ -445,95 +454,48 @@ ${itemsText}
 
           {step === 2 && !isProcessingPayment && (
             <form onSubmit={handleNext} className="checkout-form">
-              <h3>Payment Method</h3>
-              <div className="payment-options">
-                <label className={`payment-option ${selectedPaymentMethod === 'card' ? 'active' : ''}`}>
-                  <input 
-                    type="radio" 
-                    name="payment" 
-                    required 
-                    checked={selectedPaymentMethod === 'card'} 
-                    onChange={() => setSelectedPaymentMethod('card')} 
+              <h3>Complete Payment via UPI</h3>
+              
+              <div className="upi-details" style={{ padding: '20px', backgroundColor: '#fff', border: '1px solid rgba(13, 40, 80, 0.08)', borderRadius: '8px', marginBottom: '20px', textAlign: 'center' }}>
+                <p style={{ fontSize: '0.95rem', color: '#0d2850', marginBottom: '15px' }}>
+                  Scan the QR code below using GPay, PhonePe, or Paytm to pay <strong>₹{grandTotal}</strong>.
+                </p>
+                <div style={{ padding: '15px', background: '#f5f5f5', display: 'inline-block', borderRadius: '12px', marginBottom: '20px' }}>
+                  <QRCodeSVG 
+                    value={`upi://pay?pa=8296437764@paytm&pn=Namma%20Print%20House&am=${grandTotal}&cu=INR`}
+                    size={200}
+                    level={"H"}
                   />
-                  Credit / Debit Card
-                </label>
-                <label className={`payment-option ${selectedPaymentMethod === 'upi' ? 'active' : ''}`}>
+                </div>
+                
+                <div style={{ textAlign: 'left' }}>
+                  <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 'bold', color: '#0d2850', marginBottom: '8px' }}>
+                    Enter 12-Digit Transaction ID (UTR)
+                  </label>
                   <input 
-                    type="radio" 
-                    name="payment" 
+                    type="text" 
+                    placeholder="e.g. 312345678901" 
                     required 
-                    checked={selectedPaymentMethod === 'upi'} 
-                    onChange={() => setSelectedPaymentMethod('upi')} 
+                    minLength={12}
+                    maxLength={12}
+                    value={utrNumber}
+                    onChange={(e) => setUtrNumber(e.target.value.replace(/\D/g, ''))}
+                    style={{ width: '100%', padding: '12px', borderRadius: '4px', border: '1px solid #ccc', marginBottom: '10px' }}
                   />
-                  UPI / QR Scan Code
-                </label>
+                  <p style={{ fontSize: '0.8rem', color: '#777' }}>You can find this number in your UPI app's transaction history.</p>
+                </div>
               </div>
               
-              {selectedPaymentMethod === 'card' && (
-                <div className="card-details">
-                  <input type="text" placeholder="Card Number" maxLength={19} required />
-                  <div className="form-row">
-                    <input type="text" placeholder="MM/YY" maxLength={5} required />
-                    <input type="password" placeholder="CVV" maxLength={4} required />
-                  </div>
-                </div>
-              )}
-
-              {selectedPaymentMethod === 'upi' && (
-                <div className="upi-details" style={{ padding: '15px', backgroundColor: 'rgba(81, 204, 204, 0.05)', border: '1px dashed #51cccc', borderRadius: '6px', marginBottom: '20px', textAlign: 'left' }}>
-                  <p style={{ fontSize: '0.85rem', color: '#0d2850', margin: 0 }}>
-                    ⚡ <strong>Instant Checkout:</strong> A simulated secure dynamic QR Code will be generated for your order of <strong>₹{grandTotal}</strong> upon clicking place order.
-                  </p>
-                </div>
-              )}
-              
-              <button type="submit" className="primary-btn">PLACE ORDER (₹{grandTotal})</button>
-              <button type="button" className="secondary-btn" onClick={() => setStep(1)}>BACK TO SHIPPING</button>
+              <button type="submit" className="primary-btn">CONFIRM PAYMENT</button>
+              <button type="button" className="secondary-btn" onClick={() => setStep(1)} style={{ marginTop: '10px' }}>BACK TO SHIPPING</button>
             </form>
           )}
 
           {step === 2 && isProcessingPayment && (
             <div className="payment-processing-screen" style={{ textAlign: 'center', padding: '40px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '350px' }}>
-              {selectedPaymentMethod === 'upi' ? (
-                <div className="upi-processing-box" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-                  <div className="mock-qr-code" style={{ border: '2px solid #0d2850', padding: '15px', borderRadius: '8px', backgroundColor: '#fff', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-                    <svg width="150" height="150" viewBox="0 0 100 100" style={{ display: 'block' }}>
-                      <rect width="100" height="100" fill="#fff" />
-                      <rect x="5" y="5" width="25" height="25" fill="#0d2850" />
-                      <rect x="10" y="10" width="15" height="15" fill="#fff" />
-                      <rect x="12" y="12" width="11" height="11" fill="#0d2850" />
-                      
-                      <rect x="70" y="5" width="25" height="25" fill="#0d2850" />
-                      <rect x="75" y="10" width="15" height="15" fill="#fff" />
-                      <rect x="77" y="12" width="11" height="11" fill="#0d2850" />
-                      
-                      <rect x="5" y="70" width="25" height="25" fill="#0d2850" />
-                      <rect x="10" y="75" width="15" height="15" fill="#fff" />
-                      <rect x="12" y="77" width="11" height="11" fill="#0d2850" />
-                      
-                      <rect x="40" y="10" width="10" height="15" fill="#0d2850" />
-                      <rect x="55" y="15" width="10" height="5" fill="#0d2850" />
-                      <rect x="45" y="35" width="20" height="20" fill="#0d2850" />
-                      <rect x="15" y="45" width="15" height="10" fill="#0d2850" />
-                      <rect x="75" y="45" width="15" height="20" fill="#0d2850" />
-                      <rect x="40" y="75" width="20" height="15" fill="#0d2850" />
-                      <rect x="70" y="75" width="10" height="10" fill="#0d2850" />
-                    </svg>
-                  </div>
-                  <h3 style={{ color: '#0d2850', fontFamily: 'Outfit', margin: 0 }}>Scan & Pay ₹{grandTotal}</h3>
-                  <p style={{ color: '#737373', fontSize: '0.85rem' }}>Open GPay, PhonePe, or BHIM UPI App to complete payment.</p>
-                  <div className="payment-status-loader" style={{ width: '250px', height: '6px', backgroundColor: '#eee', borderRadius: '3px', overflow: 'hidden', position: 'relative' }}>
-                    <div className="payment-loader-bar" style={{ height: '100%', backgroundColor: '#51cccc', width: '0%', animation: 'fill-loader 3s linear forwards' }}></div>
-                  </div>
-                  <span className="verifying-text" style={{ fontSize: '0.85rem', color: '#51cccc', fontWeight: 'bold' }}>🕒 Verifying transaction signature...</span>
-                </div>
-              ) : (
-                <div className="card-processing-box" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-                  <div className="card-spinner" style={{ width: '50px', height: '50px', borderRadius: '50%', border: '4px solid #f3f3f3', borderTop: '4px solid #ffd000', animation: 'spin 1s linear infinite' }}></div>
-                  <h3 style={{ color: '#0d2850', fontFamily: 'Outfit', margin: 0 }}>Authorizing Card Payment</h3>
-                  <p style={{ color: '#737373', fontSize: '0.85rem', maxWidth: '300px' }}>Communicating secure token with your merchant bank. Please do not close or refresh this page.</p>
-                </div>
-              )}
+              <div className="card-spinner" style={{ width: '50px', height: '50px', borderRadius: '50%', border: '4px solid #f3f3f3', borderTop: '4px solid #ffd000', animation: 'spin 1s linear infinite' }}></div>
+              <h3 style={{ color: '#0d2850', fontFamily: 'Outfit', margin: '20px 0 5px' }}>Verifying Transaction</h3>
+              <p style={{ color: '#737373', fontSize: '0.85rem', maxWidth: '300px' }}>Verifying your UPI transaction ID. Please do not close or refresh this page.</p>
             </div>
           )}
         </div>
