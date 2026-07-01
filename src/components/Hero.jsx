@@ -12,6 +12,7 @@ const slides = [
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -22,24 +23,34 @@ const Hero = () => {
   };
 
   useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    
     const timer = setInterval(() => {
       nextSlide();
     }, 5000);
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
+  const currentBg = isMobile && slides[currentSlide].id === 1 
+    ? '/images/unique-dslr-women-hero-mobile.jpg' 
+    : slides[currentSlide].bg;
 
   return (
     <section className="hero">
       {/* Layer 0: 3D Blurred Deep Background */}
       <div 
         className="hero-bg-blur"
-        style={{ backgroundImage: `url(${slides[currentSlide].bg})` }}
+        style={{ backgroundImage: `url(${currentBg})` }}
       ></div>
 
       {/* Layer 1: Sharp 3D Floating Model (Zoomed out on the right) */}
       <div 
         className="hero-bg-sharp"
-        style={{ backgroundImage: `url(${slides[currentSlide].bg})` }}
+        style={{ backgroundImage: `url(${currentBg})` }}
       ></div>
 
       <div className="hero-overlay"></div>

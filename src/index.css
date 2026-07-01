@@ -100,3 +100,17 @@ button {
 .bg-primary { background-color: var(--color-primary); }
 .text-inverse { color: var(--color-text-inverse); }
 .bg-secondary { background-color: var(--color-secondary); }
+ 
+@media (max-width: 768px) {
+  .icon-btn, .wishlist-btn, .clear-swatch-btn, .menu-toggle, .cart-btn, .search-btn, .slider-arrow, .lightbox-close, .close-btn {
+    min-width: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .swatch-dot {
+    margin: 8px; /* Instead of min-width 48px which breaks aspect, just add spacing so clickable area effectively increases */
+  }
+}
