@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Settings, X, Send, Database, Smartphone, Eye, EyeOff, Lock } from 'lucide-react';
 import { products as initialStaticProducts } from '../data/catalog';
 import axios from 'axios';
-import './AdminWhatsAppSyncModal.css';
+import './AdminDashboardSecure.css';
 
 // Admin password — must be changed before going live
 // Requirements: min 9 chars, uppercase, lowercase, digit, special char
