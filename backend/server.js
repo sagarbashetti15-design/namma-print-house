@@ -21,11 +21,11 @@ const connectDB = async () => {
     return;
   }
   try {
-    const db = await mongoose.connect(MONGO_URI);
+    const db = await mongoose.connect(MONGO_URI, { serverSelectionTimeoutMS: 5000 });
     isConnected = db.connections[0].readyState;
     console.log('MongoDB Atlas connected successfully');
   } catch (err) {
-    console.error('MongoDB connection error:', err);
+    console.error('MongoDB connection error message:', err.message);
   }
 };
 
@@ -42,7 +42,7 @@ import marketingRoutes from './routes/marketing.js';
 
 // Basic route
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Backend is running' });
+  res.json({ status: 'ok', message: 'Backend is running', mongoUriLength: process.env.MONGO_URI ? process.env.MONGO_URI.length : 0, jwtLength: process.env.JWT_SECRET ? process.env.JWT_SECRET.length : 0 });
 });
 
 // Mount Routes
