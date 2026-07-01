@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Settings, X, Send, Database, Smartphone, Eye, EyeOff, Lock } from 'lucide-react';
 import { products as initialStaticProducts } from '../data/catalog';
+import axios from 'axios';
 import './AdminWhatsAppSyncModal.css';
 
 // Admin password — must be changed before going live
@@ -9,7 +10,7 @@ const ADMIN_PASSWORD = 'Namma@2k26!';
 
 const STANDARD_COLORS = ['Red', 'White', 'Black', 'Cream', 'Brown'];
 
-const AdminWhatsAppSyncModal = () => {
+const AdminDashboardSecure = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
@@ -194,20 +195,35 @@ const AdminWhatsAppSyncModal = () => {
     }
   }, []);
 
-  const deployMarketingSettings = () => {
-    const marketingConfig = {
-      activeCampaign,
-      activePromo,
-      activeDiscount,
-      campaignData: CAMPAIGNS.find(c => c.id === activeCampaign),
-      promoData: PROMO_CODES.find(p => p.id === activePromo),
-      discountData: DISCOUNTS.find(d => d.id === activeDiscount)
-    };
-    localStorage.setItem('nph_marketing', JSON.stringify(marketingConfig));
-    addMessage('system', '🚀 *Marketing Settings Deployed!*\nGlobal campaigns, promos, and discounts have been synced to the storefront.\n\n🔄 Storefront is reloading...');
-    setTimeout(() => {
-      window.location.reload();
-    }, 1500);
+  const deployMarketingSettings = async () => {
+    try {
+      const marketingConfig = {
+        activeCampaign,
+        activePromo,
+        activeDiscount,
+        campaignData: CAMPAIGNS.find(c => c.id === activeCampaign),
+        promoData: PROMO_CODES.find(p => p.id === activePromo),
+        discountData: DISCOUNTS.find(d => d.id === activeDiscount)
+      };
+      
+      // Update Backend Database
+      await axios.put('/api/marketing', {
+        activeCampaign,
+        activePromo,
+        activeDiscount
+      });
+      
+      // Update Local Cache
+      localStorage.setItem('nph_marketing', JSON.stringify(marketingConfig));
+      
+      addMessage('system', '🚀 *Marketing Settings Deployed!*\nGlobal campaigns, promos, and discounts have been synced to the live storefront database.\n\n🔄 Storefront is reloading...');
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+    } catch (err) {
+      addMessage('system', '❌ *Error:* Failed to deploy marketing settings to the live database.');
+      console.error(err);
+    }
   };
 
   // Scroll message thread
@@ -268,12 +284,19 @@ const AdminWhatsAppSyncModal = () => {
         });
 
         if (matchedProduct) {
-          localStorage.setItem('nph_catalog', JSON.stringify(updated));
-          setLocalCatalog(updated);
-          addMessage('system', `✅ *WhatsApp Sync Successful!*\nProduct *"${matchedProduct.title}"* has been set to *OUT OF STOCK*.\n\n🔄 Storefront is refreshing to reflect updates...`);
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
+          axios.put(`/api/catalog/${matchedProduct.id}/stock`, { outOfStock: true })
+            .then(() => {
+              localStorage.setItem('nph_catalog', JSON.stringify(updated));
+              setLocalCatalog(updated);
+              addMessage('system', `✅ *WhatsApp Sync Successful!*\nProduct *"${matchedProduct.title}"* has been set to *OUT OF STOCK* on the live database.\n\n🔄 Storefront is refreshing to reflect updates...`);
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+            })
+            .catch(err => {
+              addMessage('system', `❌ *Sync Error:*\nFailed to update live database.`);
+              console.error(err);
+            });
         } else {
           addMessage('system', `❌ *Sync Error:*\nNo products found in Meta Catalog matching "${targetWord}". Try typing: *"m7 out of stock"*`);
         }
@@ -301,12 +324,19 @@ const AdminWhatsAppSyncModal = () => {
         });
 
         if (matchedProduct) {
-          localStorage.setItem('nph_catalog', JSON.stringify(updated));
-          setLocalCatalog(updated);
-          addMessage('system', `✅ *WhatsApp Sync Successful!*\nProduct *"${matchedProduct.title}"* has been marked *IN STOCK* / Available.\n\n🔄 Storefront is refreshing to reflect updates...`);
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
+          axios.put(`/api/catalog/${matchedProduct.id}/stock`, { outOfStock: false })
+            .then(() => {
+              localStorage.setItem('nph_catalog', JSON.stringify(updated));
+              setLocalCatalog(updated);
+              addMessage('system', `✅ *WhatsApp Sync Successful!*\nProduct *"${matchedProduct.title}"* has been marked *IN STOCK* on the live database.\n\n🔄 Storefront is refreshing to reflect updates...`);
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+            })
+            .catch(err => {
+              addMessage('system', `❌ *Sync Error:*\nFailed to update live database.`);
+              console.error(err);
+            });
         } else {
           addMessage('system', `❌ *Sync Error:*\nNo products found in Meta Catalog matching "${targetWord}". Try typing: *"m7 in stock"*`);
         }
@@ -332,14 +362,21 @@ const AdminWhatsAppSyncModal = () => {
       const updated = localCatalog.map(p => 
         p.id === productId ? { ...p, outOfStock: newStatus } : p
       );
-      localStorage.setItem('nph_catalog', JSON.stringify(updated));
-      setLocalCatalog(updated);
       
-      addMessage('system', `✅ *Meta Sync Alert:*\n"${prod.title}" status synced successfully!\n\n🔄 Storefront reloading...`);
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
-    }, 900);
+      axios.put(`/api/catalog/${productId}/stock`, { outOfStock: newStatus })
+        .then(() => {
+          localStorage.setItem('nph_catalog', JSON.stringify(updated));
+          setLocalCatalog(updated);
+          addMessage('system', `✅ Live Database Updated!\nProduct is now ${newStatus ? 'OUT OF STOCK' : 'IN STOCK'}.\n\n🔄 Storefront is refreshing...`);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        })
+        .catch(err => {
+          addMessage('system', `❌ *Sync Error:*\nFailed to update live database.`);
+          console.error(err);
+        });
+    }, 1000);
   };
 
   // Add new arrival
@@ -390,21 +427,28 @@ const AdminWhatsAppSyncModal = () => {
 
     setTimeout(() => {
       try {
-        const updated = [addedItem, ...localCatalog];
-        localStorage.setItem('nph_catalog', JSON.stringify(updated));
-        setLocalCatalog(updated);
-        
-        addMessage('system', `🚀 *Meta Webhook Sync Successful:*\n"${newProduct.title}" added to storefront with colors: ${colorKeys.join(', ')}!\n\n🔄 Storefront reloading to display new item...`);
-        setIsAddFormOpen(false);
-        setUploadedImages({});
-        setNewProduct({ title: '', price: '699', category: 'men', description: '' });
-        
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        axios.post('/api/catalog', addedItem)
+          .then(() => {
+            const updated = [addedItem, ...localCatalog];
+            localStorage.setItem('nph_catalog', JSON.stringify(updated));
+            setLocalCatalog(updated);
+            
+            addMessage('system', `🚀 *Live Database Sync Successful:*\n"${newProduct.title}" added to storefront with colors: ${colorKeys.join(', ')}!\n\n🔄 Storefront reloading to display new item...`);
+            setIsAddFormOpen(false);
+            setUploadedImages({});
+            setNewProduct({ title: '', price: '699', category: 'men', description: '' });
+            
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+          })
+          .catch(err => {
+            console.error("API error:", err);
+            addMessage('system', `❌ *Sync Error:*\nFailed to add product to live database.`);
+          });
       } catch (error) {
         console.error("Storage error:", error);
-        alert("⚠️ Storage Quota Exceeded! Failed to save product. Even with compression, browser storage has a strict limit. Try uploading fewer or smaller images.");
+        alert("⚠️ Failed to process product.");
       }
     }, 1200);
   };
@@ -817,4 +861,4 @@ const AdminWhatsAppSyncModal = () => {
   );
 };
 
-export default AdminWhatsAppSyncModal;
+export default AdminDashboardSecure;

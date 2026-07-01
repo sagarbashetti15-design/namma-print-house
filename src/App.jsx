@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
 
@@ -25,11 +25,42 @@ import TrackOrder from './pages/TrackOrder'
 import { WishlistProvider } from './context/WishlistContext'
 import { ToastProvider } from './context/ToastContext'
 import WhatsAppButton from './components/WhatsAppButton'
-import AdminWhatsAppSyncModal from './components/AdminWhatsAppSyncModal'
+import AdminDashboardSecure from './pages/AdminDashboardSecure'
 import ScrollToTop from './components/ScrollToTop'
 import AdminDashboard from './pages/AdminDashboard'
+import axios from 'axios'
 
 function App() {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+  useEffect(() => {
+    const fetchGlobalData = async () => {
+      try {
+        const [catalogRes, marketingRes] = await Promise.all([
+          axios.get('/api/catalog'),
+          axios.get('/api/marketing')
+        ]);
+        
+        if (catalogRes.data && catalogRes.data.length > 0) {
+          localStorage.setItem('nph_catalog', JSON.stringify(catalogRes.data));
+        }
+        
+        if (marketingRes.data) {
+          localStorage.setItem('nph_marketing', JSON.stringify(marketingRes.data));
+        }
+      } catch (err) {
+        console.error('Failed to sync global store data from server', err);
+      } finally {
+        setIsDataLoaded(true);
+      }
+    };
+    fetchGlobalData();
+  }, []);
+
+  if (!isDataLoaded) {
+    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#0a0a0a', color: '#fff' }}>Loading Namma Print House...</div>;
+  }
+
   return (
     <ToastProvider>
       <CartProvider>
@@ -60,11 +91,11 @@ function App() {
                 <Route path="/care" element={<CareInstructions />} />
                 <Route path="/track-order" element={<TrackOrder />} />
                 <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/admin-secure-portal" element={<AdminDashboardSecure />} />
               </Routes>
             </main>
             <Footer />
             <WhatsAppButton />
-            <AdminWhatsAppSyncModal />
           </div>
         </Router>
       </WishlistProvider>

@@ -32,6 +32,8 @@ connectDB();
 
 import authRoutes from './routes/auth.js';
 import orderRoutes from './routes/orders.js';
+import catalogRoutes from './routes/catalog.js';
+import marketingRoutes from './routes/marketing.js';
 
 // Basic route
 app.get('/api/health', (req, res) => {
@@ -41,6 +43,8 @@ app.get('/api/health', (req, res) => {
 // Mount Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/catalog', catalogRoutes);
+app.use('/api/marketing', marketingRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
