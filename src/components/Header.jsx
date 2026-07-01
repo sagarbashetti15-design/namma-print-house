@@ -11,6 +11,13 @@ import UserProfileModal from './UserProfileModal';
 import CartDrawer from './CartDrawer';
 import './Header.css';
 
+const basePromoMessages = [
+  { text: "🎁 WELCOME OFFER: Flat ₹100 OFF on orders above ₹1500! Use Code:", code: "WELCOME100" },
+  { text: "🔥 SPECIAL DISCOUNT: Get 10% OFF on all Streetwear Tees! Use Code:", code: "NAMMAPRINT10" },
+  { text: "💳 PREPAID BONUS: Pay via UPI/Card to get Extra 5% OFF! Use Code:", code: "PREPAID5" },
+  { text: "🚚 FREE SHIPPING: Free delivery PAN India on orders above ₹1999!", code: null }
+];
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -37,14 +44,6 @@ const Header = () => {
 
   // Marketing config from live Firestore database
   const { marketing: marketingConfig } = useCatalog();
-
-  // Build dynamic promo messages (inject active promo code if deployed)
-  const basePromoMessages = [
-    { text: "🎁 WELCOME OFFER: Flat ₹100 OFF on orders above ₹1500! Use Code:", code: "WELCOME100" },
-    { text: "🔥 SPECIAL DISCOUNT: Get 10% OFF on all Streetwear Tees! Use Code:", code: "NAMMAPRINT10" },
-    { text: "💳 PREPAID BONUS: Pay via UPI/Card to get Extra 5% OFF! Use Code:", code: "PREPAID5" },
-    { text: "🚚 FREE SHIPPING: Free delivery PAN India on orders above ₹1999!", code: null }
-  ];
 
   const promoMessages = React.useMemo(() => {
     const msgs = [...basePromoMessages];

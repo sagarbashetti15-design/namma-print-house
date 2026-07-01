@@ -16,7 +16,7 @@ const ProductDetail = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { products, loading } = useCatalog();
+  const { products, loading, marketing: marketingConfig } = useCatalog();
 
   const product = products.find(p => p.id === productId);
   useDocumentTitle(product ? product.title : 'Product Not Found');
@@ -26,8 +26,6 @@ const ProductDetail = () => {
   const { showToast } = useToast();
   
   // Read color query parameter from URL
-  
-  if (loading) return <div className="container" style={{ padding: '40px 1rem', minHeight: '60vh' }}>Loading product details...</div>;
   const queryParams = new URLSearchParams(location.search);
   const initialColor = queryParams.get('color') || '';
   
@@ -58,13 +56,9 @@ const ProductDetail = () => {
   const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
   const [newReview, setNewReview] = useState({ author: '', rating: 5, comment: '' });
 
+  const [mktDiscount, setMktDiscount] = React.useState(null);
 
-
-  if (!product) {
-    return <div className="container" style={{ padding: '40px 1rem' }}>Product not found</div>;
-  }
-
-  const [dynamicReviews, setDynamicReviews] = useState([
+  const [dynamicReviews, setDynamicReviews] = useState(product ? [
     {
       id: 1,
       author: "Rahul S.",
@@ -105,7 +99,7 @@ const ProductDetail = () => {
       photos: [],
       fit: "Fits loose / Oversized"
     }
-  ]);
+  ] : []);
 
   const [brandReviews, setBrandReviews] = useState([
     {
@@ -137,18 +131,30 @@ const ProductDetail = () => {
       newBrandReviews.sort((a, b) => b.createdAt - a.createdAt);
       
       setDynamicReviews(prev => {
-        // Keep only hardcoded ones and prepend new ones
-        const hardcoded = prev.filter(p => typeof p.id === 'number');
+        const hardcoded = prev.filter(p => p.id <= 4); // keep hardcoded ones which have id 1-4
         return [...newDynamicReviews, ...hardcoded];
       });
-      
       setBrandReviews(prev => {
-        const hardcoded = prev.filter(p => typeof p.id === 'number');
+        const hardcoded = prev.filter(p => p.id <= 2);
         return [...newBrandReviews, ...hardcoded];
       });
     });
     return () => unsubscribe();
   }, [product]);
+
+  React.useEffect(() => {
+    if (marketingConfig && marketingConfig.discountData && marketingConfig.discountData.type !== 'none' && marketingConfig.discountData.value > 0) {
+      setMktDiscount(marketingConfig.discountData);
+    } else {
+      setMktDiscount(null);
+    }
+  }, [marketingConfig]);
+
+  if (loading) return <div className="container" style={{ padding: '40px 1rem', minHeight: '60vh' }}>Loading product details...</div>;
+
+  if (!product) {
+    return <div className="container" style={{ padding: '40px 1rem' }}>Product not found</div>;
+  }
 
   // Route to specific customizers
   if (product.isVisualCustomizer) {
@@ -221,16 +227,7 @@ const ProductDetail = () => {
   const displayOriginalPrice = product.category === 'couples' && bundleOption !== 'set' ? 1299 : product.originalPrice;
   const discountPercent = Math.round(((displayOriginalPrice - displayPrice) / displayOriginalPrice) * 100);
 
-  // Read marketing discount from context
-  const { marketing: marketingConfig } = useCatalog();
-  const [mktDiscount, setMktDiscount] = React.useState(null);
-  React.useEffect(() => {
-    if (marketingConfig && marketingConfig.discountData && marketingConfig.discountData.type !== 'none' && marketingConfig.discountData.value > 0) {
-      setMktDiscount(marketingConfig.discountData);
-    } else {
-      setMktDiscount(null);
-    }
-  }, [marketingConfig]);
+
 
   const isEligibleForDiscount = mktDiscount && (mktDiscount.applicableCategory === 'all' || product.category === mktDiscount.applicableCategory);
 
@@ -695,7 +692,15 @@ const ProductDetail = () => {
                 </button>
               </div>
               <button 
-                onClick={() => setIsReviewFormOpen(true)}
+                onClick={() => {
+                  const isLoggedIn = localStorage.getItem('nph_is_logged_in') === 'true';
+                  if (!isLoggedIn) {
+                    showToast('Please login to write a review', 'error');
+                    // Scroll to top or trigger login modal if possible (for MVP, toast is fine)
+                  } else {
+                    setIsReviewFormOpen(true);
+                  }
+                }}
                 style={{ background: '#ffcc00', color: '#000', border: 'none', padding: '8px 16px', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.9rem' }}
               >
                 Write a Review

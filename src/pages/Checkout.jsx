@@ -228,6 +228,59 @@ const Checkout = () => {
     }
   }, [step]);
 
+  const generateWhatsAppLink = () => {
+    if (!lastPlacedOrder) return '#';
+    const phoneNumber = "918296437764"; // Client WhatsApp: +91 82964 37764
+    
+    let itemsText = "";
+    lastPlacedOrder.items.forEach((item, index) => {
+      let designLinks = "";
+      if (item.customUrls && (item.customUrls.front || item.customUrls.back)) {
+        if (item.customUrls.front) designLinks += `\n     - 👕 Front Print: ${item.customUrls.front}`;
+        if (item.customUrls.back) designLinks += `\n     - 👕 Back Print: ${item.customUrls.back}`;
+      } else {
+        const imageUrl = item.image.startsWith('data:') 
+          ? `(Local Uploaded Image)` 
+          : `${window.location.origin}${item.image}`;
+        designLinks = `\n     - 🖼️ Product Image: ${imageUrl}`;
+      }
+
+      itemsText += `\n📦 *Item ${index + 1}:* ${item.title}
+   - Size: ${item.size}
+   - Qty: ${item.quantity} | Price: ₹${item.price * item.quantity}${designLinks}\n`;
+    });
+
+    const msg = `🚀 *NAMMA PRINT HOUSE - NEW ORDER*
+
+📌 *Order ID:* #${lastPlacedOrder.id}
+📅 *Date:* ${lastPlacedOrder.date}
+💰 *Total Amount Paid:* ₹${lastPlacedOrder.total} via *${lastPlacedOrder.paymentMethod}*
+✅ *Transaction ID (UTR):* ${lastPlacedOrder.utrNumber}
+
+👤 *CUSTOMER DETAILS:*
+   - *Name:* ${formData.firstName} ${formData.lastName}
+   - *Phone:* ${formData.phone}
+   - *Email:* ${formData.email}
+   - *Shipping Address:* ${formData.address}, ${formData.city}, ${formData.state} - ${formData.zipCode}
+
+🛒 *ORDER ITEMS & PICTURE LINKS:*
+${itemsText}
+👉 _Please review customer details and click on the product design link to view the high-quality product picture print graphics._`;
+
+    return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(msg)}`;
+  };
+
+  // Auto-redirect to WhatsApp on success
+  useEffect(() => {
+    if (step === 3 && lastPlacedOrder) {
+      const waLink = generateWhatsAppLink();
+      const timer = setTimeout(() => {
+        window.open(waLink, '_blank');
+      }, 1500); // 1.5 second delay so they see the success screen
+      return () => clearTimeout(timer);
+    }
+  }, [step, lastPlacedOrder, formData]);
+
   if (cartItems.length === 0 && step !== 3) {
     return (
       <div className="container empty-checkout">
@@ -347,58 +400,7 @@ const Checkout = () => {
     }
   };
 
-  const generateWhatsAppLink = () => {
-    if (!lastPlacedOrder) return '#';
-    const phoneNumber = "918296437764"; // Client WhatsApp: +91 82964 37764
-    
-    let itemsText = "";
-    lastPlacedOrder.items.forEach((item, index) => {
-      let designLinks = "";
-      if (item.customUrls && (item.customUrls.front || item.customUrls.back)) {
-        if (item.customUrls.front) designLinks += `\n     - 👕 Front Print: ${item.customUrls.front}`;
-        if (item.customUrls.back) designLinks += `\n     - 👕 Back Print: ${item.customUrls.back}`;
-      } else {
-        const imageUrl = item.image.startsWith('data:') 
-          ? `(Local Uploaded Image)` 
-          : `${window.location.origin}${item.image}`;
-        designLinks = `\n     - 🖼️ Product Image: ${imageUrl}`;
-      }
-
-      itemsText += `\n📦 *Item ${index + 1}:* ${item.title}
-   - Size: ${item.size}
-   - Qty: ${item.quantity} | Price: ₹${item.price * item.quantity}${designLinks}\n`;
-    });
-
-    const msg = `🚀 *NAMMA PRINT HOUSE - NEW ORDER*
-
-📌 *Order ID:* #${lastPlacedOrder.id}
-📅 *Date:* ${lastPlacedOrder.date}
-💰 *Total Amount Paid:* ₹${lastPlacedOrder.total} via *${lastPlacedOrder.paymentMethod}*
-✅ *Transaction ID (UTR):* ${lastPlacedOrder.utrNumber}
-
-👤 *CUSTOMER DETAILS:*
-   - *Name:* ${formData.firstName} ${formData.lastName}
-   - *Phone:* ${formData.phone}
-   - *Email:* ${formData.email}
-   - *Shipping Address:* ${formData.address}, ${formData.city}, ${formData.state} - ${formData.zipCode}
-
-🛒 *ORDER ITEMS & PICTURE LINKS:*
-${itemsText}
-👉 _Please review customer details and click on the product design link to view the high-quality product picture print graphics._`;
-
-    return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(msg)}`;
-  };
-
-  // Auto-redirect to WhatsApp on success
-  useEffect(() => {
-    if (step === 3 && lastPlacedOrder) {
-      const waLink = generateWhatsAppLink();
-      const timer = setTimeout(() => {
-        window.open(waLink, '_blank');
-      }, 1500); // 1.5 second delay so they see the success screen
-      return () => clearTimeout(timer);
-    }
-  }, [step, lastPlacedOrder]);
+  // Moved generateWhatsAppLink and useEffect to the top of the component
 
   return (
     <div className="container checkout-container">
