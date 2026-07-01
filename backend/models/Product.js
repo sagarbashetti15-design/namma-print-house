@@ -17,7 +17,8 @@ const ProductSchema = new mongoose.Schema({
   colorImages: {
     type: Map,
     of: String
-  }
+  },
+  isVisualCustomizer: { type: Boolean, default: false }
 }, { timestamps: true });
 
 export default mongoose.model('Product', ProductSchema);
