@@ -53,6 +53,8 @@ const ProductDetail = () => {
   // Reviews state
   const [selectedReviewRating, setSelectedReviewRating] = useState('all');
   const [reviewLightboxPhoto, setReviewLightboxPhoto] = useState(null);
+  const [isReviewFormOpen, setIsReviewFormOpen] = useState(false);
+  const [newReview, setNewReview] = useState({ author: '', rating: 5, comment: '' });
 
 
 
@@ -60,7 +62,7 @@ const ProductDetail = () => {
     return <div className="container" style={{ padding: '40px 1rem' }}>Product not found</div>;
   }
 
-  const dynamicReviews = [
+  const [dynamicReviews, setDynamicReviews] = useState([
     {
       id: 1,
       author: "Rahul S.",
@@ -101,9 +103,9 @@ const ProductDetail = () => {
       photos: [],
       fit: "Fits loose / Oversized"
     }
-  ];
+  ]);
 
-  const brandReviews = [
+  const [brandReviews, setBrandReviews] = useState([
     {
       id: 1,
       author: "Karthik R.",
@@ -118,7 +120,7 @@ const ProductDetail = () => {
       date: "1 month ago",
       comment: "Amazing quality, secure payments, and very responsive customer support."
     }
-  ];
+  ]);
 
   // Route to specific customizers
   if (product.isVisualCustomizer) {
@@ -651,21 +653,29 @@ const ProductDetail = () => {
 
           {/* Product Reviews */}
           <div className="pdp-reviews-section">
-            <div className="review-tabs">
+            <div className="review-tabs" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+              <div>
+                <button 
+                  className={`review-tab ${activeReviewTab === 'product' ? 'active' : ''}`}
+                  onClick={() => {
+                    setActiveReviewTab('product');
+                    setSelectedReviewRating('all');
+                  }}
+                >
+                  Product Reviews ({dynamicReviews.length})
+                </button>
+                <button 
+                  className={`review-tab ${activeReviewTab === 'brand' ? 'active' : ''}`}
+                  onClick={() => setActiveReviewTab('brand')}
+                >
+                  Brand Reviews ({brandReviews.length})
+                </button>
+              </div>
               <button 
-                className={`review-tab ${activeReviewTab === 'product' ? 'active' : ''}`}
-                onClick={() => {
-                  setActiveReviewTab('product');
-                  setSelectedReviewRating('all');
-                }}
+                onClick={() => setIsReviewFormOpen(true)}
+                style={{ background: '#ffcc00', color: '#000', border: 'none', padding: '8px 16px', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.9rem' }}
               >
-                Product Reviews ({dynamicReviews.length})
-              </button>
-              <button 
-                className={`review-tab ${activeReviewTab === 'brand' ? 'active' : ''}`}
-                onClick={() => setActiveReviewTab('brand')}
-              >
-                Brand Reviews ({brandReviews.length})
+                Write a Review
               </button>
             </div>
             
@@ -787,6 +797,90 @@ const ProductDetail = () => {
                     <p className="review-comment">{review.comment}</p>
                   </div>
                 ))}
+              </div>
+            )}
+
+            {/* Write a Review Modal */}
+            {isReviewFormOpen && (
+              <div className="lightbox-overlay" onClick={() => setIsReviewFormOpen(false)} style={{ zIndex: 9999 }}>
+                <div className="lightbox-content" onClick={e => e.stopPropagation()} style={{ background: '#111', color: '#fff', padding: '24px', borderRadius: '12px', maxWidth: '400px', width: '90%', border: '1px solid #333' }}>
+                  <h3 style={{ marginBottom: '20px', fontSize: '1.2rem', textTransform: 'uppercase' }}>Write a {activeReviewTab === 'product' ? 'Product' : 'Brand'} Review</h3>
+                  
+                  <label style={{ display: 'block', marginBottom: '15px' }}>
+                    <span style={{ display: 'block', marginBottom: '5px', fontSize: '0.9rem', color: '#aaa' }}>Your Name</span>
+                    <input 
+                      type="text" 
+                      placeholder="e.g. Rahul S." 
+                      value={newReview.author}
+                      onChange={e => setNewReview({...newReview, author: e.target.value})}
+                      style={{ width: '100%', padding: '12px', background: '#222', border: '1px solid #444', color: '#fff', borderRadius: '4px' }}
+                    />
+                  </label>
+
+                  <label style={{ display: 'block', marginBottom: '15px' }}>
+                    <span style={{ display: 'block', marginBottom: '5px', fontSize: '0.9rem', color: '#aaa' }}>Rating</span>
+                    <select 
+                      value={newReview.rating}
+                      onChange={e => setNewReview({...newReview, rating: Number(e.target.value)})}
+                      style={{ width: '100%', padding: '12px', background: '#222', border: '1px solid #444', color: '#fff', borderRadius: '4px' }}
+                    >
+                      <option value="5">5 Stars - Excellent</option>
+                      <option value="4">4 Stars - Good</option>
+                      <option value="3">3 Stars - Average</option>
+                      <option value="2">2 Stars - Poor</option>
+                      <option value="1">1 Star - Terrible</option>
+                    </select>
+                  </label>
+
+                  <label style={{ display: 'block', marginBottom: '25px' }}>
+                    <span style={{ display: 'block', marginBottom: '5px', fontSize: '0.9rem', color: '#aaa' }}>Review</span>
+                    <textarea 
+                      placeholder="What did you think?" 
+                      value={newReview.comment}
+                      onChange={e => setNewReview({...newReview, comment: e.target.value})}
+                      style={{ width: '100%', padding: '12px', background: '#222', border: '1px solid #444', color: '#fff', borderRadius: '4px', minHeight: '100px' }}
+                    />
+                  </label>
+
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    <button 
+                      onClick={() => setIsReviewFormOpen(false)}
+                      style={{ flex: 1, padding: '12px', background: 'transparent', border: '1px solid #444', color: '#fff', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
+                    >
+                      Cancel
+                    </button>
+                    <button 
+                      onClick={() => {
+                        if(!newReview.author.trim() || !newReview.comment.trim()) {
+                          alert('Please enter your name and a review.');
+                          return;
+                        }
+                        const created = {
+                          id: Date.now(),
+                          author: newReview.author,
+                          rating: newReview.rating,
+                          date: 'Just now',
+                          comment: newReview.comment,
+                          verified: false,
+                          photos: []
+                        };
+                        
+                        if(activeReviewTab === 'product') {
+                          setDynamicReviews(prev => [created, ...prev]);
+                        } else {
+                          setBrandReviews(prev => [created, ...prev]);
+                        }
+                        
+                        setIsReviewFormOpen(false);
+                        setNewReview({ author: '', rating: 5, comment: '' });
+                        showToast('Review submitted successfully! ⭐');
+                      }}
+                      style={{ flex: 1, padding: '12px', background: '#ffcc00', border: 'none', color: '#000', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
+                    >
+                      Post Review
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
 
