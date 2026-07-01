@@ -1,25 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Settings, X, Send, Database, Smartphone, Eye, EyeOff, Lock } from 'lucide-react';
+import { Settings, X, Send, Database, Eye, EyeOff, Lock, User, LogOut } from 'lucide-react';
 import { useCatalog } from '../context/CatalogContext';
-import { db } from '../firebase';
-import { doc, updateDoc, setDoc } from 'firebase/firestore';
+import { db, auth, googleProvider } from '../firebase';
+import { doc, updateDoc, setDoc, getDoc } from 'firebase/firestore';
+import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 import './AdminDashboardSecure.css';
-
-// Admin password — must be changed before going live
-// Requirements: min 9 chars, uppercase, lowercase, digit, special char
-const ADMIN_PASSWORD = 'Namma@2k26!';
 
 const STANDARD_COLORS = ['Red', 'White', 'Black', 'Cream', 'Brown'];
 
 const AdminDashboardSecure = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [passwordInput, setPasswordInput] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState('');
-  const [attemptCount, setAttemptCount] = useState(0);
-  const [isLocked, setIsLocked] = useState(false);
-  const [lockTimer, setLockTimer] = useState(0);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
   const { products: localCatalog, loading: catalogLoading, marketing: marketingConfig, updateMarketingStore } = useCatalog();
   const [messages, setMessages] = useState([
     {
@@ -81,44 +75,53 @@ const AdminDashboardSecure = () => {
   const [uploadedImages, setUploadedImages] = useState({});
   const messagesEndRef = useRef(null);
 
-  // Lock countdown timer
+  // Listen to Auth State
   useEffect(() => {
-    if (isLocked && lockTimer > 0) {
-      const t = setTimeout(() => setLockTimer(prev => prev - 1), 1000);
-      return () => clearTimeout(t);
-    } else if (lockTimer === 0 && isLocked) {
-      setIsLocked(false);
-      setAttemptCount(0);
-      setAuthError('');
-    }
-  }, [isLocked, lockTimer]);
-
-  const handlePasswordSubmit = (e) => {
-    e.preventDefault();
-    if (isLocked) return;
-    if (passwordInput === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      setAuthError('');
-      setPasswordInput('');
-      setAttemptCount(0);
-    } else {
-      const newCount = attemptCount + 1;
-      setAttemptCount(newCount);
-      setPasswordInput('');
-      if (newCount >= 5) {
-        setIsLocked(true);
-        setLockTimer(30);
-        setAuthError('⛔ Too many failed attempts. Locked for 30 seconds.');
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setCurrentUser(user);
+        // Check if user is in 'admins' collection
+        try {
+          const adminDoc = await getDoc(doc(db, 'admins', user.uid));
+          if (adminDoc.exists()) {
+            setIsAuthenticated(true);
+            setAuthError('');
+          } else {
+            setIsAuthenticated(false);
+            setAuthError(`Access Denied. Your UID (${user.uid}) is not an admin.`);
+          }
+        } catch (error) {
+          console.error("Admin check failed", error);
+          setAuthError('Error verifying admin status.');
+        }
       } else {
-        setAuthError(`❌ Incorrect password. ${5 - newCount} attempt(s) remaining.`);
+        setCurrentUser(null);
+        setIsAuthenticated(false);
       }
+      setIsCheckingAuth(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleGoogleLogin = async () => {
+    setAuthError('');
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.error("Google sign in error", error);
+      setAuthError('Failed to sign in with Google.');
     }
+  };
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    setIsAuthenticated(false);
+    setAuthError('');
   };
 
   const handleClose = () => {
     setIsOpen(false);
-    setIsAuthenticated(false);
-    setPasswordInput('');
+  };t('');
     setAuthError('');
   };
 
@@ -393,58 +396,69 @@ const AdminDashboardSecure = () => {
   return (
     <div className="admin-secure-page" style={{ padding: '40px 20px', minHeight: '80vh', display: 'flex', justifyContent: 'center', background: '#000' }}>
       <div className="sync-modal-container" style={{ position: 'relative', width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
-        {/* Password Lock Screen */}
-            {!isAuthenticated ? (
+        {/* Auth / Dashboard view */}
+        <div className="sync-modal-content">
+          {!isOpen ? null : (
+            !isAuthenticated ? (
               <div className="admin-lock-screen">
                 <div className="admin-lock-card">
-                  <div className="admin-lock-icon">
-                    <Lock size={36} />
+                  <div className="admin-lock-icon-wrap">
+                    <Lock size={32} color="#0d2850" />
                   </div>
                   <h2 className="admin-lock-title">Owner Admin Panel</h2>
-                  <p className="admin-lock-subtitle">This area is protected. Enter your admin password to access the WhatsApp Catalog Sync Dashboard.</p>
-                  <form onSubmit={handlePasswordSubmit} className="admin-lock-form">
-                    <div className="admin-password-input-wrap">
-                      <input
-                        type={showPassword ? 'text' : 'password'}
-                        placeholder="Enter admin password"
-                        value={passwordInput}
-                        onChange={(e) => { setPasswordInput(e.target.value); setAuthError(''); }}
-                        className="admin-password-input"
-                        disabled={isLocked}
-                        autoFocus
-                      />
-                      <button
-                        type="button"
-                        className="toggle-pw-visibility"
-                        onClick={() => setShowPassword(p => !p)}
-                        tabIndex={-1}
-                      >
-                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                      </button>
+                  <p className="admin-lock-subtitle">Sign in with an authorized Google account to access the dashboard.</p>
+                  
+                  {isCheckingAuth ? (
+                    <p style={{marginTop: '20px'}}>Checking authorization...</p>
+                  ) : (
+                    <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                      {currentUser && !isAuthenticated && (
+                        <div style={{ padding: '15px', background: '#fee2e2', color: '#b91c1c', borderRadius: '8px', fontSize: '13px' }}>
+                          <p style={{ fontWeight: 'bold' }}>Unauthorized Account</p>
+                          <p>Your UID: <code>{currentUser.uid}</code></p>
+                          <p style={{ marginTop: '10px' }}>To gain access, add a document to the <code>admins</code> collection in Firestore with this UID as the document ID.</p>
+                          <button 
+                            type="button" 
+                            onClick={handleLogout}
+                            style={{ marginTop: '10px', background: 'transparent', border: 'none', color: '#b91c1c', textDecoration: 'underline', cursor: 'pointer' }}
+                          >
+                            Sign out
+                          </button>
+                        </div>
+                      )}
+                      
+                      {!currentUser && (
+                        <button 
+                          type="button" 
+                          className="admin-unlock-btn" 
+                          onClick={handleGoogleLogin}
+                        >
+                          Sign in with Google
+                        </button>
+                      )}
+                      <button type="button" className="admin-cancel-btn" onClick={handleClose}>Cancel</button>
                     </div>
-                    {authError && <p className="admin-auth-error">{authError}</p>}
-                    {isLocked && <p className="admin-lock-countdown">🔒 Retry in {lockTimer}s</p>}
-                    <button type="submit" className="admin-unlock-btn" disabled={isLocked}>
-                      {isLocked ? `Locked (${lockTimer}s)` : '🔓 Unlock Admin Panel'}
-                    </button>
-                    <button type="button" className="admin-cancel-btn" onClick={handleClose}>Cancel</button>
-                  </form>
-                  <p className="admin-pw-hint">⚠️ For owner use only. Unauthorized access is prohibited.</p>
+                  )}
+                  {authError && <p className="admin-auth-error">{authError}</p>}
+                  <p className="admin-pw-hint">🔒 For owner use only. Unauthorized access is strictly prohibited.</p>
                 </div>
               </div>
             ) : (
-            
-            <>
-            {/* Modal Header */}
-            <div className="sync-modal-header">
-              <div>
-                <h3><Database size={20} /> Meta WhatsApp Catalog Sync Dashboard</h3>
-                <p>✅ Authenticated as Owner • Simulates webhook data sync with the React storefront.</p>
-              </div>
-              <button className="close-sync-modal" onClick={handleClose}>
-                <X size={24} />
-              </button>
-            </div>
+              <div className="sync-dashboard-layout">
+                <div className="sync-modal-header">
+                  <div>
+                    <h3><Database size={20} /> Meta WhatsApp Catalog Sync Dashboard</h3>
+                    <p>🟢 Authenticated as Admin ({currentUser?.email}) • Simulates webhook data sync with the React storefront.</p>
+                  </div>
+                  <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                    <button className="admin-logout-btn" onClick={handleLogout} style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'none', border: '1px solid #ccc', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}>
+                      <LogOut size={16} /> Sign out
+                    </button>
+                    <button className="close-sync-modal" onClick={handleClose}>
+                      <X size={24} />
+                    </button>
+                  </div>
+                </div>
 
             {/* Split Pane Layout */}
             <div className="sync-modal-body">
@@ -783,9 +797,9 @@ const AdminDashboardSecure = () => {
                 </div>
 
             </div>
-            </> 
-            )}
-          </div>
+            )
+          )}
+        </div>
         </div>
   );
 };

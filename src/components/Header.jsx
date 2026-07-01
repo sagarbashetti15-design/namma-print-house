@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useCatalog } from '../context/CatalogContext';
-import { Search, Heart, ShoppingBag, Menu, User, X, Sun, Moon } from 'lucide-react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Search, Heart, ShoppingBag, Menu, User, X, Sun, Moon, LogOut, ChevronDown } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
 import { useCart } from '../context/CartContext';
@@ -31,6 +31,7 @@ const Header = () => {
       const stored = localStorage.getItem('nph_user_profile');
       return stored ? JSON.parse(stored) : { name: '', email: '', mobile: '' };
     } catch (e) {
+      console.error("Error parsing user info:", e);
       return { name: '', email: '', mobile: '' };
     }
   });
@@ -40,12 +41,12 @@ const Header = () => {
   const { totalItems, openCartDrawer } = useCart();
   const { showToast } = useToast();
   const navigate = useNavigate();
-  const location = useLocation();
+
 
   // Marketing config from live Firestore database
   const { marketing: marketingConfig } = useCatalog();
 
-  const promoMessages = React.useMemo(() => {
+  const promoMessages = useMemo(() => {
     const msgs = [...basePromoMessages];
     if (marketingConfig?.promoData?.code) {
       msgs.unshift({

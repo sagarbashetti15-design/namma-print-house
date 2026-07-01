@@ -12,8 +12,8 @@ const AdminDashboard = () => {
     const fetchOrders = async () => {
       try {
         const res = await axios.get('/api/orders');
-        setOrders(res.data);
       } catch (err) {
+        console.error('Fetch orders error:', err);
         showToast('Failed to fetch orders from backend', 'error');
       } finally {
         setLoading(false);
@@ -33,6 +33,7 @@ const AdminDashboard = () => {
         showToast(`Shipping label generated: ${res.data.trackingUrl}`, 'success');
       }
     } catch (err) {
+      console.error('Update status error:', err);
       showToast('Failed to update order status', 'error');
     }
   };
