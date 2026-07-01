@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './Hero.css';
 
 const slides = [
-  { id: 1, bg: '/images/unique-dslr-women-hero.jpg', bgColor: '#8c1619' }, // Solid Deep Red
+  { id: 1, bg: '/images/unique-dslr-women-hero-desktop.jpg', bgColor: '#8c1619' }, // Solid Deep Red
   { id: 2, bg: '/images/unique-dslr-couples-hero.jpg', bgColor: '#1A1A1A' }, // Slate Grey
   { id: 3, bg: '/images/unique-dslr-men-hero.jpg', bgColor: '#25292D' }, // Slate Skatepark Blue-Grey
   { id: 4, bg: '/images/unique-dslr-women-hero-slide4.jpg', bgColor: '#181A1D' }, // City Dark Charcoal
