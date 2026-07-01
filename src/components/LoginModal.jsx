@@ -34,7 +34,16 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
       onLogin(userProfile);
     } catch (err) {
       console.error(err);
-      showToast('Google login failed. Please try again.', 'error');
+      // Give a more descriptive error based on common Firebase issues
+      let errorMessage = 'Google login failed. Please try again.';
+      if (err.code === 'auth/unauthorized-domain') {
+        errorMessage = 'This domain is not authorized in Firebase. Please add it to Firebase Console -> Authentication -> Settings -> Authorized Domains.';
+      } else if (err.code === 'auth/popup-closed-by-user') {
+        errorMessage = 'Login popup was closed before completing.';
+      } else {
+        errorMessage = `Login error: ${err.message}`;
+      }
+      showToast(errorMessage, 'error');
     }
   };
 
