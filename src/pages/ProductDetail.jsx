@@ -193,21 +193,16 @@ const ProductDetail = () => {
   const displayOriginalPrice = product.category === 'couples' && bundleOption !== 'set' ? 1299 : product.originalPrice;
   const discountPercent = Math.round(((displayOriginalPrice - displayPrice) / displayOriginalPrice) * 100);
 
-  // Read marketing discount from localStorage
+  // Read marketing discount from context
+  const { marketing: marketingConfig } = useCatalog();
   const [mktDiscount, setMktDiscount] = React.useState(null);
   React.useEffect(() => {
-    try {
-      const stored = localStorage.getItem('nph_marketing');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (parsed.discountData && parsed.discountData.type !== 'none' && parsed.discountData.value > 0) {
-          setMktDiscount(parsed.discountData);
-        }
-      }
-    } catch (e) {
-      console.error("Failed to parse nph_marketing inside ProductDetail", e);
+    if (marketingConfig && marketingConfig.discountData && marketingConfig.discountData.type !== 'none' && marketingConfig.discountData.value > 0) {
+      setMktDiscount(marketingConfig.discountData);
+    } else {
+      setMktDiscount(null);
     }
-  }, []);
+  }, [marketingConfig]);
 
   const isEligibleForDiscount = mktDiscount && (mktDiscount.applicableCategory === 'all' || product.category === mktDiscount.applicableCategory);
 

@@ -20,7 +20,7 @@ const AdminDashboardSecure = () => {
   const [attemptCount, setAttemptCount] = useState(0);
   const [isLocked, setIsLocked] = useState(false);
   const [lockTimer, setLockTimer] = useState(0);
-  const { products: localCatalog, loading: catalogLoading } = useCatalog();
+  const { products: localCatalog, loading: catalogLoading, marketing: marketingConfig, updateMarketingStore } = useCatalog();
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -177,20 +177,18 @@ const AdminDashboardSecure = () => {
     reader.readAsDataURL(file);
   };
 
-  // Load marketing state on mount
+  // Sync marketing state on mount from context
   useEffect(() => {
-    const storedMarketing = localStorage.getItem('nph_marketing');
-    if (storedMarketing) {
-      const parsed = JSON.parse(storedMarketing);
-      if (parsed.activeCampaign) setActiveCampaign(parsed.activeCampaign);
-      if (parsed.activePromo) setActivePromo(parsed.activePromo);
-      if (parsed.activeDiscount) setActiveDiscount(parsed.activeDiscount);
+    if (marketingConfig) {
+      if (marketingConfig.activeCampaign) setActiveCampaign(marketingConfig.activeCampaign);
+      if (marketingConfig.activePromo) setActivePromo(marketingConfig.activePromo);
+      if (marketingConfig.activeDiscount) setActiveDiscount(marketingConfig.activeDiscount);
     }
-  }, []);
+  }, [marketingConfig]);
 
   const deployMarketingSettings = async () => {
     try {
-      const marketingConfig = {
+      const newMarketingConfig = {
         activeCampaign,
         activePromo,
         activeDiscount,
@@ -199,13 +197,9 @@ const AdminDashboardSecure = () => {
         discountData: DISCOUNTS.find(d => d.id === activeDiscount)
       };
       
-      // Update Backend Database
-      await new Promise(r => setTimeout(r, 600)); // Mock API
+      await updateMarketingStore(newMarketingConfig);
       
-      // Update Local Cache
-      localStorage.setItem('nph_marketing', JSON.stringify(marketingConfig));
-      
-      addMessage('system', '🚀 *Marketing Settings Deployed!*\nGlobal campaigns, promos, and discounts have been synced to the live storefront database.\n\n🔄 Storefront updated behind the scenes!');
+      addMessage('system', '🚀 *Marketing Settings Deployed!*\nGlobal campaigns, promos, and discounts have been synced to the live storefront database.\n\n✅ Storefront updated behind the scenes!');
       
     } catch (err) {
       addMessage('system', '❌ *Error:* Failed to deploy marketing settings to the live database.');
@@ -765,12 +759,19 @@ const AdminDashboardSecure = () => {
                     <button
                       type="button"
                       className="kill-marketing-btn"
-                      onClick={() => {
+                      onClick={async () => {
                         setActiveCampaign('none');
                         setActivePromo('none');
                         setActiveDiscount('none');
-                        localStorage.removeItem('nph_marketing');
-                        addMessage('system', '🛑 *All Marketing Campaigns Deactivated.*\nThe storefront has been reset to default state.\n\n🔄 Storefront updated behind the scenes!');
+                        await updateMarketingStore({
+                          activeCampaign: 'none',
+                          activePromo: 'none',
+                          activeDiscount: 'none',
+                          campaignData: null,
+                          promoData: null,
+                          discountData: null
+                        });
+                        addMessage('system', '🛑 *All Marketing Campaigns Deactivated.*\nThe storefront has been reset to default state.\n\n✅ Storefront updated behind the scenes!');
                         
                       }}
                     >

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from \'react\';\nimport { useCatalog } from \'../context/CatalogContext\';
 import { Search, Heart, ShoppingBag, Menu, User, X, Sun, Moon } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
@@ -32,14 +32,7 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Read active marketing config from localStorage
-  const [marketingConfig, setMarketingConfig] = useState(null);
-  useEffect(() => {
-    const stored = localStorage.getItem('nph_marketing');
-    if (stored) {
-      setMarketingConfig(JSON.parse(stored));
-    }
-  }, []);
+  // Marketing config from live Firestore database\n  const { marketing: marketingConfig } = useCatalog();
 
   // Build dynamic promo messages (inject active promo code if deployed)
   const basePromoMessages = [

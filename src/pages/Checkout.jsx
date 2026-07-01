@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
+import { useCatalog } from '../context/CatalogContext';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
@@ -34,21 +35,16 @@ const Checkout = () => {
 
   const [lastPlacedOrder, setLastPlacedOrder] = useState(null);
 
-  // Read active marketing promo code from localStorage
+  // Read active marketing promo code from context
+  const { marketing: marketingConfig } = useCatalog();
   const [activePromoData, setActivePromoData] = useState(null);
   React.useEffect(() => {
-    try {
-      const stored = localStorage.getItem('nph_marketing');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (parsed.promoData && parsed.promoData.code) {
-          setActivePromoData(parsed.promoData);
-        }
-      }
-    } catch (e) {
-      console.error("Failed to parse nph_marketing inside Checkout", e);
+    if (marketingConfig && marketingConfig.promoData && marketingConfig.promoData.code) {
+      setActivePromoData(marketingConfig.promoData);
+    } else {
+      setActivePromoData(null);
     }
-  }, []);
+  }, [marketingConfig]);
 
   const handleApplyCoupon = (e) => {
     e.preventDefault();

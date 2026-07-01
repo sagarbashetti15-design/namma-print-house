@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { useCatalog } from './CatalogContext';
 
 const CartContext = createContext();
 
@@ -10,21 +11,17 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
 
-  // Read active marketing discount from localStorage
+  // Read active marketing discount from context
+  const { marketing: marketingConfig } = useCatalog();
   const [discountInfo, setDiscountInfo] = useState(null);
+  
   React.useEffect(() => {
-    try {
-      const stored = localStorage.getItem('nph_marketing');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (parsed.discountData && parsed.discountData.type !== 'none' && parsed.discountData.value > 0) {
-          setDiscountInfo(parsed.discountData);
-        }
-      }
-    } catch (e) {
-      console.error("Failed to parse nph_marketing from localStorage", e);
+    if (marketingConfig && marketingConfig.discountData && marketingConfig.discountData.type !== 'none' && marketingConfig.discountData.value > 0) {
+      setDiscountInfo(marketingConfig.discountData);
+    } else {
+      setDiscountInfo(null);
     }
-  }, []);
+  }, [marketingConfig]);
 
   // Compute processed cart items with active global discounts applied
   const processedCartItems = React.useMemo(() => {

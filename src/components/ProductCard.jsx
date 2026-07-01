@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useCatalog } from '../context/CatalogContext';
 import { Heart, ShoppingBag } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useWishlist } from '../context/WishlistContext';
@@ -16,21 +17,16 @@ const ProductCard = ({ product }) => {
   // Track currently active/hovered color
   const [activeColor, setActiveColor] = useState('');
 
-  // Read marketing discount from localStorage
+  // Read marketing discount from context
+  const { marketing: marketingConfig } = useCatalog();
   const [discountInfo, setDiscountInfo] = useState(null);
   React.useEffect(() => {
-    try {
-      const stored = localStorage.getItem('nph_marketing');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (parsed.discountData && parsed.discountData.type !== 'none' && parsed.discountData.value > 0) {
-          setDiscountInfo(parsed.discountData);
-        }
-      }
-    } catch (e) {
-      console.error("Failed to parse nph_marketing inside ProductCard", e);
+    if (marketingConfig && marketingConfig.discountData && marketingConfig.discountData.type !== 'none' && marketingConfig.discountData.value > 0) {
+      setDiscountInfo(marketingConfig.discountData);
+    } else {
+      setDiscountInfo(null);
     }
-  }, []);
+  }, [marketingConfig]);
 
   // Calculate discounted price
   const getDiscountedPrice = () => {

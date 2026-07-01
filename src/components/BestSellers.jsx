@@ -20,7 +20,10 @@ const BestSellers = () => {
 
   if (loading) return null;
 
+  const newArrivals = products.filter(p => p && !isNaN(Number(p.id)));
+
   const bestSellers = [
+    ...newArrivals,
     // Men's favorites
     products.find(p => p.id === 'm11'),
     products.find(p => p.id === 'm3'),

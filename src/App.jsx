@@ -72,28 +72,6 @@ const AppContent = () => {
 };
 
 function App() {
-  useEffect(() => {
-    const fetchGlobalData = async () => {
-      try {
-        const [catalogRes, marketingRes] = await Promise.all([
-          axios.get('/api/catalog'),
-          axios.get('/api/marketing')
-        ]);
-        
-        if (catalogRes.data && catalogRes.data.length > 0) {
-          localStorage.setItem('nph_catalog', JSON.stringify(catalogRes.data));
-        }
-        
-        if (marketingRes.data) {
-          localStorage.setItem('nph_marketing', JSON.stringify(marketingRes.data));
-        }
-      } catch (err) {
-        console.error('Failed to sync global store data from server', err);
-      }
-    };
-    fetchGlobalData();
-  }, []);
-
   return (
     <ToastProvider>
       <CatalogProvider>
