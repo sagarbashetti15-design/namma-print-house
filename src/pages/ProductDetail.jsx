@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { collection, onSnapshot, query, addDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useCatalog } from '../context/CatalogContext';
 import { useCart } from '../context/CartContext';
@@ -121,6 +123,32 @@ const ProductDetail = () => {
       comment: "Amazing quality, secure payments, and very responsive customer support."
     }
   ]);
+
+  React.useEffect(() => {
+    if (!product) return;
+    const q = query(collection(db, 'reviews'));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const dbReviews = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      
+      const newDynamicReviews = dbReviews.filter(r => r.type === 'product' && r.productId === product.id);
+      const newBrandReviews = dbReviews.filter(r => r.type === 'brand');
+
+      newDynamicReviews.sort((a, b) => b.createdAt - a.createdAt);
+      newBrandReviews.sort((a, b) => b.createdAt - a.createdAt);
+      
+      setDynamicReviews(prev => {
+        // Keep only hardcoded ones and prepend new ones
+        const hardcoded = prev.filter(p => typeof p.id === 'number');
+        return [...newDynamicReviews, ...hardcoded];
+      });
+      
+      setBrandReviews(prev => {
+        const hardcoded = prev.filter(p => typeof p.id === 'number');
+        return [...newBrandReviews, ...hardcoded];
+      });
+    });
+    return () => unsubscribe();
+  }, [product]);
 
   // Route to specific customizers
   if (product.isVisualCustomizer) {
@@ -845,30 +873,33 @@ const ProductDetail = () => {
                       Cancel
                     </button>
                     <button 
-                      onClick={() => {
+                      onClick={async () => {
                         if(!newReview.author.trim() || !newReview.comment.trim()) {
                           alert('Please enter your name and a review.');
                           return;
                         }
                         const created = {
-                          id: Date.now(),
+                          type: activeReviewTab === 'product' ? 'product' : 'brand',
+                          productId: product.id,
                           author: newReview.author,
                           rating: newReview.rating,
                           date: 'Just now',
+                          createdAt: Date.now(),
                           comment: newReview.comment,
                           verified: false,
                           photos: []
                         };
                         
-                        if(activeReviewTab === 'product') {
-                          setDynamicReviews(prev => [created, ...prev]);
-                        } else {
-                          setBrandReviews(prev => [created, ...prev]);
+                        try {
+                          await addDoc(collection(db, 'reviews'), created);
+                          showToast('Review submitted successfully! ⭐');
+                        } catch (err) {
+                          console.error(err);
+                          showToast('Failed to submit review.');
                         }
                         
                         setIsReviewFormOpen(false);
                         setNewReview({ author: '', rating: 5, comment: '' });
-                        showToast('Review submitted successfully! ⭐');
                       }}
                       style={{ flex: 1, padding: '12px', background: '#ffcc00', border: 'none', color: '#000', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
                     >
