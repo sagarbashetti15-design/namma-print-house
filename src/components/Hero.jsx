@@ -84,7 +84,7 @@ const Hero = () => {
         </button>
       </div>
 
-      <div className="hero-main-image-container">
+      <div className="hero-main-image-container" style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', opacity: 0, pointerEvents: 'none', zIndex: -1 }}>
         <img 
           src={currentBg} 
           alt="Hero Fashion Model" 
