@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useCatalog } from '../context/CatalogContext';
 import { Search, Heart, ShoppingBag, Menu, User, X, Sun, Moon } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import LoginModal from './LoginModal';
@@ -124,7 +126,12 @@ const Header = () => {
     showToast('Profile updated successfully!', 'success');
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+    } catch (e) {
+      console.error('Firebase sign out error:', e);
+    }
     setIsLoggedIn(false);
     localStorage.setItem('nph_is_logged_in', 'false');
     setIsProfileModalOpen(false);

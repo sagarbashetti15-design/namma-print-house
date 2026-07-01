@@ -1,7 +1,8 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import axios from 'axios';
 import { useToast } from '../context/ToastContext';
+import { auth, googleProvider } from '../firebase';
+import { signInWithPopup } from 'firebase/auth';
 import './LoginModal.css';
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
@@ -10,20 +11,30 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
   if (!isOpen) return null;
 
   const handleGoogleLogin = async () => {
-    // For MVP Google OAuth mock
     try {
-      const res = await axios.post('/api/auth/login', { email: 'user@gmail.com', password: 'google_auth_mock' });
-      localStorage.setItem('nph_token', res.data.token);
-      onLogin(res.data.user);
+      // Force Google to show the account selection screen
+      googleProvider.setCustomParameters({
+        prompt: 'select_account'
+      });
+      
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      
+      const userProfile = {
+        name: user.displayName || 'Google User',
+        email: user.email,
+        mobile: user.phoneNumber || '',
+        uid: user.uid,
+        photoURL: user.photoURL
+      };
+
+      const token = await user.getIdToken();
+      localStorage.setItem('nph_token', token);
+      
+      onLogin(userProfile);
     } catch (err) {
-      // Fallback: register the mock google user if they don't exist
-      try {
-        const reg = await axios.post('/api/auth/register', { name: 'Google User', email: 'user@gmail.com', password: 'google_auth_mock', mobile: '' });
-        localStorage.setItem('nph_token', reg.data.token);
-        onLogin(reg.data.user);
-      } catch (err2) {
-        showToast('Google login failed', 'error');
-      }
+      console.error(err);
+      showToast('Google login failed. Please try again.', 'error');
     }
   };
 
