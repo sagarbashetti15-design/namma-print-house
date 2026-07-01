@@ -454,22 +454,9 @@ const AdminDashboardSecure = () => {
   };
 
   return (
-    <>
-      {/* Admin Panel Trigger Floating Icon */}
-      <button 
-        className="sync-admin-trigger" 
-        onClick={() => setIsOpen(true)}
-        title="Owner Admin Panel — Password Protected"
-      >
-        <Smartphone size={26} />
-      </button>
-
-      {/* Sync Control Modal Overlay */}
-      {isOpen && (
-        <div className="sync-modal-backdrop" onClick={handleClose}>
-          <div className="sync-modal-container" onClick={(e) => e.stopPropagation()}>
-
-            {/* Password Lock Screen */}
+    <div className="admin-secure-page" style={{ padding: '40px 20px', minHeight: '80vh', display: 'flex', justifyContent: 'center', background: '#000' }}>
+      <div className="sync-modal-container" style={{ position: 'relative', width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
+        {/* Password Lock Screen */}
             {!isAuthenticated ? (
               <div className="admin-lock-screen">
                 <div className="admin-lock-card">
@@ -853,11 +840,8 @@ const AdminDashboardSecure = () => {
 
             </div>
             </> 
-            )}
           </div>
         </div>
-      )}
-    </>
   );
 };
 
