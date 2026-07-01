@@ -43,7 +43,7 @@ const CustomerReviews = () => {
             <div key={review.id} className="review-card-3d">
               <div className="review-card-inner">
                 <div className="review-header">
-                  <img src={review.avatar} alt={review.name} className="review-avatar" />
+                  <img src={review.avatar} alt={review.name} className="review-avatar" loading="lazy" />
                   <div className="review-meta">
                     <h4 className="review-name">{review.name}</h4>
                     <span className="review-handle">{review.handle}</span>

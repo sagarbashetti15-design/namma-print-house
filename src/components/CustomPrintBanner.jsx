@@ -49,6 +49,7 @@ const CustomPrintBanner = () => {
               src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=600&h=400" 
               alt="Custom T-Shirt" 
               className="cpb-image"
+              loading="lazy"
             />
           </div>
         </div>

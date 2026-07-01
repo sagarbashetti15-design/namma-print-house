@@ -836,7 +836,7 @@ const ProductDetail = () => {
                   style={{ cursor: 'pointer' }}
                 >
                   <div className="product-image-wrap" style={{ position: 'relative', width: '100%', aspectRatio: '1/1', overflow: 'hidden', backgroundColor: 'transparent' }}>
-                    <img src={p.image} alt={p.title} className="product-image" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
+                    <img src={p.image} alt={p.title} className="product-image" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} />
                     {p.tag && (
                       <span className="product-badge" style={{
                         position: 'absolute', top: '12px', left: '12px',

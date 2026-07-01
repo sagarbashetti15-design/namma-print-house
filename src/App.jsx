@@ -1,33 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Home from './pages/Home'
-import CategoryPage from './pages/CategoryPage'
-import ProductDetail from './pages/ProductDetail'
-import Cart from './pages/Cart'
-import Checkout from './pages/Checkout'
-import SearchPage from './pages/SearchPage'
-import WishlistPage from './pages/WishlistPage'
-import Contact from './pages/Contact'
-import About from './pages/About'
-import ShippingPolicy from './pages/ShippingPolicy'
-import ReturnRefundPolicy from './pages/ReturnRefundPolicy'
-import TermsConditions from './pages/TermsConditions'
-import PrivacyPolicy from './pages/PrivacyPolicy'
-import BulkOrders from './pages/BulkOrders'
-import FAQs from './pages/FAQs'
-import SizeGuide from './pages/SizeGuide'
-import CareInstructions from './pages/CareInstructions'
-import TrackOrder from './pages/TrackOrder'
+import WhatsAppButton from './components/WhatsAppButton'
+import ScrollToTop from './components/ScrollToTop'
 import { WishlistProvider } from './context/WishlistContext'
 import { ToastProvider } from './context/ToastContext'
-import WhatsAppButton from './components/WhatsAppButton'
-import AdminDashboardSecure from './pages/AdminDashboardSecure'
-import ScrollToTop from './components/ScrollToTop'
-import AdminDashboard from './pages/AdminDashboard'
+
+// Lazy loaded pages for performance
+const Home = lazy(() => import('./pages/Home'))
+const CategoryPage = lazy(() => import('./pages/CategoryPage'))
+const ProductDetail = lazy(() => import('./pages/ProductDetail'))
+const Cart = lazy(() => import('./pages/Cart'))
+const Checkout = lazy(() => import('./pages/Checkout'))
+const SearchPage = lazy(() => import('./pages/SearchPage'))
+const WishlistPage = lazy(() => import('./pages/WishlistPage'))
+const Contact = lazy(() => import('./pages/Contact'))
+const About = lazy(() => import('./pages/About'))
+const ShippingPolicy = lazy(() => import('./pages/ShippingPolicy'))
+const ReturnRefundPolicy = lazy(() => import('./pages/ReturnRefundPolicy'))
+const TermsConditions = lazy(() => import('./pages/TermsConditions'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const BulkOrders = lazy(() => import('./pages/BulkOrders'))
+const FAQs = lazy(() => import('./pages/FAQs'))
+const SizeGuide = lazy(() => import('./pages/SizeGuide'))
+const CareInstructions = lazy(() => import('./pages/CareInstructions'))
+const TrackOrder = lazy(() => import('./pages/TrackOrder'))
+const AdminDashboardSecure = lazy(() => import('./pages/AdminDashboardSecure'))
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'))
 import axios from 'axios'
 
 const AppContent = () => {
@@ -68,8 +70,6 @@ const AppContent = () => {
 };
 
 function App() {
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
-
   useEffect(() => {
     const fetchGlobalData = async () => {
       try {
@@ -87,16 +87,10 @@ function App() {
         }
       } catch (err) {
         console.error('Failed to sync global store data from server', err);
-      } finally {
-        setIsDataLoaded(true);
       }
     };
     fetchGlobalData();
   }, []);
-
-  if (!isDataLoaded) {
-    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#0a0a0a', color: '#fff' }}>Loading Namma Print House...</div>;
-  }
 
   return (
     <ToastProvider>
@@ -104,7 +98,9 @@ function App() {
         <WishlistProvider>
           <Router>
             <ScrollToTop />
-            <AppContent />
+            <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#0a0a0a', color: '#fff' }}>Loading Namma Print House...</div>}>
+              <AppContent />
+            </Suspense>
           </Router>
         </WishlistProvider>
       </CartProvider>

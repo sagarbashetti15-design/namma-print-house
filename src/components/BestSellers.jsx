@@ -50,7 +50,7 @@ const BestSellers = () => {
               return (
                 <div key={product.id} className="bs-card">
                   <Link to={`/product/${product.id}`} className="bs-image-wrap">
-                    <img src={product.image} alt={product.title} className="bs-image" />
+                    <img src={product.image} alt={product.title} className="bs-image" loading="lazy" />
                     <button 
                       className="bs-wishlist-btn" 
                       style={{ color: isWished ? 'var(--color-error)' : '' }}
