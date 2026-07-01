@@ -25,7 +25,6 @@ import TrackOrder from './pages/TrackOrder'
 import { WishlistProvider } from './context/WishlistContext'
 import { ToastProvider } from './context/ToastContext'
 import WhatsAppButton from './components/WhatsAppButton'
-import SupportChat from './components/SupportChat'
 import AdminWhatsAppSyncModal from './components/AdminWhatsAppSyncModal'
 import ScrollToTop from './components/ScrollToTop'
 import AdminDashboard from './pages/AdminDashboard'
@@ -65,7 +64,6 @@ function App() {
             </main>
             <Footer />
             <WhatsAppButton />
-            <SupportChat />
             <AdminWhatsAppSyncModal />
           </div>
         </Router>

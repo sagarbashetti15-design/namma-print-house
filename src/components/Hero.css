@@ -202,9 +202,13 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 600px;
+  }
   .hero-bg-sharp {
-    background-size: cover !important;
-    background-position: center center !important;
+    background-size: contain !important;
+    background-position: top center !important;
+    background-repeat: no-repeat !important;
     -webkit-mask-image: none;
     mask-image: none;
   }
@@ -215,12 +219,13 @@
     padding: 0 20px;
     text-align: center;
     max-width: 100%;
+    margin-top: 150px;
   }
   .hero-actions {
     justify-content: center;
   }
   .hero-overlay {
-    background: rgba(0,0,0,0.6); /* Even dark overlay on mobile */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,1) 100%);
   }
 }
 
