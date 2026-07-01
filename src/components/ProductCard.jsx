@@ -98,6 +98,7 @@ const ProductCard = ({ product }) => {
       
       <button 
         className="wishlist-btn" 
+        aria-label={isWished ? "Remove from wishlist" : "Add to wishlist"}
         style={{ color: isWished ? 'var(--color-error, #ff4d4f)' : '' }}
         onClick={(e) => { 
           e.preventDefault(); 
@@ -120,6 +121,7 @@ const ProductCard = ({ product }) => {
                 <button 
                   key={color}
                   className={`swatch-dot ${activeColor === color ? 'active' : ''}`}
+                  aria-label={`Select color ${color}`}
                   onMouseEnter={() => setActiveColor(color)}
                   onClick={() => setActiveColor(color)}
                   style={{ 
@@ -133,6 +135,7 @@ const ProductCard = ({ product }) => {
             {activeColor && (
               <button 
                 className="clear-swatch-btn" 
+                aria-label="Clear selected color"
                 onClick={() => setActiveColor('')}
                 title="Reset color"
               >

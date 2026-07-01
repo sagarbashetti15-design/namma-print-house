@@ -7,12 +7,17 @@ import { useToast } from '../context/ToastContext';
 import CustomizerView from '../components/CustomizerView';
 import SizePredictorModal from '../components/SizePredictorModal';
 import { Star, Heart, ShoppingBag, ShieldCheck, RefreshCcw, Truck, ChevronDown, ChevronUp, FileText, X, Ruler } from 'lucide-react';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import './ProductDetail.css';
 
 const ProductDetail = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const product = products.find(p => p.id === productId);
+  useDocumentTitle(product ? product.title : 'Product Not Found');
+
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { showToast } = useToast();
@@ -46,7 +51,7 @@ const ProductDetail = () => {
   const [selectedReviewRating, setSelectedReviewRating] = useState('all');
   const [reviewLightboxPhoto, setReviewLightboxPhoto] = useState(null);
 
-  const product = products.find(p => p.id === productId);
+
 
   if (!product) {
     return <div className="container" style={{ padding: '40px 1rem' }}>Product not found</div>;
@@ -512,6 +517,7 @@ const ProductDetail = () => {
               <input 
                 type="text" 
                 placeholder="Enter Pincode" 
+                aria-label="Enter Pincode"
                 maxLength={6}
                 value={pincode}
                 onChange={(e) => setPincode(e.target.value)}
@@ -786,7 +792,7 @@ const ProductDetail = () => {
               <div className="lightbox-overlay" onClick={() => setReviewLightboxPhoto(null)}>
                 <div className="lightbox-content" onClick={e => e.stopPropagation()}>
                   <img src={reviewLightboxPhoto} alt="Review expansion" />
-                  <button className="lightbox-close" onClick={() => setReviewLightboxPhoto(null)}>✕</button>
+                  <button className="lightbox-close" aria-label="Close review photo" onClick={() => setReviewLightboxPhoto(null)}>✕</button>
                 </div>
               </div>
             )}
@@ -873,7 +879,7 @@ const ProductDetail = () => {
           <div className="size-guide-modal" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h3>Size Guide</h3>
-              <button className="close-btn" onClick={() => setIsSizeGuideOpen(false)}><X size={20}/></button>
+              <button className="close-btn" aria-label="Close size guide" onClick={() => setIsSizeGuideOpen(false)}><X size={20} aria-hidden="true" /></button>
             </div>
             
             <div className="modal-product-info">
@@ -994,7 +1000,7 @@ const ProductDetail = () => {
             position: 'relative', maxWidth: '90vw', maxHeight: '90vh',
             display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
-            <button className="pdp-lightbox-close" onClick={() => setIsImageLightboxOpen(false)} style={{
+            <button className="pdp-lightbox-close" aria-label="Close image zoom" onClick={() => setIsImageLightboxOpen(false)} style={{
               position: 'absolute', top: '-40px', right: '0',
               background: 'none', border: 'none', color: '#ffffff',
               cursor: 'pointer', display: 'flex', alignItems: 'center',

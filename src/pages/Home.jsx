@@ -6,8 +6,10 @@ import WhyChooseUs from '../components/WhyChooseUs';
 import BestSellers from '../components/BestSellers';
 import CustomerReviews from '../components/CustomerReviews';
 import CustomPrintBanner from '../components/CustomPrintBanner';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const Home = () => {
+  useDocumentTitle('Home');
   return (
     <main>
       <Hero />

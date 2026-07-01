@@ -13,6 +13,7 @@ const WhatsAppButton = () => {
       rel="noopener noreferrer" 
       className="whatsapp-float-btn"
       title="Chat with us on WhatsApp"
+      aria-label="Chat with us on WhatsApp"
     >
       <div className="whatsapp-ripple"></div>
       <svg 

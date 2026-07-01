@@ -180,8 +180,8 @@ const Header = () => {
         <div className="header-main">
           <div className="container header-container">
             <div className="header-left">
-              <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(true)}>
-                <Menu size={24} />
+              <button className="mobile-menu-btn" aria-label="Open mobile menu" onClick={() => setIsMobileMenuOpen(true)}>
+                <Menu size={24} aria-hidden="true" />
               </button>
               <Link to="/" className="logo">
                 <span className="logo-text text-primary">Namma</span>
@@ -197,11 +197,12 @@ const Header = () => {
             </div>
 
             <div className="header-right">
-              <form className="search-bar" onSubmit={handleSearchSubmit}>
-                <Search size={18} className="search-icon" />
+              <form className="search-bar" onSubmit={handleSearchSubmit} role="search">
+                <Search size={18} className="search-icon" aria-hidden="true" />
                 <input 
                   type="text" 
                   placeholder="Search products..." 
+                  aria-label="Search products"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -216,9 +217,9 @@ const Header = () => {
                   <User size={22} />
                   <span className="action-label">{isLoggedIn ? 'Profile' : 'Login'}</span>
                 </button>
-                <Link to="/wishlist" className="action-btn"><Heart size={22} /></Link>
-                <button className="action-btn cart-btn" onClick={openCartDrawer} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-                  <ShoppingBag size={22} />
+                <Link to="/wishlist" className="action-btn" aria-label="View Wishlist"><Heart size={22} aria-hidden="true" /></Link>
+                <button className="action-btn cart-btn" aria-label="View Cart" onClick={openCartDrawer} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                  <ShoppingBag size={22} aria-hidden="true" />
                   {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
                 </button>
               </div>
@@ -235,7 +236,7 @@ const Header = () => {
               <span className="logo-text text-primary">Namma</span>
               <span className="logo-sub">Print House</span>
             </div>
-            <button className="close-btn" onClick={() => setIsMobileMenuOpen(false)}><X size={24} /></button>
+            <button className="close-btn" aria-label="Close mobile menu" onClick={() => setIsMobileMenuOpen(false)}><X size={24} aria-hidden="true" /></button>
           </div>
           <nav className="mobile-nav">
             <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>HOME</Link>
