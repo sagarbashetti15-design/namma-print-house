@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { Upload, Trash2, Info, Move, Type, RotateCcw, Loader2 } from 'lucide-react';
-import html2canvas from 'html2canvas';
 import './CustomizerView.css';
 
 const CustomizerView = ({ product }) => {
@@ -183,16 +182,18 @@ const CustomizerView = ({ product }) => {
     // Capture Front
     setPrintSide('Front');
     await new Promise(r => setTimeout(r, 150)); // let DOM update
-    if (uploadedImageFront || customTextFront) {
-      const canvasFront = await html2canvas(canvasEl, { useCORS: true, backgroundColor: null });
+      if (uploadedImageFront || customTextFront) {
+        const html2canvas = (await import('html2canvas')).default;
+        const canvasFront = await html2canvas(canvasEl, { useCORS: true, backgroundColor: null });
       frontDataUrl = canvasFront.toDataURL('image/png');
     }
     
     // Capture Back
     setPrintSide('Back');
     await new Promise(r => setTimeout(r, 150)); // let DOM update
-    if (uploadedImageBack || customTextBack) {
-      const canvasBack = await html2canvas(canvasEl, { useCORS: true, backgroundColor: null });
+      if (uploadedImageBack || customTextBack) {
+        const html2canvas = (await import('html2canvas')).default;
+        const canvasBack = await html2canvas(canvasEl, { useCORS: true, backgroundColor: null });
       backDataUrl = canvasBack.toDataURL('image/png');
     }
     

@@ -46,6 +46,7 @@ const Hero = () => {
         src={currentBg}
         className="hero-bg-blur"
         alt="Hero Background"
+        loading="eager"
         fetchPriority="high"
         decoding="sync"
       />
@@ -81,6 +82,16 @@ const Hero = () => {
         <button className="slider-arrow arrow-right" onClick={nextSlide}>
           <ChevronRight size={24} />
         </button>
+      </div>
+
+      <div className="hero-main-image-container">
+        <img 
+          src={currentBg} 
+          alt="Hero Fashion Model" 
+          className="hero-main-image" 
+          loading="eager"
+          fetchPriority="high"
+        />
       </div>
       
       <div className="hero-dots">
