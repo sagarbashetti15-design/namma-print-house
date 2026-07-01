@@ -102,7 +102,7 @@ button {
 .bg-secondary { background-color: var(--color-secondary); }
  
 @media (max-width: 768px) {
-  .icon-btn, .wishlist-btn, .clear-swatch-btn, .mobile-menu-btn, .action-btn, .slider-arrow, .lightbox-close, .close-btn {
+  .icon-btn, .wishlist-btn, .wishlist-icon-btn, .filter-chip, .clear-swatch-btn, .mobile-menu-btn, .action-btn, .slider-arrow, .lightbox-close, .close-btn, .write-review-btn, .modal-add-btn, .review-tab, .modal-tab {
     min-width: 48px;
     min-height: 48px;
     display: flex;
