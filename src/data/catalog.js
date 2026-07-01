@@ -9,7 +9,7 @@ const initialProducts = [
     tag: "BEST SELLER",
     image: "/images/men-model-black.png",
     images: ["/images/men-model-black.png", "/images/men-rcb-black-front.png", "/images/men-rcb-black-back.png"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with gold RCB logo and 'Be bold' back print. 100% Cotton.",
     outOfStock: true
   },
@@ -22,7 +22,7 @@ const initialProducts = [
     tag: "TRENDING",
     image: "/images/men-model-white.png",
     images: ["/images/men-model-white.png", "/images/men-rcb-white-front.png", "/images/men-rcb-white-back.png"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt with gold RCB logo and 'Be bold' back print. 100% Cotton.",
     outOfStockSizes: ['S', 'XL']
   },
@@ -35,7 +35,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/men-model-ducati-front.jpg",
     images: ["/images/men-model-ducati-front.jpg", "/images/men-model-ducati-back.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt featuring a clean Ducati logo on the front and a high-quality Ducati Panigale motorcycle poster graphic printed on the back. 100% Cotton."
   },
   {
@@ -47,7 +47,7 @@ const initialProducts = [
     tag: "HOT",
     image: "/images/men-model-enfield.png",
     images: ["/images/men-model-enfield.png", "/images/men-bike-enfield.png"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt featuring a vintage Royal Enfield motorcycle graphic on the front. 100% Cotton."
   },
   {
@@ -59,7 +59,7 @@ const initialProducts = [
     tag: "TRENDING",
     image: "/images/men-model-bmw.png",
     images: ["/images/men-model-bmw.png", "/images/men-bike-bmw.png"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt featuring a BMW S1000RR motorcycle graphic on the front. 100% Cotton."
   },
   {
@@ -79,7 +79,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/men-new-1.jpg",
     images: ["/images/men-new-1.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt featuring a vibrant abstract face graphic. 100% Cotton."
   },
   {
@@ -99,7 +99,7 @@ const initialProducts = [
     tag: "TRENDING",
     image: "/images/men-new-2.jpg",
     images: ["/images/men-new-2.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt with a serene Buddha watercolor style graphic. 100% Cotton."
   },
   {
@@ -119,7 +119,7 @@ const initialProducts = [
     tag: "POPULAR",
     image: "/images/men-new-3.jpg",
     images: ["/images/men-new-3.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt featuring a 'CHILL' typography and character graphic. 100% Cotton."
   },
   {
@@ -139,7 +139,7 @@ const initialProducts = [
     tag: "BEST SELLER",
     image: "/images/men-new-6.jpg",
     images: ["/images/men-new-6.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt featuring a beautiful collage of Hindu deities graphic print. 100% Cotton."
   },
   {
@@ -159,7 +159,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/men-new-7.jpg",
     images: ["/images/men-new-7.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium off-white oversized t-shirt featuring a minimalist 'One Day At A Time' landscape graphic. 100% Cotton."
   },
   {
@@ -179,7 +179,7 @@ const initialProducts = [
     tag: "TRENDING",
     image: "/images/men-new-8.jpg",
     images: ["/images/men-new-8.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt with a cool blue character on a swing and red 'CHILL' typography. 100% Cotton."
   },
 
@@ -194,7 +194,7 @@ const initialProducts = [
     tag: "BEST SELLER",
     image: "/images/model-1.png",
     images: ["/images/model-1.png", "/images/oversized-tee-1.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with a beautiful positive floral graphic print. 100% Cotton."
   },
   {
@@ -206,7 +206,7 @@ const initialProducts = [
     tag: "TRENDING",
     image: "/images/model-2.png",
     images: ["/images/model-2.png", "/images/oversized-tee-2.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with a retro 'Love Yourself' graphic print. 100% Cotton."
   },
   {
@@ -218,7 +218,7 @@ const initialProducts = [
     tag: "NEW ARRIVAL",
     image: "/images/model-3.png",
     images: ["/images/model-3.png", "/images/oversized-tee-3.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with a 'You Grow Girl' floral graphic print. 100% Cotton."
   },
   {
@@ -230,7 +230,7 @@ const initialProducts = [
     tag: "HOT",
     image: "/images/model-4.png",
     images: ["/images/model-4.png", "/images/oversized-tee-4.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with a vibrant sunflower graphic print. 100% Cotton."
   },
   {
@@ -242,7 +242,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/model-5.png",
     images: ["/images/model-5.png", "/images/oversized-tee-5.png"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt with a colorful parrot and 'LOVE' graphic print. 100% Cotton."
   },
   {
@@ -254,7 +254,7 @@ const initialProducts = [
     tag: "CUTE",
     image: "/images/model-6.png",
     images: ["/images/model-6.png", "/images/oversized-tee-6.png"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt with an adorable panda holding a heart balloon. 100% Cotton."
   },
   {
@@ -266,7 +266,7 @@ const initialProducts = [
     tag: "TRENDING",
     image: "/images/model-7.png",
     images: ["/images/model-7.png", "/images/oversized-tee-7.png"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt featuring a pink bow and 'I'm just a girl' text. 100% Cotton."
   },
   {
@@ -278,7 +278,7 @@ const initialProducts = [
     tag: "CLASSIC",
     image: "/images/model-8.png",
     images: ["/images/model-8.png", "/images/oversized-tee-8.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with classic Tom & Jerry cartoon graphic. 100% Cotton."
   },
   {
@@ -290,7 +290,7 @@ const initialProducts = [
     tag: "VINTAGE",
     image: "/images/model-9.png",
     images: ["/images/model-9.png", "/images/oversized-tee-9.png"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt with a retro 70s 'FLOWER' graphic print. 100% Cotton."
   },
   {
@@ -310,7 +310,7 @@ const initialProducts = [
     tag: "TRENDING",
     image: "/images/women-new-2.jpg",
     images: ["/images/women-new-2.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt with a fun 'Roll Model' graphic print. 100% Cotton."
   },
   {
@@ -330,7 +330,7 @@ const initialProducts = [
     tag: "POPULAR",
     image: "/images/women-new-3.jpg",
     images: ["/images/women-new-3.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium off-white oversized t-shirt featuring a minimalist 'One Day At A Time' landscape graphic. 100% Cotton."
   },
   {
@@ -350,7 +350,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/women-new-4.jpg",
     images: ["/images/women-new-4.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt featuring traditional 'Ravaayat Punjab Di Phulkari' art. 100% Cotton."
   },
   {
@@ -370,7 +370,7 @@ const initialProducts = [
     tag: "HOT",
     image: "/images/women-new-5.jpg",
     images: ["/images/women-new-5.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with a cool blue character on a swing and red 'CHILL' typography. 100% Cotton."
   },
   {
@@ -390,7 +390,7 @@ const initialProducts = [
     tag: "BEST SELLER",
     image: "/images/women-new-6.jpg",
     images: ["/images/women-new-6.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white oversized t-shirt featuring an intricate mandala side pattern. 100% Cotton."
   },
   {
@@ -402,7 +402,7 @@ const initialProducts = [
     tag: "CLASSIC",
     image: "/images/women-new-7.jpg",
     images: ["/images/women-new-7.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium rust-colored oversized t-shirt featuring a 'Roll Model' graphic print. 100% Cotton."
   },
   {
@@ -422,7 +422,7 @@ const initialProducts = [
     tag: "NEW ARRIVAL",
     image: "/images/women-new-8.jpg",
     images: ["/images/women-new-8.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt featuring a vibrant Kathakali face mask graphic. 100% Cotton."
   },
 
@@ -450,7 +450,7 @@ const initialProducts = [
       'Cream': '/images/model_men_cream_front.jpg',
       'Brown': '/images/model_men_brown_front.jpg'
     },
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     isVisualCustomizer: true,
     description: 'Upload your own design to be printed on our premium oversized t-shirts.'
   },
@@ -472,7 +472,7 @@ const initialProducts = [
     tag: "BEST SELLER",
     image: "/images/couples-1.jpg",
     images: ["/images/couples-1.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching black oversized t-shirts for couples featuring a cute cat graphic."
   },
   {
@@ -491,7 +491,7 @@ const initialProducts = [
     tag: "TRENDING",
     image: "/images/couples-2.jpg",
     images: ["/images/couples-2.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching black oversized t-shirts for couples featuring a cool sunset cat graphic."
   },
   {
@@ -510,7 +510,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/couples-3.jpg",
     images: ["/images/couples-3.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching white oversized t-shirts for couples featuring a cool cat in sunglasses."
   },
   {
@@ -529,7 +529,7 @@ const initialProducts = [
     tag: "CUTE",
     image: "/images/couples-4.jpg",
     images: ["/images/couples-4.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching black oversized t-shirts for couples featuring a dog graphic."
   },
   {
@@ -548,7 +548,7 @@ const initialProducts = [
     tag: "HOT",
     image: "/images/couples-5.jpg",
     images: ["/images/couples-5.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching white oversized t-shirts for couples featuring a funny 'Bruh' dog graphic."
   },
   {
@@ -567,7 +567,7 @@ const initialProducts = [
     tag: "COUPLES",
     image: "/images/couples-6.jpg",
     images: ["/images/couples-6.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching black oversized t-shirts for couples featuring a 'My World' dog graphic."
   },
   {
@@ -579,7 +579,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/couples-7.jpg",
     images: ["/images/couples-7.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching white oversized t-shirts for couples featuring a colorful artistic Beagle dog graphic."
   },
   {
@@ -598,7 +598,7 @@ const initialProducts = [
     tag: "COUPLES",
     image: "/images/couples-8.jpg",
     images: ["/images/couples-8.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching black oversized t-shirts for couples featuring a cute human and dog paw fist bump design."
   },
   {
@@ -610,7 +610,7 @@ const initialProducts = [
     tag: "HOT",
     image: "/images/couples-9.jpg",
     images: ["/images/couples-9.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching black oversized t-shirts for couples featuring a cool Golden Retriever with sunglasses graphic."
   },
   {
@@ -630,7 +630,7 @@ const initialProducts = [
     tag: "COUPLES",
     image: "/images/couples-new-1.jpg",
     images: ["/images/couples-new-1.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching white oversized t-shirts for couples featuring divine Krishna and Radha artwork."
   },
   {
@@ -650,7 +650,7 @@ const initialProducts = [
     tag: "BEST SELLER",
     image: "/images/couples-new-2.jpg",
     images: ["/images/couples-new-2.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching black oversized t-shirts for couples featuring intricate golden Trishul and Om mandala designs."
   },
   {
@@ -670,7 +670,7 @@ const initialProducts = [
     tag: "COUPLES",
     image: "/images/couples-new-3.jpg",
     images: ["/images/couples-new-3.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching maroon oversized t-shirts for couples featuring beautiful traditional Indian couple attire graphics."
   },
   {
@@ -690,7 +690,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/couples-new-4.jpg",
     images: ["/images/couples-new-4.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching beige oversized t-shirts for couples featuring a traditional flute player and listener graphic."
   },
   {
@@ -710,7 +710,7 @@ const initialProducts = [
     tag: "TRENDING",
     image: "/images/couples-new-5.jpg",
     images: ["/images/couples-new-5.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching black oversized t-shirts for couples featuring minimalist Krishna and Radha line art."
   },
   {
@@ -722,7 +722,7 @@ const initialProducts = [
     tag: "POPULAR",
     image: "/images/couples-new-6.jpg",
     images: ["/images/couples-new-6.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching off-white oversized t-shirts for couples featuring divine Shiva and Parvati line art graphics."
   },
   {
@@ -742,7 +742,7 @@ const initialProducts = [
     tag: "COUPLES",
     image: "/images/couples-new-7.jpg",
     images: ["/images/couples-new-7.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching brown oversized t-shirts for couples featuring Mahadev and Mahakali Hindi typography."
   },
   {
@@ -762,7 +762,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/couples-new-8.jpg",
     images: ["/images/couples-new-8.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching white oversized t-shirts for couples featuring architectural temple 'Culture' and 'Soul' prints."
   },
   {
@@ -783,7 +783,7 @@ const initialProducts = [
     
     image: "/images/cp18.png",
     images: ["/images/cp18.png"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching navy oversized t-shirts for couples featuring minimalist lotus 'Balance' and 'Energy' designs."
   },
   {
@@ -803,7 +803,7 @@ const initialProducts = [
     tag: "HOT",
     image: "/images/couples-new-10.jpg",
     images: ["/images/couples-new-10.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium matching beige oversized t-shirts for couples featuring 'Rooted in Culture' and 'Grateful for Traditions' typography."
   },
   // KANNADA & REGIONAL
@@ -816,7 +816,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/kannada-1.jpg",
     images: ["/images/kannada-1.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black men's oversized t-shirt featuring a stylized Kannada graphic print on the front. 100% Cotton."
   },
   {
@@ -828,7 +828,7 @@ const initialProducts = [
     tag: "TRENDING",
     image: "/images/kannada-2.jpg",
     images: ["/images/kannada-2.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black men's oversized t-shirt featuring a beautiful 'Maa' graphic print on the front. 100% Cotton."
   },
   {
@@ -840,7 +840,7 @@ const initialProducts = [
     tag: "POPULAR",
     image: "/images/kannada-3.jpg",
     images: ["/images/kannada-3.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black men's oversized t-shirt featuring an emotional 'Appa' graphic print on the front. 100% Cotton."
   },
   {
@@ -852,7 +852,7 @@ const initialProducts = [
     tag: "CLASSIC",
     image: "/images/kannada-4.jpg",
     images: ["/images/kannada-4.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium white men's oversized t-shirt featuring a traditional farmer graphic print on the front. 100% Cotton."
   },
   {
@@ -864,7 +864,7 @@ const initialProducts = [
     tag: "NEW",
     image: "/images/kannada-5.jpg",
     images: ["/images/kannada-5.jpg"],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black men's oversized t-shirt featuring a journey 'Payana' graphic print on the front. 100% Cotton."
   }
 ];

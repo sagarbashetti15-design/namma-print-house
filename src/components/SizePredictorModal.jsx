@@ -12,29 +12,41 @@ const SizePredictorModal = ({ isOpen, onClose, onApplySize }) => {
     let size = 'M';
     
     // Height thresholds
-    if (height < 165) {
+    if (height < 155) {
+      size = 'XS';
+    } else if (height >= 155 && height < 165) {
       size = 'S';
     } else if (height >= 165 && height <= 175) {
       size = 'M';
     } else if (height > 175 && height <= 183) {
       size = 'L';
-    } else {
+    } else if (height > 183 && height <= 190) {
       size = 'XL';
+    } else {
+      size = 'XXL';
     }
 
     // Weight adjustments
-    if (weight < 55) {
-      // If someone is tall but very light, recommend standard or one size down (minimum S)
+    if (weight < 50) {
+      if (size === 'S') size = 'XS';
+      else if (size === 'M') size = 'S';
+      else if (size === 'L') size = 'M';
+      else if (size === 'XL') size = 'L';
+      else if (size === 'XXL') size = 'XL';
+    } else if (weight >= 50 && weight < 55) {
       if (size === 'M') size = 'S';
       else if (size === 'L') size = 'M';
       else if (size === 'XL') size = 'L';
     } else if (weight >= 73 && weight <= 85) {
-      // Bump up one size for heavier weight (maximum XL)
-      if (size === 'S') size = 'M';
+      if (size === 'XS') size = 'S';
+      else if (size === 'S') size = 'M';
       else if (size === 'M') size = 'L';
       else if (size === 'L') size = 'XL';
-    } else if (weight > 85) {
-      size = 'XL';
+      else if (size === 'XL') size = 'XXL';
+    } else if (weight > 85 && weight <= 95) {
+      if (size !== 'XXL') size = 'XL';
+    } else if (weight > 95) {
+      size = 'XXL';
     }
 
     setSuggestedSize(size);

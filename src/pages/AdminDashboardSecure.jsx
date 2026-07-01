@@ -415,7 +415,7 @@ const AdminDashboardSecure = () => {
       images: imagesList,
       colorImages: colorImages,
       colors: colorKeys,
-      sizes: ['S', 'M', 'L', 'XL'],
+      sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
       description: newProduct.description || 'Premium custom oversized graphic print tee. 100% Cotton.'
     };
 
