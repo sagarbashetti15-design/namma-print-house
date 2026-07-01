@@ -241,7 +241,7 @@ const Checkout = () => {
     );
   }
 
-  const handleNext = (e) => {
+  const handleNext = async (e) => {
     e.preventDefault();
     if (step === 1) {
       // Validate Indian mobile number (exactly 10 digits starting with 6, 7, 8, 9)
@@ -268,39 +268,65 @@ const Checkout = () => {
       }
 
       setIsProcessingPayment(true);
-      const duration = 2000;
       
-      setTimeout(() => {
-        setIsProcessingPayment(false);
+      const processOrder = async () => {
+        // Helper to upload base64 images
+        const uploadToUguu = async (dataUrl) => {
+          try {
+            const res = await fetch(dataUrl);
+            const blob = await res.blob();
+            const formData = new FormData();
+            const filename = 'design_' + Math.floor(Math.random() * 1000000) + '.png';
+            formData.append('files[]', blob, filename);
+            const response = await fetch('https://uguu.se/upload.php', { method: 'POST', body: formData });
+            const data = await response.json();
+            if (data.success && data.files && data.files.length > 0) {
+              return data.files[0].url;
+            }
+          } catch (err) {
+            console.error("Upload failed", err);
+          }
+          return null;
+        };
+
         const orderId = `NPH-${Math.floor(Math.random() * 899999) + 100000}`;
         
+        const processedItems = await Promise.all(cartItems.map(async (item) => {
+          let sizeValue = item.size;
+          let colorValue = '';
+          
+          if (item.size.includes('Color:')) {
+            const parts = item.size.split('Color:');
+            colorValue = parts[1].trim();
+            sizeValue = parts[0].replace('|', '').trim();
+          }
+          
+          let selectedColorImage = item.product.image;
+          if (colorValue && item.product.colorImages && item.product.colorImages[colorValue]) {
+            selectedColorImage = item.product.colorImages[colorValue];
+          }
+
+          let customUrls = {};
+          if (item.product.customImages) {
+            if (item.product.customImages.front) customUrls.front = await uploadToUguu(item.product.customImages.front);
+            if (item.product.customImages.back) customUrls.back = await uploadToUguu(item.product.customImages.back);
+          }
+          
+          return {
+            title: item.product.title,
+            size: sizeValue,
+            color: colorValue,
+            quantity: item.quantity,
+            price: item.customPrice !== null ? item.customPrice : item.product.price,
+            image: selectedColorImage,
+            customUrls: customUrls
+          };
+        }));
+
         const newOrder = {
           id: orderId,
           date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
-          items: cartItems.map(item => {
-            let sizeValue = item.size;
-            let colorValue = '';
-            
-            if (item.size.includes('Color:')) {
-              const parts = item.size.split('Color:');
-              colorValue = parts[1].trim();
-              sizeValue = parts[0].replace('|', '').trim();
-            }
-            
-            let selectedColorImage = item.product.image;
-            if (colorValue && item.product.colorImages && item.product.colorImages[colorValue]) {
-              selectedColorImage = item.product.colorImages[colorValue];
-            }
-            
-            return {
-              title: item.product.title,
-              size: sizeValue,
-              color: colorValue,
-              quantity: item.quantity,
-              price: item.customPrice !== null ? item.customPrice : item.product.price,
-              image: selectedColorImage
-            };
-          }),
+          items: processedItems,
           total: grandTotal,
           paymentMethod: 'UPI',
           utrNumber: utrNumber.trim(),
@@ -308,6 +334,7 @@ const Checkout = () => {
           timestamp: Date.now()
         };
         
+        setIsProcessingPayment(false);
         // Cache order details for WhatsApp link generation before clearing
         setLastPlacedOrder(newOrder);
 
@@ -319,7 +346,8 @@ const Checkout = () => {
         setPlacedOrderId(orderId);
         setStep(3);
         clearCart();
-      }, duration);
+      };
+      processOrder();
     }
   };
 
@@ -329,14 +357,20 @@ const Checkout = () => {
     
     let itemsText = "";
     lastPlacedOrder.items.forEach((item, index) => {
-      // Map base URL to include hosting server origin (e.g. localtunnel address)
-      const imageUrl = item.image.startsWith('data:') 
-        ? `(Local Uploaded Image - Preview in Admin Catalog)` 
-        : `${window.location.origin}${item.image}`;
+      let designLinks = "";
+      if (item.customUrls && (item.customUrls.front || item.customUrls.back)) {
+        if (item.customUrls.front) designLinks += `\n     - 👕 Front Print: ${item.customUrls.front}`;
+        if (item.customUrls.back) designLinks += `\n     - 👕 Back Print: ${item.customUrls.back}`;
+      } else {
+        const imageUrl = item.image.startsWith('data:') 
+          ? `(Local Uploaded Image)` 
+          : `${window.location.origin}${item.image}`;
+        designLinks = `\n     - 🖼️ Product Image: ${imageUrl}`;
+      }
+
       itemsText += `\n📦 *Item ${index + 1}:* ${item.title}
    - Size: ${item.size}
-   - Qty: ${item.quantity} | Price: ₹${item.price * item.quantity}
-   - 🖼️ Product Design Preview: ${imageUrl}\n`;
+   - Qty: ${item.quantity} | Price: ₹${item.price * item.quantity}${designLinks}\n`;
     });
 
     const msg = `🚀 *NAMMA PRINT HOUSE - NEW ORDER*

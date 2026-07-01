@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
-import { Upload, Trash2, Info, Move, Type, RotateCcw } from 'lucide-react';
+import { Upload, Trash2, Info, Move, Type, RotateCcw, Loader2 } from 'lucide-react';
+import html2canvas from 'html2canvas';
 import './CustomizerView.css';
 
 const CustomizerView = ({ product }) => {
@@ -11,6 +12,7 @@ const CustomizerView = ({ product }) => {
   const { showToast } = useToast();
   const fileInputRef = useRef(null);
   
+  const [isGenerating, setIsGenerating] = useState(false);
   const [selectedColor, setSelectedColor] = useState('White');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedGender, setSelectedGender] = useState('Men'); // Default to Men to show a model initially
@@ -162,48 +164,90 @@ const CustomizerView = ({ product }) => {
     window.addEventListener(isTouch ? 'touchend' : 'mouseup', handleDragEnd);
   };
 
-  const handleAddToCart = () => {
+  const capturePreviews = async () => {
+    setIsGenerating(true);
+    const canvasEl = document.querySelector('.tshirt-preview-wrapper');
+    const originalSide = printSide;
+    
+    // Hide drag handles and helpers for clean capture
+    const handles = document.querySelectorAll('.drag-handle-badge');
+    handles.forEach(h => h.style.display = 'none');
+    const emptyArea = document.querySelector('.empty-print-area');
+    if (emptyArea) emptyArea.style.display = 'none';
+    const label = document.querySelector('.print-area-label');
+    if (label) label.style.display = 'none';
+    
+    let frontDataUrl = null;
+    let backDataUrl = null;
+    
+    // Capture Front
+    setPrintSide('Front');
+    await new Promise(r => setTimeout(r, 150)); // let DOM update
+    if (uploadedImageFront || customTextFront) {
+      const canvasFront = await html2canvas(canvasEl, { useCORS: true, backgroundColor: null });
+      frontDataUrl = canvasFront.toDataURL('image/png');
+    }
+    
+    // Capture Back
+    setPrintSide('Back');
+    await new Promise(r => setTimeout(r, 150)); // let DOM update
+    if (uploadedImageBack || customTextBack) {
+      const canvasBack = await html2canvas(canvasEl, { useCORS: true, backgroundColor: null });
+      backDataUrl = canvasBack.toDataURL('image/png');
+    }
+    
+    // Restore state
+    setPrintSide(originalSide);
+    handles.forEach(h => h.style.display = '');
+    if (emptyArea) emptyArea.style.display = '';
+    if (label) label.style.display = '';
+    setIsGenerating(false);
+    
+    return { frontDataUrl, backDataUrl };
+  };
+
+  const handleAddToCart = async () => {
     const hasFrontDesign = uploadedImageFront || customTextFront;
     const hasBackDesign = uploadedImageBack || customTextBack;
     
     if (!hasFrontDesign && !hasBackDesign) {
-      showToast("Please upload an image or type custom text for your front or back print.", "warning");
-      return;
-    }
-    if (!selectedGender) {
-      showToast("Please select a gender (Men / Women).", "warning");
+      showToast("Please add a design before adding to cart", "warning");
       return;
     }
     if (!selectedSize) {
-      showToast("Please select a size.", "warning");
+      showToast("Please select a size", "warning");
       return;
     }
 
-    // Build configuration details for both Front and Back
-    const details = [];
+    const { frontDataUrl, backDataUrl } = await capturePreviews();
+    
+    let details = [];
     details.push(`Color: ${selectedColor}`);
     details.push(`Size: ${selectedSize}`);
     details.push(`Gender: ${selectedGender}`);
     
     if (hasFrontDesign) {
-      const frontDetails = [];
-      if (uploadedImageFront) frontDetails.push(`Image (${selectedFilterFront})`);
-      if (customTextFront) frontDetails.push(`Text: "${customTextFront}" (${textFontFront}/${textColorFront})`);
-      details.push(`Front: [${frontDetails.join(' & ')}]`);
+      let frontStr = "Front: [";
+      if (uploadedImageFront) frontStr += "Custom Graphic";
+      if (customTextFront) frontStr += (uploadedImageFront ? " + " : "") + `Text: "${customTextFront}" (${textFontFront}/${textColorFront})`;
+      frontStr += "]";
+      details.push(frontStr);
     }
     
     if (hasBackDesign) {
-      const backDetails = [];
-      if (uploadedImageBack) backDetails.push(`Image (${selectedFilterBack})`);
-      if (customTextBack) backDetails.push(`Text: "${customTextBack}" (${textFontBack}/${textColorBack})`);
-      details.push(`Back: [${backDetails.join(' & ')}]`);
+      let backStr = "Back: [";
+      if (uploadedImageBack) backStr += "Custom Graphic";
+      if (customTextBack) backStr += (uploadedImageBack ? " + " : "") + `Text: "${customTextBack}" (${textFontBack}/${textColorBack})`;
+      backStr += "]";
+      details.push(backStr);
     }
-
+    
     const configStr = details.join(' | ');
     
     const productCopy = { 
       ...product, 
-      image: product.colorImages[selectedColor],
+      image: frontDataUrl || backDataUrl || product.colorImages[selectedColor],
+      customImages: { front: frontDataUrl, back: backDataUrl },
       title: `Custom ${selectedColor} T-Shirt (${hasFrontDesign && hasBackDesign ? 'Double-Sided' : hasFrontDesign ? 'Front Print' : 'Back Print'})`
     };
     
@@ -509,8 +553,8 @@ const CustomizerView = ({ product }) => {
           </div>
           
           {/* Section 5: Add to Cart */}
-          <button className="add-to-cart-btn custom-cart-btn" onClick={handleAddToCart}>
-            ADD TO BAG - ₹{product.price}
+          <button className="add-to-cart-btn custom-cart-btn" onClick={handleAddToCart} disabled={isGenerating}>
+            {isGenerating ? <><Loader2 size={18} className="spin-icon" /> GENERATING PREVIEW...</> : `ADD TO BAG - ₹${product.price}`}
           </button>
           
         </div>
