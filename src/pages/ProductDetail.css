@@ -277,6 +277,13 @@
   background-color: #e6bc00;
 }
 
+@media (max-width: 480px) {
+  .add-to-bag-btn {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
 .wishlist-icon-btn {
   width: 54px;
   height: 54px;

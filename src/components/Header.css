@@ -144,6 +144,15 @@
   -webkit-text-fill-color: transparent;
 }
 
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 1.2rem;
+  }
+  .header-left {
+    gap: 15px;
+  }
+}
+
 .logo-sub {
   font-size: 0.7rem;
   font-weight: 600;

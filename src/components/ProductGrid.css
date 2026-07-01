@@ -150,12 +150,36 @@ body.dark-theme .product-card:hover {
 
 @media (max-width: 1024px) {
   .product-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .product-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .product-section {
+    padding: 40px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .product-info {
+    padding: 10px;
+  }
+  .product-title {
+    font-size: 0.8rem;
+  }
+  .product-pricing .price {
+    font-size: 0.95rem;
+  }
+  .btn-add-cart {
+    padding: 8px;
+    font-size: 0.75rem;
   }
 }
