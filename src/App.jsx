@@ -9,8 +9,9 @@ import ScrollToTop from './components/ScrollToTop'
 import { WishlistProvider } from './context/WishlistContext'
 import { ToastProvider } from './context/ToastContext'
 
+import Home from './pages/Home'
+
 // Lazy loaded pages for performance
-const Home = lazy(() => import('./pages/Home'))
 const CategoryPage = lazy(() => import('./pages/CategoryPage'))
 const ProductDetail = lazy(() => import('./pages/ProductDetail'))
 const Cart = lazy(() => import('./pages/Cart'))
