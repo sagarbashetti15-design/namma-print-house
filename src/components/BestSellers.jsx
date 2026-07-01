@@ -1,36 +1,39 @@
 import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { products } from '../data/catalog';
+import { useCatalog } from '../context/CatalogContext';
 import { useWishlist } from '../context/WishlistContext';
 import './BestSellers.css';
-
-const bestSellers = [
-  // Men's favorites
-  products.find(p => p.id === 'm11'),
-  products.find(p => p.id === 'm3'),
-  // Women's favorites
-  products.find(p => p.id === 'w1'),
-  products.find(p => p.id === 'w11'),
-  // Couples matching
-  products.find(p => p.id === 'cp1'),
-  products.find(p => p.id === 'cp11'),
-  // Kannada collection
-  products.find(p => p.id === 'k2'),
-  products.find(p => p.id === 'k3')
-].filter(Boolean);
 
 const BestSellers = () => {
   const scrollRef = useRef(null);
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { products, loading } = useCatalog();
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
-      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+      const { current } = scrollRef;
+      const scrollAmount = direction === 'left' ? -300 : 300;
+      current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
+
+  if (loading) return null;
+
+  const bestSellers = [
+    // Men's favorites
+    products.find(p => p.id === 'm11'),
+    products.find(p => p.id === 'm3'),
+    // Women's favorites
+    products.find(p => p.id === 'w1'),
+    products.find(p => p.id === 'w11'),
+    // Couples matching
+    products.find(p => p.id === 'cp1'),
+    products.find(p => p.id === 'cp11'),
+    // Kannada collection
+    products.find(p => p.id === 'k2'),
+    products.find(p => p.id === 'k3')
+  ].filter(Boolean);
 
   return (
     <section className="bestsellers-section">

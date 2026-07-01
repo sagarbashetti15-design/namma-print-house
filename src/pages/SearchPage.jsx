@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { products } from '../data/catalog';
+import { useCatalog } from '../context/CatalogContext';
 import { useWishlist } from '../context/WishlistContext';
 import { Heart } from 'lucide-react';
 import '../components/ProductGrid.css';
@@ -9,7 +9,10 @@ const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('q') || '';
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { products, loading } = useCatalog();
   
+  if (loading) return <div className="container" style={{ padding: '40px 1rem', minHeight: '60vh' }}>Loading...</div>;
+
   const searchResults = products.filter(p => 
     p.title.toLowerCase().includes(query.toLowerCase()) || 
     p.description.toLowerCase().includes(query.toLowerCase())

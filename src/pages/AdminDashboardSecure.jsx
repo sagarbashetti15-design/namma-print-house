@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Settings, X, Send, Database, Smartphone, Eye, EyeOff, Lock } from 'lucide-react';
-import { products as initialStaticProducts } from '../data/catalog';
-import axios from 'axios';
+import { useCatalog } from '../context/CatalogContext';
+import { db } from '../firebase';
+import { doc, updateDoc, setDoc } from 'firebase/firestore';
 import './AdminDashboardSecure.css';
 
 // Admin password — must be changed before going live
@@ -19,7 +20,7 @@ const AdminDashboardSecure = () => {
   const [attemptCount, setAttemptCount] = useState(0);
   const [isLocked, setIsLocked] = useState(false);
   const [lockTimer, setLockTimer] = useState(0);
-  const [localCatalog, setLocalCatalog] = useState([]);
+  const { products: localCatalog, loading: catalogLoading } = useCatalog();
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -176,26 +177,8 @@ const AdminDashboardSecure = () => {
     reader.readAsDataURL(file);
   };
 
-  // Load catalog and marketing state on mount
+  // Load marketing state on mount
   useEffect(() => {
-    const cached = localStorage.getItem('nph_catalog');
-    let loadedCatalog = [];
-    if (cached) {
-      const parsed = JSON.parse(cached);
-      const m1 = parsed.find(p => p.id === 'm1');
-      // Bust cache if XS size is missing
-      if (m1 && !m1.sizes.includes('XS')) {
-        localStorage.setItem('nph_catalog', JSON.stringify(initialStaticProducts));
-        loadedCatalog = initialStaticProducts;
-      } else {
-        loadedCatalog = parsed;
-      }
-    } else {
-      localStorage.setItem('nph_catalog', JSON.stringify(initialStaticProducts));
-      loadedCatalog = initialStaticProducts;
-    }
-    setLocalCatalog(loadedCatalog);
-    
     const storedMarketing = localStorage.getItem('nph_marketing');
     if (storedMarketing) {
       const parsed = JSON.parse(storedMarketing);
@@ -264,9 +247,8 @@ const AdminDashboardSecure = () => {
     }, 400);
 
     // 3. Parser execution
-    setTimeout(() => {
+    setTimeout(async () => {
       if (cleanText.includes('out of stock') || cleanText.includes('sold out')) {
-        // Extract product search keyword
         const targetWord = cleanText
           .replace('out of stock', '')
           .replace('sold out', '')
@@ -275,30 +257,16 @@ const AdminDashboardSecure = () => {
           .replace('tee', '')
           .trim();
           
-        let matchedProduct = null;
-        const updated = localCatalog.map(p => {
-          const isMatch = p.id.toLowerCase() === targetWord || 
-                          p.title.toLowerCase().includes(targetWord) || 
-                          targetWord.includes(p.id.toLowerCase());
-          if (isMatch) {
-            matchedProduct = p;
-            return { ...p, outOfStock: true };
-          }
-          return p;
-        });
+        const matchedProduct = localCatalog.find(p => p.id.toLowerCase() === targetWord || p.title.toLowerCase().includes(targetWord));
 
         if (matchedProduct) {
-          new Promise(r => setTimeout(r, 500))
-            .then(() => {
-              localStorage.setItem('nph_catalog', JSON.stringify(updated));
-              setLocalCatalog(updated);
+            try {
+              await updateDoc(doc(db, 'catalog', matchedProduct.id), { outOfStock: true });
               addMessage('system', `✅ *WhatsApp Sync Successful!*\nProduct *"${matchedProduct.title}"* has been set to *OUT OF STOCK* on the live database.\n\n🔄 Storefront updated behind the scenes!`);
-              
-            })
-            .catch(err => {
+            } catch (err) {
               addMessage('system', `❌ *Sync Error:*\nFailed to update live database.`);
               console.error(err);
-            });
+            }
         } else {
           addMessage('system', `❌ *Sync Error:*\nNo products found in Meta Catalog matching "${targetWord}". Try typing: *"m7 out of stock"*`);
         }
@@ -313,30 +281,16 @@ const AdminDashboardSecure = () => {
           .replace('tee', '')
           .trim();
           
-        let matchedProduct = null;
-        const updated = localCatalog.map(p => {
-          const isMatch = p.id.toLowerCase() === targetWord || 
-                          p.title.toLowerCase().includes(targetWord) || 
-                          targetWord.includes(p.id.toLowerCase());
-          if (isMatch) {
-            matchedProduct = p;
-            return { ...p, outOfStock: false };
-          }
-          return p;
-        });
+        const matchedProduct = localCatalog.find(p => p.id.toLowerCase() === targetWord || p.title.toLowerCase().includes(targetWord));
 
         if (matchedProduct) {
-          new Promise(r => setTimeout(r, 500))
-            .then(() => {
-              localStorage.setItem('nph_catalog', JSON.stringify(updated));
-              setLocalCatalog(updated);
+            try {
+              await updateDoc(doc(db, 'catalog', matchedProduct.id), { outOfStock: false });
               addMessage('system', `✅ *WhatsApp Sync Successful!*\nProduct *"${matchedProduct.title}"* has been marked *IN STOCK* on the live database.\n\n🔄 Storefront updated behind the scenes!`);
-              
-            })
-            .catch(err => {
+            } catch (err) {
               addMessage('system', `❌ *Sync Error:*\nFailed to update live database.`);
               console.error(err);
-            });
+            }
         } else {
           addMessage('system', `❌ *Sync Error:*\nNo products found in Meta Catalog matching "${targetWord}". Try typing: *"m7 in stock"*`);
         }
@@ -359,18 +313,13 @@ const AdminDashboardSecure = () => {
     }, 300);
 
     setTimeout(() => {
-      const updated = localCatalog.map(p => 
-        p.id === productId ? { ...p, outOfStock: newStatus } : p
-      );
-      
-      new Promise(r => setTimeout(r, 500))
-        .then(() => {
-          localStorage.setItem('nph_catalog', JSON.stringify(updated));
-          setLocalCatalog(updated);
-          addMessage('system', `✅ Live Database Updated!\nProduct is now ${newStatus ? 'OUT OF STOCK' : 'IN STOCK'}.\n\n🔄 Storefront updated behind the scenes!`);
-          
-        })
-        .catch(err => {
+        new Promise(r => setTimeout(r, 500))
+          .then(async () => {
+            await updateDoc(doc(db, 'catalog', productId), { outOfStock: newStatus });
+            addMessage('system', `🚀 Live Database Updated!\nProduct is now ${newStatus ? 'OUT OF STOCK' : 'IN STOCK'}.\n\n✅ Storefront updated behind the scenes!`);
+            
+          })
+          .catch(err => {
           addMessage('system', `❌ *Sync Error:*\nFailed to update live database.`);
           console.error(err);
         });
@@ -424,14 +373,12 @@ const AdminDashboardSecure = () => {
     }, 400);
 
     setTimeout(() => {
-      try {
-        new Promise(r => setTimeout(r, 500))
-          .then(() => {
-            const updated = [addedItem, ...localCatalog];
-            localStorage.setItem('nph_catalog', JSON.stringify(updated));
-            setLocalCatalog(updated);
-            
-            addMessage('system', `🚀 *Live Database Sync Successful:*\n"${newProduct.title}" added to storefront with colors: ${colorKeys.join(', ')}!\n\n🔄 Storefront updated behind the scenes!`);
+        try {
+          new Promise(r => setTimeout(r, 500))
+            .then(async () => {
+              await setDoc(doc(db, 'catalog', addedItem.id), addedItem);
+              
+              addMessage('system', `🚀 *Live Database Sync Successful:*\n"${newProduct.title}" added to storefront with colors: ${colorKeys.join(', ')}!\n\n✅ Storefront updated behind the scenes!`);
             setIsAddFormOpen(false);
             setUploadedImages({});
             setNewProduct({ title: '', price: '699', category: 'men', description: '' });

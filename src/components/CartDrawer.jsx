@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
-import { products } from '../data/catalog';
+import { useCatalog } from '../context/CatalogContext';
 import { X, Trash2, Minus, Plus, ShoppingBag, PlusCircle } from 'lucide-react';
 import './CartDrawer.css';
 
@@ -18,6 +18,7 @@ const CartDrawer = () => {
   } = useCart();
 
   const { showToast } = useToast();
+  const { products } = useCatalog();
   const navigate = useNavigate();
 
   // Find 3 products that are not currently in the cart

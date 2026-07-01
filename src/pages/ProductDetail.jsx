@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { products } from '../data/catalog';
+import { useCatalog } from '../context/CatalogContext';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
@@ -14,6 +14,7 @@ const ProductDetail = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const { products, loading } = useCatalog();
 
   const product = products.find(p => p.id === productId);
   useDocumentTitle(product ? product.title : 'Product Not Found');
@@ -23,6 +24,8 @@ const ProductDetail = () => {
   const { showToast } = useToast();
   
   // Read color query parameter from URL
+  
+  if (loading) return <div className="container" style={{ padding: '40px 1rem', minHeight: '60vh' }}>Loading product details...</div>;
   const queryParams = new URLSearchParams(location.search);
   const initialColor = queryParams.get('color') || '';
   

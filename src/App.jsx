@@ -8,6 +8,7 @@ import WhatsAppButton from './components/WhatsAppButton'
 import ScrollToTop from './components/ScrollToTop'
 import { WishlistProvider } from './context/WishlistContext'
 import { ToastProvider } from './context/ToastContext'
+import { CatalogProvider } from './context/CatalogContext'
 
 import Home from './pages/Home'
 
@@ -95,16 +96,18 @@ function App() {
 
   return (
     <ToastProvider>
-      <CartProvider>
-        <WishlistProvider>
-          <Router>
-            <ScrollToTop />
-            <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#0a0a0a', color: '#fff' }}>Loading Namma Print House...</div>}>
-              <AppContent />
-            </Suspense>
-          </Router>
-        </WishlistProvider>
-      </CartProvider>
+      <CatalogProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <Router>
+              <ScrollToTop />
+              <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#0a0a0a', color: '#fff' }}>Loading Namma Print House...</div>}>
+                <AppContent />
+              </Suspense>
+            </Router>
+          </WishlistProvider>
+        </CartProvider>
+      </CatalogProvider>
     </ToastProvider>
   )
 }

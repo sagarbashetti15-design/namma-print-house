@@ -1,12 +1,15 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { products } from '../data/catalog';
+import { useCatalog } from '../context/CatalogContext';
 import ProductCard from '../components/ProductCard';
 import '../components/ProductGrid.css';
 
 const CategoryPage = () => {
   const { categoryId } = useParams();
+  const { products, loading } = useCatalog();
   
+  if (loading) return <div className="container" style={{ padding: '40px 1rem', minHeight: '60vh' }}>Loading products...</div>;
+
   const categoryProducts = categoryId === 'all' 
     ? products 
     : products.filter(p => p.category === categoryId);
