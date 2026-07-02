@@ -1,67 +1,85 @@
 import React, { useState } from 'react';
+import { db } from '../firebase';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import './InfoPage.css';
 
 const TrackOrder = () => {
   const [orderId, setOrderId] = useState('');
   const [trackingResult, setTrackingResult] = useState(null);
 
-  const handleTrack = (e) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleTrack = async (e) => {
     e.preventDefault();
     const queryId = orderId.trim().toUpperCase();
     if (!queryId) return;
     
-    // Look up in localStorage
-    const savedOrders = JSON.parse(localStorage.getItem('nph_orders') || '[]');
-    const matchingOrder = savedOrders.find(o => o.id.toUpperCase() === queryId);
+    setIsLoading(true);
     
-    if (matchingOrder) {
-      // Calculate real status based on order placement timestamp
-      const elapsed = Date.now() - matchingOrder.timestamp;
-      let currentStatus = 'Order Confirmed';
-      let steps = [
-        { name: 'Order Confirmed', date: matchingOrder.date, completed: true, current: true },
-        { name: 'Printing & Packaging', date: 'Pending', completed: false },
-        { name: 'Dispatched from Bengaluru', date: 'Pending', completed: false },
-        { name: 'Out for Delivery', date: 'Pending', completed: false }
-      ];
-
-      // After 30 seconds, it's printing
-      if (elapsed > 30000) {
-        currentStatus = 'Printing & Packaging';
-        steps[0].current = false;
-        steps[1] = { name: 'Printing & Packaging', date: 'In Progress (NPH Studio)', completed: true, current: true };
-      }
-      // After 2 minutes, it's dispatched
-      if (elapsed > 120000) {
-        currentStatus = 'Dispatched from Bengaluru';
-        steps[1].current = false;
-        steps[1].date = 'Completed (NPH Studio)';
-        steps[2] = { name: 'Dispatched from Bengaluru', date: 'In Transit', completed: true, current: true };
-      }
+    try {
+      // Look up in Firestore
+      const q = query(collection(db, 'orders'), where("id", "==", queryId));
+      const querySnapshot = await getDocs(q);
       
-      setTrackingResult({
-        id: matchingOrder.id,
-        status: currentStatus,
-        estDelivery: 'Within 2-4 business days',
-        courier: 'Delhivery Express',
-        items: matchingOrder.items,
-        total: matchingOrder.total,
-        steps: steps
-      });
-    } else {
-      // Fallback to random tracking if not found in localStorage (so demo remains fully functional for random IDs)
-      setTrackingResult({
-        id: queryId,
-        status: 'Printing',
-        estDelivery: 'Within 2-3 business days',
-        courier: 'Delhivery',
-        steps: [
-          { name: 'Order Confirmed', date: 'Yesterday', completed: true },
-          { name: 'Printing & Packaging', date: 'In Progress (NPH Studio)', completed: true, current: true },
-          { name: 'Dispatched', date: 'Pending Courier Pickup', completed: false },
-          { name: 'Out for Delivery', date: 'Pending', completed: false }
-        ]
-      });
+      if (!querySnapshot.empty) {
+        const orderDoc = querySnapshot.docs[0];
+        const matchingOrder = orderDoc.data();
+        
+        const currentStatus = matchingOrder.status || 'Order Confirmed';
+        
+        let steps = [
+          { name: 'Order Confirmed', date: matchingOrder.date, completed: true, current: currentStatus === 'Order Confirmed' },
+          { name: 'Printing & Packaging', date: 'Pending', completed: false, current: false },
+          { name: 'Dispatched', date: 'Pending', completed: false, current: false },
+          { name: 'Out for Delivery', date: 'Pending', completed: false, current: false }
+        ];
+
+        // Logic to update steps based on currentStatus
+        if (currentStatus === 'Printing & Packaging' || currentStatus === 'Dispatched' || currentStatus === 'Out for Delivery') {
+          steps[0].current = false;
+          steps[1] = { name: 'Printing & Packaging', date: 'In Progress (NPH Studio)', completed: true, current: currentStatus === 'Printing & Packaging' };
+        }
+        
+        if (currentStatus === 'Dispatched' || currentStatus === 'Out for Delivery') {
+          steps[1].current = false;
+          steps[1].date = 'Completed (NPH Studio)';
+          steps[2] = { name: 'Dispatched', date: 'In Transit', completed: true, current: currentStatus === 'Dispatched' };
+        }
+        
+        if (currentStatus === 'Out for Delivery') {
+          steps[2].current = false;
+          steps[3] = { name: 'Out for Delivery', date: 'Arriving Today', completed: true, current: true };
+        }
+        
+        setTrackingResult({
+          id: matchingOrder.id,
+          status: currentStatus,
+          estDelivery: 'Within 2-4 business days',
+          courier: 'Delhivery Express',
+          items: matchingOrder.items,
+          total: matchingOrder.total,
+          steps: steps
+        });
+      } else {
+        // Fallback to random tracking if not found in Firestore (so demo remains fully functional for random IDs)
+        setTrackingResult({
+          id: queryId,
+          status: 'Order Confirmed',
+          estDelivery: 'Within 2-3 business days',
+          courier: 'Delhivery',
+          steps: [
+            { name: 'Order Confirmed', date: 'Yesterday', completed: true, current: true },
+            { name: 'Printing & Packaging', date: 'Pending', completed: false, current: false },
+            { name: 'Dispatched', date: 'Pending', completed: false, current: false },
+            { name: 'Out for Delivery', date: 'Pending', completed: false, current: false }
+          ]
+        });
+      }
+    } catch (error) {
+      console.error("Error tracking order:", error);
+      alert("Something went wrong while tracking your order. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -144,7 +162,9 @@ const TrackOrder = () => {
                   }}
                 />
               </div>
-              <button type="submit" className="track-btn" style={{ width: '100%' }}>TRACK SHIPMENT</button>
+              <button type="submit" className="track-btn" style={{ width: '100%' }} disabled={isLoading}>
+                {isLoading ? 'SEARCHING...' : 'TRACK SHIPMENT'}
+              </button>
             </form>
           </div>
         )}

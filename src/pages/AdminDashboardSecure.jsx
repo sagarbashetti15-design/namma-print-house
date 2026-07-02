@@ -548,12 +548,29 @@ const AdminDashboardSecure = () => {
                               </div>
                               
                               <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px solid #eee' }}>
-                                <button onClick={async () => {
-                                  const newStatus = order.status === 'Pending' ? 'Shipped' : 'Pending';
-                                  await updateDoc(doc(db, 'orders', order.id), { status: newStatus });
-                                }} style={{ padding: '6px 12px', fontSize: '0.8rem', backgroundColor: '#0d2850', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
-                                  Mark as {order.status === 'Pending' ? 'Shipped' : 'Pending'}
-                                </button>
+                                <p style={{ margin: '0 0 8px 0', fontSize: '0.8rem', fontWeight: 'bold', color: '#666' }}>Update Tracking Status:</p>
+                                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                                  {['Order Confirmed', 'Printing & Packaging', 'Dispatched', 'Out for Delivery'].map(step => (
+                                    <button
+                                      key={step}
+                                      onClick={async () => {
+                                        await updateDoc(doc(db, 'orders', order.id), { status: step });
+                                      }}
+                                      style={{
+                                        padding: '6px 10px',
+                                        fontSize: '0.75rem',
+                                        backgroundColor: (order.status || 'Order Confirmed') === step ? '#0d2850' : '#f0f0f0',
+                                        color: (order.status || 'Order Confirmed') === step ? '#fff' : '#333',
+                                        border: '1px solid #ccc',
+                                        borderRadius: '4px',
+                                        cursor: 'pointer',
+                                        fontWeight: (order.status || 'Order Confirmed') === step ? 'bold' : 'normal'
+                                      }}
+                                    >
+                                      {step}
+                                    </button>
+                                  ))}
+                                </div>
                               </div>
                             </div>
                           ))}
