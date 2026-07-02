@@ -311,93 +311,120 @@ ${itemsText}
       }
       
       setStep(2);
-    } else if (step === 2) {
-      if (utrNumber.trim().length < 12) {
-        showToast("Please enter a valid 12-digit UPI Transaction ID (UTR)", "warning");
-        return;
+    }
+  };
+
+  const processOrder = async (paymentId = '') => {
+    setIsProcessingPayment(true);
+    // Helper to upload base64 images
+    const uploadToUguu = async (dataUrl) => {
+      try {
+        const res = await fetch(dataUrl);
+        const blob = await res.blob();
+        const formData = new FormData();
+        const filename = 'design_' + Math.floor(Math.random() * 1000000) + '.png';
+        formData.append('files[]', blob, filename);
+        const response = await fetch('https://uguu.se/upload.php', { method: 'POST', body: formData });
+        const data = await response.json();
+        if (data.success && data.files && data.files.length > 0) {
+          return data.files[0].url;
+        }
+      } catch (err) {
+        console.error("Upload failed", err);
+      }
+      return null;
+    };
+
+    const orderId = `NPH-${Math.floor(Math.random() * 899999) + 100000}`;
+    
+    const processedItems = await Promise.all(cartItems.map(async (item) => {
+      let sizeValue = item.size;
+      let colorValue = '';
+      
+      if (item.size.includes('Color:')) {
+        const parts = item.size.split('Color:');
+        colorValue = parts[1].trim();
+        sizeValue = parts[0].replace('|', '').trim();
+      }
+      
+      let selectedColorImage = item.product.image;
+      if (colorValue && item.product.colorImages && item.product.colorImages[colorValue]) {
+        selectedColorImage = item.product.colorImages[colorValue];
       }
 
-      setIsProcessingPayment(true);
+      let customUrls = {};
+      if (item.product.customImages) {
+        if (item.product.customImages.front) customUrls.front = await uploadToUguu(item.product.customImages.front);
+        if (item.product.customImages.back) customUrls.back = await uploadToUguu(item.product.customImages.back);
+      }
       
-      const processOrder = async () => {
-        // Helper to upload base64 images
-        const uploadToUguu = async (dataUrl) => {
-          try {
-            const res = await fetch(dataUrl);
-            const blob = await res.blob();
-            const formData = new FormData();
-            const filename = 'design_' + Math.floor(Math.random() * 1000000) + '.png';
-            formData.append('files[]', blob, filename);
-            const response = await fetch('https://uguu.se/upload.php', { method: 'POST', body: formData });
-            const data = await response.json();
-            if (data.success && data.files && data.files.length > 0) {
-              return data.files[0].url;
-            }
-          } catch (err) {
-            console.error("Upload failed", err);
-          }
-          return null;
-        };
-
-        const orderId = `NPH-${Math.floor(Math.random() * 899999) + 100000}`;
-        
-        const processedItems = await Promise.all(cartItems.map(async (item) => {
-          let sizeValue = item.size;
-          let colorValue = '';
-          
-          if (item.size.includes('Color:')) {
-            const parts = item.size.split('Color:');
-            colorValue = parts[1].trim();
-            sizeValue = parts[0].replace('|', '').trim();
-          }
-          
-          let selectedColorImage = item.product.image;
-          if (colorValue && item.product.colorImages && item.product.colorImages[colorValue]) {
-            selectedColorImage = item.product.colorImages[colorValue];
-          }
-
-          let customUrls = {};
-          if (item.product.customImages) {
-            if (item.product.customImages.front) customUrls.front = await uploadToUguu(item.product.customImages.front);
-            if (item.product.customImages.back) customUrls.back = await uploadToUguu(item.product.customImages.back);
-          }
-          
-          return {
-            title: item.product.title,
-            size: sizeValue,
-            color: colorValue,
-            quantity: item.quantity,
-            price: item.customPrice !== null ? item.customPrice : item.product.price,
-            image: selectedColorImage,
-            customUrls: customUrls
-          };
-        }));
-
-        const newOrder = {
-          id: orderId,
-          date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
-          items: processedItems,
-          total: grandTotal,
-          paymentMethod: 'UPI',
-          utrNumber: utrNumber.trim(),
-          status: 'Order Confirmed',
-          timestamp: Date.now()
-        };
-        
-        setIsProcessingPayment(false);
-        // Cache order details for WhatsApp link generation before clearing
-        setLastPlacedOrder(newOrder);
-
-        // Save order details to localStorage
-        const savedOrders = JSON.parse(localStorage.getItem('nph_orders') || '[]');
-        savedOrders.push(newOrder);
-        localStorage.setItem('nph_orders', JSON.stringify(savedOrders));
-        
-        setPlacedOrderId(orderId);
-        setStep(3);
-        clearCart();
+      return {
+        title: item.product.title,
+        size: sizeValue,
+        color: colorValue,
+        quantity: item.quantity,
+        price: item.customPrice !== null ? item.customPrice : item.product.price,
+        image: selectedColorImage,
+        customUrls: customUrls
       };
-      processOrder();
+    }));
+
+    const newOrder = {
+      id: orderId,
+      date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+      items: processedItems,
+      total: grandTotal,
+      paymentMethod: paymentId ? 'Razorpay' : 'UPI',
+      utrNumber: paymentId || utrNumber.trim(),
+      status: 'Order Confirmed',
+      timestamp: Date.now()
+    };
+    
+    setIsProcessingPayment(false);
+    // Cache order details for WhatsApp link generation before clearing
+    setLastPlacedOrder(newOrder);
+
+    // Save order details to localStorage
+    const savedOrders = JSON.parse(localStorage.getItem('nph_orders') || '[]');
+    savedOrders.push(newOrder);
+    localStorage.setItem('nph_orders', JSON.stringify(savedOrders));
+    
+    setPlacedOrderId(orderId);
+    setStep(3);
+    clearCart();
+  };
+
+  const handleRazorpayPayment = () => {
+    const options = {
+      key: "rzp_live_T8iUzMzDyBzeM8", // User's LIVE Key ID
+      amount: grandTotal * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: "Namma Print House",
+      description: "Order Payment",
+      image: "https://example.com/your_logo", // You can update this later
+      handler: function (response){
+          // response.razorpay_payment_id
+          setUtrNumber(response.razorpay_payment_id);
+          processOrder(response.razorpay_payment_id);
+      },
+      prefill: {
+          name: formData.firstName + " " + formData.lastName,
+          email: formData.email,
+          contact: formData.phone
+      },
+      theme: {
+          color: "#0d2850"
+      }
+    };
+    
+    if (window.Razorpay) {
+      const rzp1 = new window.Razorpay(options);
+      rzp1.on('payment.failed', function (response){
+          showToast(`Payment Failed: ${response.error.description}`, "error");
+      });
+      rzp1.open();
+    } else {
+      showToast("Razorpay SDK failed to load. Please check your connection.", "error");
     }
   };
 
@@ -486,42 +513,26 @@ ${itemsText}
           )}
 
           {step === 2 && !isProcessingPayment && (
-            <form onSubmit={handleNext} className="checkout-form">
-              <h3>Complete Payment via UPI</h3>
+            <div className="checkout-form">
+              <h3>Secure Payment</h3>
               
-              <div className="upi-details" style={{ padding: '20px', backgroundColor: '#fff', border: '1px solid rgba(13, 40, 80, 0.08)', borderRadius: '8px', marginBottom: '20px', textAlign: 'center' }}>
-                <p style={{ fontSize: '0.95rem', color: '#0d2850', marginBottom: '15px' }}>
-                  Scan the QR code below using GPay, PhonePe, or Paytm to pay <strong>₹{grandTotal}</strong>.
+              <div className="payment-details" style={{ padding: '30px', backgroundColor: '#fff', border: '1px solid rgba(13, 40, 80, 0.08)', borderRadius: '8px', marginBottom: '20px', textAlign: 'center' }}>
+                <p style={{ fontSize: '1.1rem', color: '#0d2850', marginBottom: '15px' }}>
+                  Total amount to pay: <strong>₹{grandTotal}</strong>
                 </p>
-                <div style={{ padding: '15px', background: '#f5f5f5', display: 'inline-block', borderRadius: '12px', marginBottom: '20px' }}>
-                  <QRCodeSVG 
-                    value={`upi://pay?pa=8296437764@paytm&pn=Namma%20Print%20House&am=${grandTotal}&cu=INR`}
-                    size={200}
-                    level={"H"}
-                  />
-                </div>
                 
-                <div style={{ textAlign: 'left' }}>
-                  <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 'bold', color: '#0d2850', marginBottom: '8px' }}>
-                    Enter 12-Digit Transaction ID (UTR)
-                  </label>
-                  <input 
-                    type="text" 
-                    placeholder="e.g. 312345678901" 
-                    required 
-                    minLength={12}
-                    maxLength={12}
-                    value={utrNumber}
-                    onChange={(e) => setUtrNumber(e.target.value.replace(/\D/g, ''))}
-                    style={{ width: '100%', padding: '12px', borderRadius: '4px', border: '1px solid #ccc', marginBottom: '10px' }}
-                  />
-                  <p style={{ fontSize: '0.8rem', color: '#777' }}>You can find this number in your UPI app's transaction history.</p>
-                </div>
+                <button 
+                  type="button" 
+                  className="primary-btn" 
+                  onClick={handleRazorpayPayment}
+                  style={{ fontSize: '1.1rem', padding: '15px', backgroundColor: '#0d2850', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', width: '100%', maxWidth: '300px' }}
+                >
+                  Pay Securely with Razorpay
+                </button>
               </div>
               
-              <button type="submit" className="primary-btn">CONFIRM PAYMENT</button>
               <button type="button" className="secondary-btn" onClick={() => setStep(1)} style={{ marginTop: '10px' }}>BACK TO SHIPPING</button>
-            </form>
+            </div>
           )}
 
           {step === 2 && isProcessingPayment && (

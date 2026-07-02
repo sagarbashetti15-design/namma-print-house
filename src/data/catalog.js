@@ -1,14 +1,31 @@
 const initialProducts = [
+  // TEST
+  {
+    id: "rzp_test_1",
+    category: "men",
+    title: "Razorpay Test Product",
+    price: 20,
+    originalPrice: 20,
+    tag: "TEST",
+    image: "/images/men_model_new.png",
+    images: ["/images/men_model_new.png"],
+    sizes: ['XS'],
+    description: "Test product for verifying Razorpay checkout.",
+  },
   // MEN
   {
-    id: 'mens-rcb-black-oversized-t-shirt',
-    category: 'men',
-    title: "Men's RCB Black Oversized T-Shirt",
-    price: 699,
+    id: "m1",
+    category: "men",
+    title: "Premium Graphic Oversized Tee",
+    price: 20,
     originalPrice: 1299,
     tag: "BEST SELLER",
-    image: "/images/men-model-black.png",
-    images: ["/images/men-model-black.png", "/images/men-rcb-black-front.png", "/images/men-rcb-black-back.png"],
+    image: "/images/men_model_new.png",
+    images: ["/images/men_model_new.png", "/images/men_graphic_new.png"],
+    colorImages: {
+      Black: "/images/men_graphic_new.png",
+      White: "/images/men_model_new.png"
+    },
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with gold RCB logo and 'Be bold' back print. 100% Cotton.",
     outOfStock: true
@@ -17,7 +34,7 @@ const initialProducts = [
     id: 'mens-rcb-white-oversized-t-shirt',
     category: 'men',
     title: "Men's RCB White Oversized T-Shirt",
-    price: 699,
+    price: 20,
     originalPrice: 1299,
     tag: "TRENDING",
     image: "/images/men-model-white.png",
@@ -30,7 +47,7 @@ const initialProducts = [
     id: 'mens-ducati-panigale-oversized-t-shirt',
     category: 'men',
     title: "Men's Ducati Panigale Oversized T-Shirt",
-    price: 699,
+    price: 20,
     originalPrice: 1299,
     tag: "NEW",
     image: "/images/men-model-ducati-front.jpg",
@@ -42,7 +59,7 @@ const initialProducts = [
     id: 'mens-royal-enfield-oversized-t-shirt',
     category: 'men',
     title: "Men's Royal Enfield Oversized T-Shirt",
-    price: 699,
+    price: 20,
     originalPrice: 1299,
     tag: "HOT",
     image: "/images/men-model-enfield.png",
@@ -204,8 +221,8 @@ const initialProducts = [
     price: 699,
     originalPrice: 1299,
     tag: "TRENDING",
-    image: "/images/model-2.png",
-    images: ["/images/model-2.png", "/images/oversized-tee-2.jpg"],
+    image: "/images/women_model_new.png",
+    images: ["/images/women_model_new.png"],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with a retro 'Love Yourself' graphic print. 100% Cotton."
   },
@@ -456,25 +473,25 @@ const initialProducts = [
   },
 
   // COUPLES
-  {
-    id: 'cp1',
-    colors: ['White', 'Black', 'Cream', 'Brown'],
-    colorImages: {
-      'White': '/images/cp1-White_v6.jpg',
-      'Black': '/images/cp1-Black_v6.jpg',
-      'Cream': '/images/cp1-Cream_v6.jpg',
-      'Brown': '/images/cp1-Brown_v6.jpg',
+    {
+      id: 'cp1',
+      colors: ['White', 'Black', 'Cream', 'Brown'],
+      colorImages: {
+        'White': '/images/cp1-White_v6.jpg',
+        'Black': '/images/cp1-Black_v6.jpg',
+        'Cream': '/images/cp1-Cream_v6.jpg',
+        'Brown': '/images/cp1-Brown_v6.jpg',
+      },
+      category: 'couples',
+      title: "Meow Meow Matching T-Shirts",
+      price: 1299,
+      originalPrice: 2499,
+      tag: "BEST SELLER",
+      image: "/images/couples_model_new.png",
+      images: ["/images/couples_model_new.png"],
+      sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+      description: "Premium matching black oversized t-shirts for couples featuring a cute cat graphic."
     },
-    category: 'couples',
-    title: "Meow Meow Matching T-Shirts",
-    price: 1299,
-    originalPrice: 2499,
-    tag: "BEST SELLER",
-    image: "/images/couples-1.jpg",
-    images: ["/images/couples-1.jpg"],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    description: "Premium matching black oversized t-shirts for couples featuring a cute cat graphic."
-  },
   {
     id: 'cp2',
     colors: ['Black', 'White', 'Cream', 'Brown'],

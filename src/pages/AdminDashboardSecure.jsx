@@ -338,25 +338,18 @@ const AdminDashboardSecure = () => {
       addMessage('log', `📬 [Webhook Event] Product Created.\nID: ${newId} | Title: ${addedItem.title} | Category: ${addedItem.category} | Colors: ${colorKeys.join(', ')}`);
     }, 400);
 
-    setTimeout(() => {
-        try {
-          new Promise(r => setTimeout(r, 500))
-            .then(async () => {
-              await setDoc(doc(db, 'catalog', addedItem.id), addedItem);
-              
-              addMessage('system', `🚀 *Live Database Sync Successful:*\n"${newProduct.title}" added to storefront with colors: ${colorKeys.join(', ')}!\n\n✅ Storefront updated behind the scenes!`);
-            setIsAddFormOpen(false);
-            setUploadedImages({});
-            setNewProduct({ title: '', price: '699', category: 'men', description: '' });
-            
-            
-          })
-          .catch(err => {
-            console.error("API error:", err);
-            addMessage('system', `❌ *Sync Error:*\nFailed to add product to live database.`);
-          });
+    setTimeout(async () => {
+      try {
+        await new Promise(r => setTimeout(r, 500));
+        await setDoc(doc(db, 'catalog', addedItem.id), addedItem);
+        
+        addMessage('system', `🚀 *Live Database Sync Successful:*\n"${newProduct.title}" added to storefront with colors: ${colorKeys.join(', ')}!\n\n✅ Storefront updated behind the scenes!`);
+        setIsAddFormOpen(false);
+        setUploadedImages({});
+        setNewProduct({ title: '', price: '699', category: 'men', description: '' });
       } catch (error) {
-        console.error("Storage error:", error);
+        console.error("API/Storage error:", error);
+        addMessage('system', `❌ *Sync Error:*\nFailed to add product to live database.`);
         alert("⚠️ Failed to process product.");
       }
     }, 1200);
