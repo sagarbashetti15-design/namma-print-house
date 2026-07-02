@@ -5,7 +5,14 @@ import { useCatalog } from '../context/CatalogContext';
 import './Sitemap.css';
 
 const Sitemap = () => {
-  const { categories } = useCatalog();
+  const { products } = useCatalog();
+  
+  // Derive unique categories from products, formatted nicely
+  const categoryStrings = [...new Set(products?.map(p => p.category) || [])];
+  const categories = categoryStrings.map(cat => ({
+    id: cat,
+    name: cat ? cat.charAt(0).toUpperCase() + cat.slice(1).replace('-', ' ') : 'Category'
+  }));
 
   useEffect(() => {
     window.scrollTo(0, 0);
