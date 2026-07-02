@@ -19,7 +19,7 @@ const Footer = () => {
           <div className="social-links">
             <a href="https://www.instagram.com/namma_print_house2k26" target="_blank" rel="noopener noreferrer" className="social-link">IG</a>
           </div>
-          <div className="footer-contact-info" style={{ marginTop: '15px', fontSize: '0.85rem', color: '#bbb', display: 'flex', flexDirection: 'column', gap: '5px' }}>
+          <div className="footer-contact-info" style={{ marginTop: '15px', fontSize: '0.95rem', color: '#ccc', display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <p>📍 Bengaluru</p>
             <p>📞 +91 8296437764</p>
             <p>✉️ nammaprinthouse2k26@gmail.com</p>

@@ -46,15 +46,15 @@
 }
 
 .footer-desc {
-  color: #888;
-  font-size: 0.85rem;
+  color: #ccc;
+  font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
 .footer-heading {
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 20px;
   letter-spacing: 1px;
@@ -67,8 +67,8 @@
 }
 
 .footer-links a {
-  color: #888;
-  font-size: 0.8rem;
+  color: #ccc;
+  font-size: 0.95rem;
   transition: color 0.2s ease;
   text-decoration: none;
 }
@@ -134,8 +134,8 @@
 .footer-bottom {
   border-top: 1px solid #222;
   padding: 20px 0;
-  font-size: 0.8rem;
-  color: #666;
+  font-size: 0.9rem;
+  color: #aaa;
 }
 
 .bottom-flex {
