@@ -121,7 +121,6 @@ const AdminDashboardSecure = () => {
 
   const handleClose = () => {
     setIsOpen(false);
-  };t('');
     setAuthError('');
   };
 
@@ -797,10 +796,12 @@ const AdminDashboardSecure = () => {
                 </div>
 
             </div>
+          </div>
             )
           )}
         </div>
-        </div>
+      </div>
+    </div>
   );
 };
 

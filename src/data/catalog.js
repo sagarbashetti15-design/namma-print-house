@@ -1,7 +1,7 @@
 const initialProducts = [
   // MEN
   {
-    id: 'm1',
+    id: 'mens-rcb-black-oversized-t-shirt',
     category: 'men',
     title: "Men's RCB Black Oversized T-Shirt",
     price: 699,
@@ -14,7 +14,7 @@ const initialProducts = [
     outOfStock: true
   },
   {
-    id: 'm2',
+    id: 'mens-rcb-white-oversized-t-shirt',
     category: 'men',
     title: "Men's RCB White Oversized T-Shirt",
     price: 699,
@@ -27,7 +27,7 @@ const initialProducts = [
     outOfStockSizes: ['S', 'XL']
   },
   {
-    id: 'm3',
+    id: 'mens-ducati-panigale-oversized-t-shirt',
     category: 'men',
     title: "Men's Ducati Panigale Oversized T-Shirt",
     price: 699,
@@ -39,7 +39,7 @@ const initialProducts = [
     description: "Premium white oversized t-shirt featuring a clean Ducati logo on the front and a high-quality Ducati Panigale motorcycle poster graphic printed on the back. 100% Cotton."
   },
   {
-    id: 'm4',
+    id: 'mens-royal-enfield-oversized-t-shirt',
     category: 'men',
     title: "Men's Royal Enfield Oversized T-Shirt",
     price: 699,
@@ -51,7 +51,7 @@ const initialProducts = [
     description: "Premium white oversized t-shirt featuring a vintage Royal Enfield motorcycle graphic on the front. 100% Cotton."
   },
   {
-    id: 'm5',
+    id: 'mens-bmw-s1000rr-oversized-t-shirt',
     category: 'men',
     title: "Men's BMW S1000RR Oversized T-Shirt",
     price: 699,
@@ -186,7 +186,7 @@ const initialProducts = [
 
   // WOMEN (Girls Fashion)
   {
-    id: 'w1',
+    id: 'womens-positive-oversized-t-shirt',
     category: 'women',
     title: "Women's Positive Oversized T-Shirt",
     price: 699,
@@ -198,7 +198,7 @@ const initialProducts = [
     description: "Premium black oversized t-shirt with a beautiful positive floral graphic print. 100% Cotton."
   },
   {
-    id: 'w2',
+    id: 'love-yourself-oversized-t-shirt',
     category: 'women',
     title: "Love Yourself Oversized T-Shirt",
     price: 699,
@@ -210,7 +210,7 @@ const initialProducts = [
     description: "Premium black oversized t-shirt with a retro 'Love Yourself' graphic print. 100% Cotton."
   },
   {
-    id: 'w3',
+    id: 'you-grow-girl-oversized-t-shirt',
     category: 'women',
     title: "You Grow Girl Oversized T-Shirt",
     price: 699,
@@ -222,7 +222,7 @@ const initialProducts = [
     description: "Premium black oversized t-shirt with a 'You Grow Girl' floral graphic print. 100% Cotton."
   },
   {
-    id: 'w4',
+    id: 'sunflower-oversized-t-shirt',
     category: 'women',
     title: "Sunflower Oversized T-Shirt",
     price: 699,
@@ -234,7 +234,7 @@ const initialProducts = [
     description: "Premium black oversized t-shirt with a vibrant sunflower graphic print. 100% Cotton."
   },
   {
-    id: 'w5',
+    id: 'love-parrot-oversized-t-shirt',
     category: 'women',
     title: "Love Parrot Oversized T-Shirt",
     price: 699,
@@ -246,7 +246,7 @@ const initialProducts = [
     description: "Premium white oversized t-shirt with a colorful parrot and 'LOVE' graphic print. 100% Cotton."
   },
   {
-    id: 'w6',
+    id: 'cute-panda-heart-oversized-t-shirt',
     category: 'women',
     title: "Cute Panda Heart Oversized T-Shirt",
     price: 699,
@@ -258,7 +258,7 @@ const initialProducts = [
     description: "Premium white oversized t-shirt with an adorable panda holding a heart balloon. 100% Cotton."
   },
   {
-    id: 'w7',
+    id: 'just-a-girl-bow-oversized-t-shirt',
     category: 'women',
     title: "Just a Girl Bow Oversized T-Shirt",
     price: 699,
@@ -270,7 +270,7 @@ const initialProducts = [
     description: "Premium white oversized t-shirt featuring a pink bow and 'I'm just a girl' text. 100% Cotton."
   },
   {
-    id: 'w8',
+    id: 'tom-jerry-oversized-t-shirt',
     category: 'women',
     title: "Tom & Jerry Oversized T-Shirt",
     price: 699,
@@ -282,7 +282,7 @@ const initialProducts = [
     description: "Premium black oversized t-shirt with classic Tom & Jerry cartoon graphic. 100% Cotton."
   },
   {
-    id: 'w9',
+    id: 'retro-flower-oversized-t-shirt',
     category: 'women',
     title: "Retro Flower Oversized T-Shirt",
     price: 699,
@@ -394,7 +394,7 @@ const initialProducts = [
     description: "Premium white oversized t-shirt featuring an intricate mandala side pattern. 100% Cotton."
   },
   {
-    id: 'w16',
+    id: 'womens-roll-model-rust-oversized-t-shirt',
     category: 'women',
     title: "Women's Roll Model Rust Oversized T-Shirt",
     price: 699,
@@ -571,7 +571,7 @@ const initialProducts = [
     description: "Premium matching black oversized t-shirts for couples featuring a 'My World' dog graphic."
   },
   {
-    id: 'cp7',
+    id: 'colorful-beagle-matching-t-shirts',
     category: 'couples',
     title: "Colorful Beagle Matching T-Shirts",
     price: 1299,
@@ -602,7 +602,7 @@ const initialProducts = [
     description: "Premium matching black oversized t-shirts for couples featuring a cute human and dog paw fist bump design."
   },
   {
-    id: 'cp9',
+    id: 'golden-retriever-matching-t-shirts',
     category: 'couples',
     title: "Golden Retriever Matching T-Shirts",
     price: 1299,
@@ -714,7 +714,7 @@ const initialProducts = [
     description: "Premium matching black oversized t-shirts for couples featuring minimalist Krishna and Radha line art."
   },
   {
-    id: 'cp15',
+    id: 'shiva-parvati-off-white-matching-t-shirts',
     category: 'couples',
     title: "Shiva Parvati Off-White Matching T-Shirts",
     price: 1299,
@@ -808,7 +808,7 @@ const initialProducts = [
   },
   // KANNADA & REGIONAL
   {
-    id: 'k1',
+    id: 'hodi-maja-madi-graphic-mens-oversized-t-shirt',
     category: 'kannada',
     title: "Hodi Maja Madi Graphic Men's Oversized T-Shirt",
     price: 699,
@@ -820,7 +820,7 @@ const initialProducts = [
     description: "Premium black men's oversized t-shirt featuring a stylized Kannada graphic print on the front. 100% Cotton."
   },
   {
-    id: 'k2',
+    id: 'maa-graphic-mens-oversized-t-shirt',
     category: 'kannada',
     title: "Maa Graphic Men's Oversized T-Shirt",
     price: 699,
@@ -832,7 +832,7 @@ const initialProducts = [
     description: "Premium black men's oversized t-shirt featuring a beautiful 'Maa' graphic print on the front. 100% Cotton."
   },
   {
-    id: 'k3',
+    id: 'appa-cycle-graphic-mens-oversized-t-shirt',
     category: 'kannada',
     title: "Appa Cycle Graphic Men's Oversized T-Shirt",
     price: 699,
@@ -844,7 +844,7 @@ const initialProducts = [
     description: "Premium black men's oversized t-shirt featuring an emotional 'Appa' graphic print on the front. 100% Cotton."
   },
   {
-    id: 'k4',
+    id: 'deshada-bennelubu-graphic-mens-oversized-t-shirt',
     category: 'kannada',
     title: "Deshada Bennelubu Graphic Men's Oversized T-Shirt",
     price: 699,
@@ -856,7 +856,7 @@ const initialProducts = [
     description: "Premium white men's oversized t-shirt featuring a traditional farmer graphic print on the front. 100% Cotton."
   },
   {
-    id: 'k5',
+    id: 'payana-graphic-mens-oversized-t-shirt',
     category: 'kannada',
     title: "Payana Graphic Men's Oversized T-Shirt",
     price: 699,
@@ -872,24 +872,24 @@ const initialProducts = [
 // Dynamic Products initialization from localStorage
 let dynamicProducts = [];
 try {
-  const cached = localStorage.getItem('nph_catalog');
+  const cached = typeof window !== 'undefined' ? localStorage.getItem('nph_catalog') : null;
   if (cached) {
     const parsed = JSON.parse(cached);
     const customTee = parsed.find(p => p.id === 'custom-tee');
-    const m1 = parsed.find(p => p.id === 'm1');
+    const m1 = parsed.find(p => p.id === 'mens-rcb-black-oversized-t-shirt');
     
     // Bust cache if custom tee is missing visual customizer flag or sizes are missing
     if ((customTee && !customTee.isVisualCustomizer) || (m1 && !m1.sizes.includes('XS'))) {
-      localStorage.setItem('nph_catalog', JSON.stringify(initialProducts));
+      if (typeof window !== 'undefined') localStorage.setItem('nph_catalog', JSON.stringify(initialProducts));
       dynamicProducts = initialProducts;
     } else {
       dynamicProducts = parsed.filter(p => p.id !== 'w10');
       if (parsed.length !== dynamicProducts.length) {
-        localStorage.setItem('nph_catalog', JSON.stringify(dynamicProducts));
+        if (typeof window !== 'undefined') localStorage.setItem('nph_catalog', JSON.stringify(dynamicProducts));
       }
     }
   } else {
-    localStorage.setItem('nph_catalog', JSON.stringify(initialProducts));
+    if (typeof window !== 'undefined') localStorage.setItem('nph_catalog', JSON.stringify(initialProducts));
     dynamicProducts = initialProducts;
   }
 } catch (e) {

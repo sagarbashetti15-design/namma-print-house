@@ -9,7 +9,7 @@ import { useToast } from '../context/ToastContext';
 import CustomizerView from '../components/CustomizerView';
 import SizePredictorModal from '../components/SizePredictorModal';
 import { Star, Heart, ShoppingBag, ShieldCheck, RefreshCcw, Truck, ChevronDown, ChevronUp, FileText, X, Ruler } from 'lucide-react';
-import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import SEO from '../components/SEO';
 import './ProductDetail.css';
 
 const ProductDetail = () => {
@@ -19,7 +19,6 @@ const ProductDetail = () => {
   const { products, loading, marketing: marketingConfig } = useCatalog();
 
   const product = products.find(p => p.id === productId);
-  useDocumentTitle(product ? product.title : 'Product Not Found');
 
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
@@ -152,9 +151,26 @@ const ProductDetail = () => {
 
   if (loading) return <div className="container" style={{ padding: '40px 1rem', minHeight: '60vh' }}>Loading product details...</div>;
 
-  if (!product) {
-    return <div className="container" style={{ padding: '40px 1rem' }}>Product not found</div>;
-  }
+  if (!product) return <div className="container" style={{ padding: '40px 1rem', minHeight: '60vh' }}>Product not found.</div>;
+
+  const seoTitle = `Buy ${product.title} Online | Namma Print House`;
+  const seoDesc = `Shop ${product.title} at Namma Print House. Premium quality, great design. Price: ₹${product.price}.`;
+  
+  const productSchema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.title,
+    "image": product.images && product.images.length > 0 ? product.images.map(img => `https://nammaprinthouse.com${img}`) : [],
+    "description": seoDesc,
+    "sku": product.id,
+    "offers": {
+      "@type": "Offer",
+      "url": `https://nammaprinthouse.com/product/${product.id}`,
+      "priceCurrency": "INR",
+      "price": product.price,
+      "availability": product.inStock !== false ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+    }
+  };
 
   // Route to specific customizers
   if (product.isVisualCustomizer) {
@@ -261,6 +277,7 @@ const ProductDetail = () => {
           setDeliveryStatus('invalid');
         }
       } catch (error) {
+        console.error("Delivery status error:", error);
         setDeliveryStatus('available:PAN India'); // fallback
       }
     } else {
@@ -270,6 +287,13 @@ const ProductDetail = () => {
 
   return (
     <div className="pdp-wrapper">
+      <SEO 
+        title={seoTitle} 
+        description={seoDesc} 
+        type="product"
+        image={product.images && product.images[0] ? `https://nammaprinthouse.com${product.images[0]}` : null}
+        schema={productSchema}
+      />
       <div className="pdp-container">
         
         {/* Left Column: Media */}

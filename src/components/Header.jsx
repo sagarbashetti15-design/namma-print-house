@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useCatalog } from '../context/CatalogContext';
-import { Search, Heart, ShoppingBag, Menu, User, X, Sun, Moon, LogOut, ChevronDown } from 'lucide-react';
+import { Search, Heart, ShoppingBag, Menu, User, X, Sun, Moon } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageSquare, X, Send, User, Bot } from 'lucide-react';
+import { MessageSquare, X, User, Bot } from 'lucide-react';
 import './SupportChat.css';
 
 const SupportChat = () => {

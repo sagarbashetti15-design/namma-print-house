@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useCatalog } from '../context/CatalogContext';
 import ProductCard from '../components/ProductCard';
+import SEO from '../components/SEO';
 import '../components/ProductGrid.css';
 
 const CategoryPage = () => {
@@ -14,8 +15,14 @@ const CategoryPage = () => {
     ? products 
     : products.filter(p => p.category === categoryId);
 
+  const pageTitle = categoryId === 'all' ? 'All Products' : categoryId;
+  const capitalizedTitle = pageTitle.charAt(0).toUpperCase() + pageTitle.slice(1);
+  const seoTitle = `Buy ${capitalizedTitle} Online | Namma Print House`;
+  const seoDesc = `Shop the best collection of ${pageTitle} at Namma Print House. Premium quality, great designs, and fast shipping across India.`;
+
   return (
     <div className="container" style={{ padding: '40px 1rem', minHeight: '60vh' }}>
+      <SEO title={seoTitle} description={seoDesc} />
       <h1 style={{ textTransform: 'uppercase', marginBottom: '20px', fontSize: '2rem' }}>
         {categoryId === 'all' ? 'All Products' : categoryId}
       </h1>

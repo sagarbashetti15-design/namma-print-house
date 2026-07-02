@@ -1,12 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { Upload, Trash2, Info, Move, Type, RotateCcw, Loader2 } from 'lucide-react';
 import './CustomizerView.css';
 
 const CustomizerView = ({ product }) => {
-  const navigate = useNavigate();
   const { addToCart } = useCart();
   const { showToast } = useToast();
   const fileInputRef = useRef(null);

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc, collection, getDocs, writeBatch } from "firebase/firestore";
+import { getFirestore, doc, writeBatch } from "firebase/firestore";
 import { products } from "./src/data/catalog.js"; // This will be imported
 
 const firebaseConfig = {

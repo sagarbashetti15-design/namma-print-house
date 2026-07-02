@@ -17,7 +17,7 @@ const Checkout = () => {
   const [discountAmount, setDiscountAmount] = useState(0);
   const [couponError, setCouponError] = useState('');
 
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('upi');
+
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [placedOrderId, setPlacedOrderId] = useState('');
   const [utrNumber, setUtrNumber] = useState('');
@@ -279,6 +279,7 @@ ${itemsText}
       }, 1500); // 1.5 second delay so they see the success screen
       return () => clearTimeout(timer);
     }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step, lastPlacedOrder, formData]);
 
   if (cartItems.length === 0 && step !== 3) {

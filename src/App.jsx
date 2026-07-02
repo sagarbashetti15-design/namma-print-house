@@ -1,5 +1,6 @@
-import React, { useEffect, Suspense, lazy } from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import SEO from './components/SEO'
 import { CartProvider } from './context/CartContext'
 
 import Header from './components/Header'
@@ -32,7 +33,6 @@ const CareInstructions = lazy(() => import('./pages/CareInstructions'))
 const TrackOrder = lazy(() => import('./pages/TrackOrder'))
 const AdminDashboardSecure = lazy(() => import('./pages/AdminDashboardSecure'))
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'))
-import axios from 'axios'
 
 const AppContent = () => {
   const location = useLocation();
@@ -40,6 +40,10 @@ const AppContent = () => {
 
   return (
     <div className="app-container">
+      <SEO 
+        title="Namma Print House | Custom T-Shirts & Apparel" 
+        description="Shop premium oversized t-shirts, custom graphics, and matching couples apparel."
+      />
       {!isAdmin && <Header />}
       <main style={{ minHeight: isAdmin ? '100vh' : '60vh' }}>
         <Routes>

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { X, LogOut, Save, User as UserIcon, Mail, Phone } from 'lucide-react';
 import './UserProfileModal.css';
 
 const UserProfileModal = ({ isOpen, onClose, userProfile, onSave, onLogout }) => {
-  const navigate = useNavigate();
   const [name, setName] = useState(userProfile?.name || '');
   const [email, setEmail] = useState(userProfile?.email || '');
   const [mobile, setMobile] = useState(userProfile?.mobile || '');

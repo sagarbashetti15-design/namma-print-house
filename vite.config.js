@@ -14,6 +14,7 @@ export default defineConfig({
             if (id.includes('fabric')) return 'vendor-fabric';
             if (id.includes('react-router-dom') || id.includes('react-router')) return 'vendor-react-router';
             if (id.includes('lucide-react')) return 'vendor-lucide';
+            if (id.includes('firebase')) return 'vendor-firebase';
             
             // All other node_modules into a generic vendor chunk
             return 'vendor';

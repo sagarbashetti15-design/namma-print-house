@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin-secure
+Disallow: /admin
+
+Sitemap: https://nammaprinthouse.com/sitemap.xml
