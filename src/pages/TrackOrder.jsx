@@ -87,8 +87,14 @@ const TrackOrder = () => {
 
   const handleTrack = (e) => {
     e.preventDefault();
-    const queryId = orderId.trim().toUpperCase();
+    let queryId = orderId.trim().toUpperCase().replace(/[\s#]+/g, '');
     if (!queryId) return;
+    
+    // Auto-insert hyphen if missing (e.g. NPH123456 -> NPH-123456)
+    if (queryId.startsWith('NPH') && !queryId.startsWith('NPH-')) {
+      queryId = queryId.replace('NPH', 'NPH-');
+    }
+    
     setActiveQueryId(queryId);
   };
 
