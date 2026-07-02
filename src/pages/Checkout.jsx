@@ -235,17 +235,20 @@ const Checkout = () => {
     let itemsText = "";
     lastPlacedOrder.items.forEach((item, index) => {
       let designLinks = "";
+      
+      // Always include the base product image
+      const imageUrl = item.image.startsWith('data:') 
+        ? `(Local Uploaded Image)` 
+        : `${window.location.origin}${item.image}`;
+      designLinks += `\n     - 📸 Product Image: ${imageUrl}`;
+
+      // Include custom prints if they exist
       if (item.customUrls && (item.customUrls.front || item.customUrls.back)) {
         if (item.customUrls.front) designLinks += `\n     - 👕 Front Print: ${item.customUrls.front}`;
         if (item.customUrls.back) designLinks += `\n     - 👕 Back Print: ${item.customUrls.back}`;
-      } else {
-        const imageUrl = item.image.startsWith('data:') 
-          ? `(Local Uploaded Image)` 
-          : `${window.location.origin}${item.image}`;
-        designLinks = `\n     - 🖼️ Product Image: ${imageUrl}`;
       }
 
-      itemsText += `\n📦 *Item ${index + 1}:* ${item.title}
+      itemsText += `\n🛍️ *Item ${index + 1}:* ${item.title}
    - Size: ${item.size}
    - Qty: ${item.quantity} | Price: ₹${item.price * item.quantity}${designLinks}\n`;
     });
@@ -276,7 +279,7 @@ ${itemsText}
       const waLink = generateWhatsAppLink();
       const timer = setTimeout(() => {
         window.location.href = waLink;
-      }, 1500); // 1.5 second delay so they see the success screen
+      }, 100); // 0.1 second delay for lightning fast redirect
       return () => clearTimeout(timer);
     }
       // eslint-disable-next-line react-hooks/exhaustive-deps
