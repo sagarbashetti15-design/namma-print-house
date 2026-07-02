@@ -1,5 +1,4 @@
 import React from 'react';
-import { Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 

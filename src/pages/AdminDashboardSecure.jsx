@@ -1,20 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Settings, X, Send, Database, Eye, EyeOff, Lock, User, LogOut } from 'lucide-react';
+import { Settings, X, Send, Database, Eye, EyeOff, Lock, LogOut } from 'lucide-react';
 import { useCatalog } from '../context/CatalogContext';
-import { db, auth, googleProvider } from '../firebase';
-import { doc, updateDoc, setDoc, getDoc } from 'firebase/firestore';
-import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
+import { db } from '../firebase';
+import { doc, updateDoc, setDoc } from 'firebase/firestore';
 import './AdminDashboardSecure.css';
 
 const STANDARD_COLORS = ['Red', 'White', 'Black', 'Cream', 'Brown'];
 
 const AdminDashboardSecure = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authError, setAuthError] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   
-  const { products: localCatalog, loading: catalogLoading, marketing: marketingConfig, updateMarketingStore } = useCatalog();
+  const { products: localCatalog, marketing: marketingConfig, updateMarketingStore } = useCatalog();
   const [messages, setMessages] = useState([
     {
       id: 1,

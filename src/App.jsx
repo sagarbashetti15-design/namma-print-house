@@ -32,7 +32,6 @@ const SizeGuide = lazy(() => import('./pages/SizeGuide'))
 const CareInstructions = lazy(() => import('./pages/CareInstructions'))
 const TrackOrder = lazy(() => import('./pages/TrackOrder'))
 const AdminDashboardSecure = lazy(() => import('./pages/AdminDashboardSecure'))
-const AdminDashboard = lazy(() => import('./pages/AdminDashboard'))
 const Sitemap = lazy(() => import('./pages/Sitemap'))
 
 const AppContent = () => {
@@ -66,7 +65,7 @@ const AppContent = () => {
           <Route path="/size-guide" element={<SizeGuide />} />
           <Route path="/care" element={<CareInstructions />} />
           <Route path="/track-order" element={<TrackOrder />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin" element={<AdminDashboardSecure />} />
           <Route path="/admin-secure-portal" element={<AdminDashboardSecure />} />
           <Route path="/sitemap" element={<Sitemap />} />
         </Routes>
