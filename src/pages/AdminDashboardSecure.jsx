@@ -396,8 +396,8 @@ const AdminDashboardSecure = () => {
     <div className="admin-secure-page" style={{ padding: '40px 20px', minHeight: '80vh', display: 'flex', justifyContent: 'center', background: '#000' }}>
       <div className="sync-modal-container" style={{ position: 'relative', width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
         {/* Auth / Dashboard view */}
-        <div className="sync-modal-content">
-          {!isOpen ? null : (
+        <div className="sync-modal-content" style={{ background: '#fff', borderRadius: '12px', minHeight: '600px' }}>
+          {
             !isAuthenticated ? (
               <div className="admin-lock-screen">
                 <div className="admin-lock-card">
@@ -798,7 +798,7 @@ const AdminDashboardSecure = () => {
             </div>
           </div>
             )
-          )}
+          }
         </div>
       </div>
     </div>
