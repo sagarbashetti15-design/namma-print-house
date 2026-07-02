@@ -365,10 +365,10 @@ const AdminDashboardSecure = () => {
   };
 
   return (
-    <div className="admin-secure-page" style={{ padding: '40px 20px', minHeight: '80vh', display: 'flex', justifyContent: 'center', background: '#000' }}>
-      <div className="sync-modal-container" style={{ position: 'relative', width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
+    <div className="admin-secure-page" style={{ padding: '0', minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#f4f6f8' }}>
+      <div className="sync-modal-container" style={{ position: 'relative', width: '100%', maxWidth: '100%', margin: '0', flex: 1, display: 'flex', flexDirection: 'column' }}>
         {/* Auth / Dashboard view */}
-        <div className="sync-modal-content" style={{ background: '#fff', borderRadius: '12px', minHeight: '600px' }}>
+        <div className="sync-modal-content" style={{ background: '#fff', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           {
             !isAuthenticated ? (
               <div className="admin-lock-screen">
@@ -402,27 +402,27 @@ const AdminDashboardSecure = () => {
                 </div>
               </div>
             ) : (
-              <div className="sync-dashboard-layout">
+              <div className="sync-dashboard-layout" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <div className="sync-modal-header">
                   <div>
                     <h3><Database size={20} /> Meta WhatsApp Catalog Sync Dashboard</h3>
                     <p>🟢 Authenticated as Admin • Simulates webhook data sync with the React storefront.</p>
                   </div>
                   <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-                    <button className="admin-logout-btn" onClick={handleLogout} style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'none', border: '1px solid #ccc', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}>
+                    <button className="admin-logout-btn" onClick={handleLogout} style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'none', border: '1px solid #ccc', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer', color: 'white' }}>
                       <LogOut size={16} /> Sign out
                     </button>
-                    <button className="close-sync-modal" onClick={handleClose}>
+                    <a href="/" className="close-sync-modal" style={{ textDecoration: 'none' }}>
                       <X size={24} />
-                    </button>
+                    </a>
                   </div>
                 </div>
 
             {/* Split Pane Layout */}
-            <div className="sync-modal-body">
+            <div className="sync-modal-body" style={{ flex: 1, display: 'flex' }}>
               
               {/* Left Pane: WhatsApp Chat Simulator */}
-              <div className="chat-pane">
+              <div className="chat-pane" style={{ flex: 1 }}>
                 <div className="chat-log-banner">
                   💬 Chatting with **Namma Print House Webhook Receiver** (+91 82964 37764)<br />
                   _Sent messages are parsed by the Meta App and trigger immediate storefront data updates._
