@@ -38,7 +38,7 @@ const AdminDashboardSecure = () => {
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const fetchedOrders = [];
         querySnapshot.forEach((doc) => {
-          fetchedOrders.push({ id: doc.id, ...doc.data() });
+          fetchedOrders.push({ docId: doc.id, ...doc.data() });
         });
         setOrders(fetchedOrders);
       });
@@ -554,7 +554,12 @@ const AdminDashboardSecure = () => {
                                     <button
                                       key={step}
                                       onClick={async () => {
-                                        await updateDoc(doc(db, 'orders', order.id), { status: step });
+                                        try {
+                                          await updateDoc(doc(db, 'orders', order.docId), { status: step });
+                                        } catch (error) {
+                                          console.error("Error updating status:", error);
+                                          alert("Failed to update status. See console.");
+                                        }
                                       }}
                                       style={{
                                         padding: '6px 10px',
