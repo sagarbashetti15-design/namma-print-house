@@ -33,6 +33,7 @@ const CareInstructions = lazy(() => import('./pages/CareInstructions'))
 const TrackOrder = lazy(() => import('./pages/TrackOrder'))
 const AdminDashboardSecure = lazy(() => import('./pages/AdminDashboardSecure'))
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'))
+const Sitemap = lazy(() => import('./pages/Sitemap'))
 
 const AppContent = () => {
   const location = useLocation();
@@ -67,6 +68,7 @@ const AppContent = () => {
           <Route path="/track-order" element={<TrackOrder />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin-secure-portal" element={<AdminDashboardSecure />} />
+          <Route path="/sitemap" element={<Sitemap />} />
         </Routes>
       </main>
       {!isAdmin && <Footer />}
