@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Settings, X, Send, Database, Eye, EyeOff, Lock, LogOut } from 'lucide-react';
 import { useCatalog } from '../context/CatalogContext';
 import { db } from '../firebase';
-import { doc, updateDoc, setDoc } from 'firebase/firestore';
+import { doc, updateDoc, setDoc, collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import './AdminDashboardSecure.css';
 
 const STANDARD_COLORS = ['Red', 'White', 'Black', 'Cream', 'Brown'];
@@ -29,7 +29,21 @@ const AdminDashboardSecure = () => {
   ]);
   const [inputText, setInputText] = useState('');
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('catalog'); // 'catalog' or 'marketing'
+  const [activeTab, setActiveTab] = useState('orders'); // 'catalog', 'marketing', or 'orders'
+  const [orders, setOrders] = useState([]);
+    
+    // Fetch orders from Firestore
+    useEffect(() => {
+      const q = query(collection(db, 'orders'), orderBy('timestamp', 'desc'));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const fetchedOrders = [];
+        querySnapshot.forEach((doc) => {
+          fetchedOrders.push({ id: doc.id, ...doc.data() });
+        });
+        setOrders(fetchedOrders);
+      });
+      return () => unsubscribe();
+    }, []);
   
   // Marketing State
   const [activeCampaign, setActiveCampaign] = useState('none');
@@ -90,8 +104,7 @@ const AdminDashboardSecure = () => {
   };
 
   const handleClose = () => {
-    setIsOpen(false);
-    setAuthError('');
+    window.location.href = '/';
   };
 
   // Handle product image file upload for a specific color (converts to base64 for localStorage)
@@ -465,14 +478,89 @@ const AdminDashboardSecure = () => {
                 {/* Tab Navigation */}
                 <div className="admin-tab-nav">
                   <button 
+                    className={`admin-tab-btn ${activeTab === 'orders' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('orders')}
+                  >📦 Orders</button>
+                  <button 
                     className={`admin-tab-btn ${activeTab === 'catalog' ? 'active' : ''}`}
                     onClick={() => setActiveTab('catalog')}
-                  >📦 Catalog Sync</button>
+                  >🔄 Catalog Sync</button>
                   <button 
                     className={`admin-tab-btn ${activeTab === 'marketing' ? 'active' : ''}`}
                     onClick={() => setActiveTab('marketing')}
-                  >📣 Marketing</button>
+                  >🚀 Marketing</button>
                 </div>
+
+                {/* ========== TAB: ORDERS ========== */}
+                {activeTab === 'orders' && (
+                    <div className="orders-tab-content" style={{ padding: '20px' }}>
+                      <div className="marketing-section-header">
+                        <h4>📦 Recent Orders</h4>
+                        <p style={{ fontSize: '0.78rem', color: '#888', margin: '4px 0 0' }}>Manage customer orders synced directly from Checkout.</p>
+                      </div>
+
+                      {orders.length === 0 ? (
+                        <p style={{ padding: '20px', textAlign: 'center', color: '#888' }}>No orders found.</p>
+                      ) : (
+                        <div className="orders-list">
+                          {orders.map((order) => (
+                            <div key={order.id} className="order-card" style={{ backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '8px', padding: '15px', marginBottom: '15px' }}>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '10px' }}>
+                                <div>
+                                  <strong>Order #{order.id}</strong>
+                                  <p style={{ margin: '3px 0 0', fontSize: '0.85rem', color: '#666' }}>Date: {order.date} | UTR: {order.utrNumber}</p>
+                                </div>
+                                <div style={{ textAlign: 'right' }}>
+                                  <span style={{ display: 'inline-block', backgroundColor: order.status === 'Pending' ? '#fff3cd' : '#d4edda', color: order.status === 'Pending' ? '#856404' : '#155724', padding: '4px 8px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>{order.status || 'Pending'}</span>
+                                  <p style={{ margin: '3px 0 0', fontSize: '0.9rem', fontWeight: 'bold' }}>₹{order.total}</p>
+                                </div>
+                              </div>
+
+                              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+                                <div style={{ flex: '1', minWidth: '250px' }}>
+                                  <h5 style={{ margin: '0 0 5px' }}>Customer Details</h5>
+                                  <p style={{ margin: 0, fontSize: '0.85rem', color: '#444' }}>
+                                    <strong>Name:</strong> {order.customer?.firstName} {order.customer?.lastName}<br />
+                                    <strong>Phone:</strong> {order.customer?.phone}<br />
+                                    <strong>Email:</strong> {order.customer?.email}<br />
+                                    <strong>Address:</strong> {order.customer?.address}, {order.customer?.city}, {order.customer?.state} {order.customer?.zipCode}
+                                  </p>
+                                </div>
+
+                                <div style={{ flex: '2', minWidth: '300px' }}>
+                                  <h5 style={{ margin: '0 0 5px' }}>Items</h5>
+                                  {order.items && order.items.map((item, idx) => (
+                                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', backgroundColor: '#f9f9f9', padding: '8px', borderRadius: '4px' }}>
+                                      {item.image && <img src={item.image} alt={item.title} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px' }} />}
+                                      <div style={{ flex: 1 }}>
+                                        <p style={{ margin: 0, fontSize: '0.85rem', fontWeight: 'bold' }}>{item.title}</p>
+                                        <p style={{ margin: 0, fontSize: '0.75rem', color: '#666' }}>Size: {item.size} | Qty: {item.quantity}</p>
+                                      </div>
+                                      {(item.customUrls?.front || item.customUrls?.back) && (
+                                        <div style={{ fontSize: '0.75rem' }}>
+                                          {item.customUrls.front && <a href={item.customUrls.front} target="_blank" rel="noreferrer" style={{ display: 'block', color: '#0d2850' }}>[Front Print]</a>}
+                                          {item.customUrls.back && <a href={item.customUrls.back} target="_blank" rel="noreferrer" style={{ display: 'block', color: '#0d2850' }}>[Back Print]</a>}
+                                        </div>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                              
+                              <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px solid #eee' }}>
+                                <button onClick={async () => {
+                                  const newStatus = order.status === 'Pending' ? 'Shipped' : 'Pending';
+                                  await updateDoc(doc(db, 'orders', order.id), { status: newStatus });
+                                }} style={{ padding: '6px 12px', fontSize: '0.8rem', backgroundColor: '#0d2850', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                                  Mark as {order.status === 'Pending' ? 'Shipped' : 'Pending'}
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                 {/* ========== TAB: CATALOG ========== */}
                 {activeTab === 'catalog' && (

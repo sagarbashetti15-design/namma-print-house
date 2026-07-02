@@ -4,6 +4,8 @@ import { useCatalog } from '../context/CatalogContext';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
+import { db } from '../firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import './Checkout.css';
 
 const Checkout = () => {
@@ -385,7 +387,8 @@ ${itemsText}
       total: grandTotal,
       paymentMethod: paymentId ? 'Razorpay' : 'UPI',
       utrNumber: paymentId || utrNumber.trim(),
-      status: 'Order Confirmed',
+      status: 'Pending',
+      customer: formData,
       timestamp: Date.now()
     };
     
@@ -397,6 +400,16 @@ ${itemsText}
     const savedOrders = JSON.parse(localStorage.getItem('nph_orders') || '[]');
     savedOrders.push(newOrder);
     localStorage.setItem('nph_orders', JSON.stringify(savedOrders));
+    
+    // Save to Firestore
+    try {
+      await addDoc(collection(db, 'orders'), {
+        ...newOrder,
+        createdAt: serverTimestamp()
+      });
+    } catch (err) {
+      console.error("Error saving order to Firestore:", err);
+    }
     
     setPlacedOrderId(orderId);
     setStep(3);
