@@ -275,7 +275,7 @@ ${itemsText}
     if (step === 3 && lastPlacedOrder) {
       const waLink = generateWhatsAppLink();
       const timer = setTimeout(() => {
-        window.open(waLink, '_blank');
+        window.location.href = waLink;
       }, 1500); // 1.5 second delay so they see the success screen
       return () => clearTimeout(timer);
     }
