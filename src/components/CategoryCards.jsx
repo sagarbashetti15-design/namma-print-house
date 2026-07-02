@@ -8,7 +8,7 @@ const categories = [
     title: 'MEN',
     btnText: 'SHOP NOW',
     link: '/category/men',
-    image: '/images/cat_men.png'
+    image: '/images/cat_men_graphic.png'
   },
   {
     id: 2,
