@@ -23,7 +23,10 @@ const TrackOrder = () => {
         const orderDoc = querySnapshot.docs[0];
         const matchingOrder = orderDoc.data();
         
-        const currentStatus = matchingOrder.status || 'Order Confirmed';
+        let currentStatus = matchingOrder.status || 'Order Confirmed';
+        if (currentStatus === 'Pending') {
+          currentStatus = 'Order Confirmed';
+        }
         
         let steps = [
           { name: 'Order Confirmed', date: matchingOrder.date, completed: true, current: currentStatus === 'Order Confirmed' },

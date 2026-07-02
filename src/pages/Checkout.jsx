@@ -387,7 +387,7 @@ ${itemsText}
       total: grandTotal,
       paymentMethod: paymentId ? 'Razorpay' : 'UPI',
       utrNumber: paymentId || utrNumber.trim(),
-      status: 'Pending',
+      status: 'Order Confirmed',
       customer: formData,
       timestamp: Date.now()
     };
