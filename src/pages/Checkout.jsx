@@ -270,7 +270,13 @@ const Checkout = () => {
 ${itemsText}
 👉 _Please review customer details and click on the product design link to view the high-quality product picture print graphics._`;
 
-    return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(msg)}`;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      return `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(msg)}`;
+    } else {
+      return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(msg)}`;
+    }
   };
 
   // Auto-redirect to WhatsApp on success
