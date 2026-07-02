@@ -12,8 +12,8 @@ const AdminDashboardSecure = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authError, setAuthError] = useState('');
-  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [passwordInput, setPasswordInput] = useState('');
+  
   const { products: localCatalog, loading: catalogLoading, marketing: marketingConfig, updateMarketingStore } = useCatalog();
   const [messages, setMessages] = useState([
     {
@@ -75,47 +75,19 @@ const AdminDashboardSecure = () => {
   const [uploadedImages, setUploadedImages] = useState({});
   const messagesEndRef = useRef(null);
 
-  // Listen to Auth State
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setCurrentUser(user);
-        // Check if user is in 'admins' collection
-        try {
-          const adminDoc = await getDoc(doc(db, 'admins', user.uid));
-          if (adminDoc.exists() || user.uid === '23yQlX6LDyFTdKAwz7zwOLH6Coz2' || user.uid === '23yQIx6LDyFTdKAwz7zwOLH6Coz2') {
-            setIsAuthenticated(true);
-            setAuthError('');
-          } else {
-            setIsAuthenticated(false);
-            setAuthError(`Access Denied. Your UID (${user.uid}) is not an admin.`);
-          }
-        } catch (error) {
-          console.error("Admin check failed", error);
-          setAuthError('Error verifying admin status.');
-        }
-      } else {
-        setCurrentUser(null);
-        setIsAuthenticated(false);
-      }
-      setIsCheckingAuth(false);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  const handleGoogleLogin = async () => {
-    setAuthError('');
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (error) {
-      console.error("Google sign in error", error);
-      setAuthError('Failed to sign in with Google.');
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (passwordInput === 'nammaprinthouse2026') {
+      setIsAuthenticated(true);
+      setAuthError('');
+    } else {
+      setAuthError('Incorrect password.');
     }
   };
 
-  const handleLogout = async () => {
-    await signOut(auth);
+  const handleLogout = () => {
     setIsAuthenticated(false);
+    setPasswordInput('');
     setAuthError('');
   };
 
@@ -405,39 +377,26 @@ const AdminDashboardSecure = () => {
                     <Lock size={32} color="#0d2850" />
                   </div>
                   <h2 className="admin-lock-title">Owner Admin Panel</h2>
-                  <p className="admin-lock-subtitle">Sign in with an authorized Google account to access the dashboard.</p>
+                  <p className="admin-lock-subtitle">Enter the master password to access the dashboard.</p>
                   
-                  {isCheckingAuth ? (
-                    <p style={{marginTop: '20px'}}>Checking authorization...</p>
-                  ) : (
-                    <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      {currentUser && !isAuthenticated && (
-                        <div style={{ padding: '15px', background: '#fee2e2', color: '#b91c1c', borderRadius: '8px', fontSize: '13px' }}>
-                          <p style={{ fontWeight: 'bold' }}>Unauthorized Account</p>
-                          <p>Your UID: <code>{currentUser.uid}</code></p>
-                          <p style={{ marginTop: '10px' }}>To gain access, add a document to the <code>admins</code> collection in Firestore with this UID as the document ID.</p>
-                          <button 
-                            type="button" 
-                            onClick={handleLogout}
-                            style={{ marginTop: '10px', background: 'transparent', border: 'none', color: '#b91c1c', textDecoration: 'underline', cursor: 'pointer' }}
-                          >
-                            Sign out
-                          </button>
-                        </div>
-                      )}
-                      
-                      {!currentUser && (
-                        <button 
-                          type="button" 
-                          className="admin-unlock-btn" 
-                          onClick={handleGoogleLogin}
-                        >
-                          Sign in with Google
-                        </button>
-                      )}
-                      <button type="button" className="admin-cancel-btn" onClick={handleClose}>Cancel</button>
-                    </div>
-                  )}
+                  <form onSubmit={handleLogin} style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                    <input 
+                      type="password" 
+                      placeholder="Enter Admin Password" 
+                      value={passwordInput}
+                      onChange={(e) => setPasswordInput(e.target.value)}
+                      className="admin-pw-input"
+                      style={{ padding: '12px', borderRadius: '6px', border: '1px solid #ccc', fontSize: '16px' }}
+                      autoFocus
+                    />
+                    <button 
+                      type="submit" 
+                      className="admin-unlock-btn" 
+                    >
+                      Unlock Dashboard
+                    </button>
+                    <button type="button" className="admin-cancel-btn" onClick={handleClose}>Cancel</button>
+                  </form>
                   {authError && <p className="admin-auth-error">{authError}</p>}
                   <p className="admin-pw-hint">🔒 For owner use only. Unauthorized access is strictly prohibited.</p>
                 </div>
@@ -447,7 +406,7 @@ const AdminDashboardSecure = () => {
                 <div className="sync-modal-header">
                   <div>
                     <h3><Database size={20} /> Meta WhatsApp Catalog Sync Dashboard</h3>
-                    <p>🟢 Authenticated as Admin ({currentUser?.email}) • Simulates webhook data sync with the React storefront.</p>
+                    <p>🟢 Authenticated as Admin • Simulates webhook data sync with the React storefront.</p>
                   </div>
                   <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                     <button className="admin-logout-btn" onClick={handleLogout} style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'none', border: '1px solid #ccc', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}>
