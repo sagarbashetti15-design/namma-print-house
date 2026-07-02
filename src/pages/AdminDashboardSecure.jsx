@@ -604,26 +604,50 @@ const AdminDashboardSecure = () => {
 
                 {/* Catalogue Product List */}
                 <div className="catalog-items-list">
-                  {localCatalog.map(p => (
-                    <div key={p.id} className="catalog-item-row">
-                      <img src={p.image} alt={p.title} />
-                      <div className="catalog-item-details">
-                        <h5>{p.title}</h5>
-                        <p>ID: `{p.id}` | Price: ₹{p.price} | Category: {p.category.toUpperCase()}</p>
-                        <span className={`stock-badge-pill ${p.outOfStock ? 'out-of-stock' : 'in-stock'}`}>
-                          {p.outOfStock ? 'Out of Stock' : 'In Stock'}
-                        </span>
+                  {(() => {
+                    const categories = [...new Set(localCatalog.map(p => p.category))];
+                    return categories.map(category => (
+                      <div key={category} className="catalog-category-group" style={{ marginBottom: '40px' }}>
+                        <h4 style={{ 
+                          padding: '12px 15px', 
+                          backgroundColor: '#0d2850', 
+                          color: '#fff', 
+                          borderRadius: '8px',
+                          marginBottom: '20px',
+                          textTransform: 'uppercase',
+                          fontWeight: '700',
+                          letterSpacing: '1px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px'
+                        }}>
+                          📦 {category}
+                        </h4>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                          {localCatalog.filter(p => p.category === category).map(p => (
+                            <div key={p.id} className="catalog-item-row">
+                              <img src={p.image} alt={p.title} />
+                              <div className="catalog-item-details">
+                                <h5>{p.title}</h5>
+                                <p>ID: `{p.id}` | Price: ₹{p.price}</p>
+                                <span className={`stock-badge-pill ${p.outOfStock ? 'out-of-stock' : 'in-stock'}`}>
+                                  {p.outOfStock ? 'Out of Stock' : 'In Stock'}
+                                </span>
+                              </div>
+                              <div className="catalog-item-actions">
+                                <button 
+                                  className={`stock-toggle-btn ${p.outOfStock ? 'out-of-stock' : 'in-stock'}`}
+                                  onClick={() => handleCatalogStockToggle(p.id, !p.outOfStock)}
+                                >
+                                  {p.outOfStock ? 'Restock 🟢' : 'Sold Out 🔴'}
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <div className="catalog-item-actions">
-                        <button 
-                          className={`stock-toggle-btn ${p.outOfStock ? 'out-of-stock' : 'in-stock'}`}
-                          onClick={() => handleCatalogStockToggle(p.id, !p.outOfStock)}
-                        >
-                          {p.outOfStock ? 'Restock 🟢' : 'Sold Out 🔴'}
-                        </button>
-                      </div>
-                    </div>
-                  ))}
+                    ));
+                  })()}
                 </div>
                   </>
                 )}
