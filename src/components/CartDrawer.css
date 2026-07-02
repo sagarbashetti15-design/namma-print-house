@@ -5,7 +5,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(13, 40, 80, 0.4); /* Dark navy translucent overlay */
+  background-color: var(--color-text-muted); /* Dark navy translucent overlay */
   backdrop-filter: blur(4px);
   z-index: 1000;
   opacity: 0;
@@ -27,7 +27,7 @@
   max-width: 100%;
   height: 100dvh;
   background-color: var(--color-background-secondary); /* Warm cream */
-  box-shadow: -10px 0 40px rgba(13, 40, 80, 0.15);
+  box-shadow: -10px 0 40px var(--color-border);
   z-index: 1001;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@
 /* Drawer Header */
 .cart-drawer-header {
   padding: 24px;
-  border-bottom: 1px solid rgba(13, 40, 80, 0.08);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -52,7 +52,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #0d2850;
+  color: var(--color-text-primary);
   font-family: 'Outfit', sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
@@ -63,7 +63,7 @@
 .cd-close-btn {
   background: none;
   border: none;
-  color: #0d2850;
+  color: var(--color-text-primary);
   cursor: pointer;
   padding: 4px;
   display: flex;
@@ -99,12 +99,12 @@
 }
 
 .cd-empty-icon {
-  color: rgba(13, 40, 80, 0.2);
+  color: var(--color-text-muted);
   margin-bottom: 8px;
 }
 
 .cd-empty-state h3 {
-  color: #0d2850;
+  color: var(--color-text-primary);
   font-family: 'Outfit', sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
@@ -112,7 +112,7 @@
 }
 
 .cd-empty-state p {
-  color: #737373;
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 0;
@@ -123,7 +123,7 @@
   display: flex;
   gap: 16px;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(13, 40, 80, 0.06);
+  border-bottom: 1px solid var(--color-border);
   position: relative;
 }
 
@@ -132,8 +132,8 @@
   height: 80px;
   border-radius: 6px;
   overflow: hidden;
-  background-color: #ffffff;
-  border: 1px solid rgba(13, 40, 80, 0.05);
+  background-color: var(--color-background-primary);
+  border: 1px solid var(--color-border);
   flex-shrink: 0;
 }
 
@@ -151,7 +151,7 @@
 }
 
 .cd-item-title {
-  color: #0d2850;
+  color: var(--color-text-primary);
   font-family: 'Outfit', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
@@ -160,7 +160,7 @@
 }
 
 .cd-item-meta {
-  color: #737373;
+  color: var(--color-text-secondary);
   font-size: 0.85rem;
   margin: 0 0 10px 0;
 }
@@ -174,16 +174,16 @@
 .cd-qty {
   display: flex;
   align-items: center;
-  border: 1px solid rgba(13, 40, 80, 0.15);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 2px;
-  background: #ffffff;
+  background: var(--color-background-primary);
 }
 
 .cd-qty button {
   background: none;
   border: none;
-  color: #0d2850;
+  color: var(--color-text-primary);
   width: 24px;
   height: 24px;
   display: flex;
@@ -201,13 +201,13 @@
 .cd-qty span {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #0d2850;
+  color: var(--color-text-primary);
   width: 24px;
   text-align: center;
 }
 
 .cd-item-price {
-  color: #0d2850;
+  color: var(--color-text-primary);
   font-family: 'Outfit', sans-serif;
   font-size: 1rem;
   font-weight: 700;
@@ -219,7 +219,7 @@
   right: 0;
   background: none;
   border: none;
-  color: rgba(13, 40, 80, 0.4);
+  color: var(--color-text-muted);
   cursor: pointer;
   padding: 4px;
   transition: color 0.2s;
@@ -235,9 +235,9 @@
 /* Drawer Footer */
 .cart-drawer-footer {
   padding: 24px;
-  border-top: 1px solid rgba(13, 40, 80, 0.08);
+  border-top: 1px solid var(--color-border);
   background-color: var(--color-background-primary);
-  box-shadow: 0 -4px 20px rgba(13, 40, 80, 0.03);
+  box-shadow: 0 -4px 20px var(--color-border);
 }
 
 .cd-summary-row {
@@ -245,7 +245,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
-  color: #0d2850;
+  color: var(--color-text-primary);
   font-family: 'Outfit', sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
@@ -256,7 +256,7 @@
 }
 
 .cd-footer-note {
-  color: #737373;
+  color: var(--color-text-secondary);
   font-size: 0.8rem;
   margin: 0 0 20px 0;
 }
@@ -286,7 +286,7 @@
 /* Cart Drawer Upsell */
 .cd-upsell-container {
   margin-top: 30px;
-  border-top: 1px dashed rgba(13, 40, 80, 0.15);
+  border-top: 1px dashed var(--color-border);
   padding-top: 20px;
 }
 
@@ -294,7 +294,7 @@
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
-  color: #0d2850;
+  color: var(--color-text-primary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin: 0 0 15px 0;
@@ -315,7 +315,7 @@ body.dark-theme .cd-upsell-heading {
   align-items: center;
   gap: 12px;
   background-color: var(--color-background-primary);
-  border: 1px solid rgba(13, 40, 80, 0.05);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 10px 14px;
   position: relative;
@@ -332,9 +332,9 @@ body.dark-theme .cd-upsell-heading {
   height: 52px;
   border-radius: 6px;
   overflow: hidden;
-  border: 1px solid rgba(13, 40, 80, 0.05);
+  border: 1px solid var(--color-border);
   flex-shrink: 0;
-  background-color: #ffffff;
+  background-color: var(--color-background-primary);
 }
 
 .cd-upsell-img {
@@ -353,7 +353,7 @@ body.dark-theme .cd-upsell-heading {
 .cd-upsell-title {
   font-size: 0.82rem;
   font-weight: 600;
-  color: #0d2850;
+  color: var(--color-text-primary);
   margin: 0 24px 0 0;
   line-height: 1.25;
 }
@@ -371,7 +371,7 @@ body.dark-theme .cd-upsell-title {
 .cd-upsell-add-btn {
   background: none;
   border: none;
-  color: #0d2850;
+  color: var(--color-text-primary);
   cursor: pointer;
   padding: 4px;
   display: flex;
