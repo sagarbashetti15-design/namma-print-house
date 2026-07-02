@@ -394,38 +394,13 @@ ${itemsText}
     clearCart();
   };
 
-  const handleRazorpayPayment = () => {
-    const options = {
-      key: "rzp_live_T8iUzMzDyBzeM8", // User's LIVE Key ID
-      amount: grandTotal * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-      currency: "INR",
-      name: "Namma Print House",
-      description: "Order Payment",
-      image: "https://example.com/your_logo", // You can update this later
-      handler: function (response){
-          // response.razorpay_payment_id
-          setUtrNumber(response.razorpay_payment_id);
-          processOrder(response.razorpay_payment_id);
-      },
-      prefill: {
-          name: formData.firstName + " " + formData.lastName,
-          email: formData.email,
-          contact: formData.phone
-      },
-      theme: {
-          color: "#0d2850"
-      }
-    };
-    
-    if (window.Razorpay) {
-      const rzp1 = new window.Razorpay(options);
-      rzp1.on('payment.failed', function (response){
-          showToast(`Payment Failed: ${response.error.description}`, "error");
-      });
-      rzp1.open();
-    } else {
-      showToast("Razorpay SDK failed to load. Please check your connection.", "error");
+  const handleConfirmUPI = (e) => {
+    e.preventDefault();
+    if (!utrNumber || utrNumber.length < 12) {
+      showToast("Please enter a valid 12-digit UTR/Transaction ID", "error");
+      return;
     }
+    processOrder(utrNumber);
   };
 
   // Moved generateWhatsAppLink and useEffect to the top of the component
@@ -518,17 +493,38 @@ ${itemsText}
               
               <div className="payment-details" style={{ padding: '30px', backgroundColor: '#fff', border: '1px solid rgba(13, 40, 80, 0.08)', borderRadius: '8px', marginBottom: '20px', textAlign: 'center' }}>
                 <p style={{ fontSize: '1.1rem', color: '#0d2850', marginBottom: '15px' }}>
-                  Total amount to pay: <strong>₹{grandTotal}</strong>
+                  Scan to pay: <strong>₹{grandTotal}</strong>
                 </p>
                 
-                <button 
-                  type="button" 
-                  className="primary-btn" 
-                  onClick={handleRazorpayPayment}
-                  style={{ fontSize: '1.1rem', padding: '15px', backgroundColor: '#0d2850', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', width: '100%', maxWidth: '300px' }}
-                >
-                  Pay Securely with Razorpay
-                </button>
+                <div style={{ padding: '15px', backgroundColor: '#f9f9f9', display: 'inline-block', borderRadius: '8px', marginBottom: '20px' }}>
+                  <QRCodeSVG 
+                    value={`upi://pay?pa=sbashetti921@ybl&pn=Namma Print House&am=${grandTotal}&cu=INR`} 
+                    size={200}
+                  />
+                </div>
+                
+                <p style={{ fontFamily: 'Outfit', fontWeight: '600', marginBottom: '20px' }}>
+                  UPI ID: sbashetti921@ybl
+                </p>
+
+                <form onSubmit={handleConfirmUPI} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
+                  <input
+                    type="text"
+                    placeholder="Enter 12-Digit UTR/Transaction ID *"
+                    required
+                    maxLength={20}
+                    value={utrNumber}
+                    onChange={(e) => setUtrNumber(e.target.value.replace(/\D/g, ''))}
+                    style={{ padding: '12px', width: '100%', maxWidth: '300px', border: '1px solid #ccc', borderRadius: '4px', textAlign: 'center' }}
+                  />
+                  <button 
+                    type="submit" 
+                    className="primary-btn" 
+                    style={{ fontSize: '1.1rem', padding: '15px', backgroundColor: '#0d2850', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', width: '100%', maxWidth: '300px' }}
+                  >
+                    CONFIRM PAYMENT
+                  </button>
+                </form>
               </div>
               
               <button type="button" className="secondary-btn" onClick={() => setStep(1)} style={{ marginTop: '10px' }}>BACK TO SHIPPING</button>
