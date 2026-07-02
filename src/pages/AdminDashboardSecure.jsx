@@ -371,8 +371,8 @@ const AdminDashboardSecure = () => {
             !isAuthenticated ? (
               <div className="admin-lock-screen">
                 <div className="admin-lock-card">
-                  <div className="admin-lock-icon-wrap">
-                    <Lock size={32} color="#0d2850" />
+                  <div className="admin-lock-icon-wrap" style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
+                    <img src="/nph-logo.png" alt="Namma Print House Logo" style={{ height: '60px', width: 'auto', mixBlendMode: 'multiply', filter: 'invert(1)', objectFit: 'contain' }} />
                   </div>
                   <h2 className="admin-lock-title">Owner Admin Panel</h2>
                   <p className="admin-lock-subtitle">Enter the master password to access the dashboard.</p>

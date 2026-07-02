@@ -158,3 +158,12 @@
   border-radius: 2px;
   font-weight: 700;
 }
+
+
+/* Footer Logo Styling */
+.footer-logo-img {
+  height: 50px;
+  width: auto;
+  mix-blend-mode: screen;
+  object-fit: contain;
+}

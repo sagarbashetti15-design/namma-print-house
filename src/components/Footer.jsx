@@ -8,9 +8,12 @@ const Footer = () => {
       <div className="container footer-container">
         
         <div className="footer-col brand-col">
-          <div className="footer-logo">
-            <span className="logo-text text-yellow">NAMMA</span>
-            <span className="logo-sub text-white">PRINT HOUSE</span>
+          <div className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <img src="/nph-logo.png" alt="Namma Print House" className="footer-logo-img" />
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span className="logo-text text-yellow">NAMMA</span>
+              <span className="logo-sub text-white">PRINT HOUSE</span>
+            </div>
           </div>
           <p className="footer-desc">
             "Your Idea. Our Print. Your Identity."<br/>

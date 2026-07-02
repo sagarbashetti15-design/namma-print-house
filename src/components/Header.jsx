@@ -185,9 +185,12 @@ const Header = () => {
               <button className="mobile-menu-btn" aria-label="Open mobile menu" onClick={() => setIsMobileMenuOpen(true)}>
                 <Menu size={24} aria-hidden="true" />
               </button>
-              <Link to="/" className="logo">
-                <span className="logo-text text-primary">Namma</span>
-                <span className="logo-sub">Print House</span>
+              <Link to="/" className="logo" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+                <img src="/nph-logo.png" alt="Namma Print House" className="nav-logo-img" />
+                <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10px' }}>
+                  <span className="logo-text text-primary" style={{ fontSize: '1.2rem', lineHeight: '1' }}>Namma</span>
+                  <span className="logo-sub" style={{ fontSize: '0.7rem' }}>Print House</span>
+                </div>
               </Link>
               
               <nav className="desktop-nav">
