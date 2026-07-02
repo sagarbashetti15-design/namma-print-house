@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import './InfoPage.css';
 
 const TrackOrder = () => {
@@ -8,18 +8,16 @@ const TrackOrder = () => {
   const [trackingResult, setTrackingResult] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [activeQueryId, setActiveQueryId] = useState(null);
 
-  const handleTrack = async (e) => {
-    e.preventDefault();
-    const queryId = orderId.trim().toUpperCase();
-    if (!queryId) return;
-    
+  useEffect(() => {
+    if (!activeQueryId) return;
+
     setIsLoading(true);
+    const q = query(collection(db, 'orders'), where("id", "==", activeQueryId));
     
-    try {
-      // Look up in Firestore
-      const q = query(collection(db, 'orders'), where("id", "==", queryId));
-      const querySnapshot = await getDocs(q);
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      setIsLoading(false);
       
       if (!querySnapshot.empty) {
         const orderDoc = querySnapshot.docs[0];
@@ -61,9 +59,9 @@ const TrackOrder = () => {
           steps: steps
         });
       } else {
-        // Fallback to random tracking if not found in Firestore (so demo remains fully functional for random IDs)
+        // Fallback to random tracking if not found in Firestore
         setTrackingResult({
-          id: queryId,
+          id: activeQueryId,
           status: 'Order Confirmed',
           estDelivery: 'Within 2-3 business days',
           courier: 'Delhivery',
@@ -75,12 +73,20 @@ const TrackOrder = () => {
           ]
         });
       }
-    } catch (error) {
+    }, (error) => {
       console.error("Error tracking order:", error);
       alert("Something went wrong while tracking your order. Please try again.");
-    } finally {
       setIsLoading(false);
-    }
+    });
+
+    return () => unsubscribe();
+  }, [activeQueryId]);
+
+  const handleTrack = (e) => {
+    e.preventDefault();
+    const queryId = orderId.trim().toUpperCase();
+    if (!queryId) return;
+    setActiveQueryId(queryId);
   };
 
   return (
@@ -138,7 +144,7 @@ const TrackOrder = () => {
                 ))}
               </div>
 
-              <button className="track-btn" style={{ marginTop: '30px', width: '100%' }} onClick={() => setTrackingResult(null)}>TRACK ANOTHER ORDER</button>
+              <button className="track-btn" style={{ marginTop: '30px', width: '100%' }} onClick={() => { setTrackingResult(null); setActiveQueryId(null); }}>TRACK ANOTHER ORDER</button>
             </div>
           </div>
         ) : (
