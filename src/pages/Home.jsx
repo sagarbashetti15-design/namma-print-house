@@ -4,7 +4,6 @@ import CategoryCards from '../components/CategoryCards';
 import ProductGrid from '../components/ProductGrid';
 import WhyChooseUs from '../components/WhyChooseUs';
 import BestSellers from '../components/BestSellers';
-import CustomerReviews from '../components/CustomerReviews';
 import CustomPrintBanner from '../components/CustomPrintBanner';
 import SEO from '../components/SEO';
 
@@ -29,7 +28,6 @@ const Home = () => {
       <ProductGrid />
       <WhyChooseUs />
       <BestSellers />
-      <CustomerReviews />
       <CustomPrintBanner />
     </main>
   );
