@@ -17,7 +17,7 @@ export const CatalogProvider = ({ children }) => {
     const unsubscribe = onSnapshot(
       collection(db, 'catalog'),
       (snapshot) => {
-        const fetchedProducts = snapshot.docs.map((doc) => doc.data());
+        const fetchedProducts = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         
         // Smart Merge: Connect Admin DB with Local Catalog
         let mergedProducts = [...fallbackProducts];
