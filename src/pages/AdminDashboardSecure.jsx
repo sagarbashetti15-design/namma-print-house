@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Settings, X, Send, Database, Eye, EyeOff, Lock, LogOut } from 'lucide-react';
+import { X, Send, Database, LogOut } from 'lucide-react';
 import { useCatalog } from '../context/CatalogContext';
 import { db } from '../firebase';
 import { doc, updateDoc, setDoc, collection, query, orderBy, onSnapshot } from 'firebase/firestore';

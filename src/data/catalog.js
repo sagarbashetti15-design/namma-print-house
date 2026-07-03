@@ -921,7 +921,7 @@ try {
     if (typeof window !== 'undefined') localStorage.setItem('nph_catalog', JSON.stringify(initialProducts));
     dynamicProducts = initialProducts;
   }
-} catch (_e) {
+} catch {
   dynamicProducts = initialProducts;
 }
 

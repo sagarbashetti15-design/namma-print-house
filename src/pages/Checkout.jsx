@@ -3,7 +3,7 @@ import { useCart } from '../context/CartContext';
 import { useCatalog } from '../context/CatalogContext';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
-import { QRCodeSVG } from 'qrcode.react';
+
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import './Checkout.css';
