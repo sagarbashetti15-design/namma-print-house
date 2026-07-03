@@ -898,31 +898,4 @@ const initialProducts = [
   }
 ];
 
-// Dynamic Products initialization from localStorage
-let dynamicProducts = [];
-try {
-  const cached = typeof window !== 'undefined' ? localStorage.getItem('nph_catalog') : null;
-  if (cached) {
-    const parsed = JSON.parse(cached);
-    const customTee = parsed.find(p => p.id === 'custom-tee');
-    const m1 = parsed.find(p => p.id === 'mens-rcb-black-oversized-t-shirt');
-    
-    // Bust cache if custom tee is missing visual customizer flag or sizes are missing
-    if ((customTee && !customTee.isVisualCustomizer) || (m1 && !m1.sizes.includes('XS'))) {
-      if (typeof window !== 'undefined') localStorage.setItem('nph_catalog', JSON.stringify(initialProducts));
-      dynamicProducts = initialProducts;
-    } else {
-      dynamicProducts = parsed.filter(p => p.id !== 'w10');
-      if (parsed.length !== dynamicProducts.length) {
-        if (typeof window !== 'undefined') localStorage.setItem('nph_catalog', JSON.stringify(dynamicProducts));
-      }
-    }
-  } else {
-    if (typeof window !== 'undefined') localStorage.setItem('nph_catalog', JSON.stringify(initialProducts));
-    dynamicProducts = initialProducts;
-  }
-} catch {
-  dynamicProducts = initialProducts;
-}
-
-export const products = dynamicProducts;
+export const products = initialProducts;
