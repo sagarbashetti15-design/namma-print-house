@@ -676,6 +676,7 @@ const AdminDashboardSecure = () => {
                     </div>
                   </form>
                 ) : (
+                  <>
                   <div className="catalog-pane-header">
                     <h4>📦 WhatsApp Business Catalogue</h4>
                     <div style={{ display: 'flex', gap: '8px' }}>
@@ -708,7 +709,6 @@ const AdminDashboardSecure = () => {
                       </button>
                     </div>
                   </div>
-                )}
 
                 {/* Catalogue Product List */}
                 <div className="catalog-items-list">
@@ -781,6 +781,8 @@ const AdminDashboardSecure = () => {
                     ));
                   })()}
                 </div>
+                </>
+                )}
                   </>
                 )}
 
