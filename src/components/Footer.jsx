@@ -30,7 +30,7 @@ const Footer = () => {
         </div>
         
         <div className="footer-col">
-          <h4 className="footer-heading">QUICK LINKS</h4>
+          <h2 className="footer-heading">QUICK LINKS</h2>
           <ul className="footer-links">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About us</Link></li>
@@ -42,7 +42,7 @@ const Footer = () => {
         </div>
         
         <div className="footer-col">
-          <h4 className="footer-heading">HELP & SUPPORT</h4>
+          <h2 className="footer-heading">HELP & SUPPORT</h2>
           <ul className="footer-links">
             <li><Link to="/contact">Contact us</Link></li>
             <li><Link to="/shipping">Shipping Policy</Link></li>
@@ -53,7 +53,7 @@ const Footer = () => {
         </div>
         
         <div className="footer-col">
-          <h4 className="footer-heading">INFORMATION</h4>
+          <h2 className="footer-heading">INFORMATION</h2>
           <ul className="footer-links">
             <li><Link to="/bulk">Bulk Orders</Link></li>
             <li><Link to="/faq">FAQs</Link></li>
@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-col newsletter-col">
-          <h4 className="footer-heading">NEWSLETTER</h4>
+          <h2 className="footer-heading">NEWSLETTER</h2>
           <p className="footer-desc" style={{marginBottom: '15px'}}>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
           <form className="newsletter-form">
             <input type="email" placeholder="Enter your email" required />

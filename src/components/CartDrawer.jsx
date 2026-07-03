@@ -85,7 +85,7 @@ const CartDrawer = () => {
               return (
                 <div key={`${item.product.id}-${item.size}-${index}`} className="cd-item">
                   <div className="cd-item-img-wrapper">
-                    <img src={item.product.image} alt={item.product.title} className="cd-item-img" />
+                    <img src={item.product.image} alt={item.product.title} className="cd-item-img" loading="lazy" width="80" height="106" />
                   </div>
                   
                   <div className="cd-item-details">
@@ -131,7 +131,7 @@ const CartDrawer = () => {
                 {recommendations.map(prod => (
                   <div key={prod.id} className="cd-upsell-item">
                     <div className="cd-upsell-img-wrap">
-                      <img src={prod.image} alt={prod.title} className="cd-upsell-img" />
+                      <img src={prod.image} alt={prod.title} className="cd-upsell-img" loading="lazy" width="80" height="106" />
                     </div>
                     <div className="cd-upsell-info">
                       <p className="cd-upsell-title">{prod.title}</p>

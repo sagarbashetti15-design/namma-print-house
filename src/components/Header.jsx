@@ -168,6 +168,7 @@ const Header = () => {
                 <button 
                   type="button"
                   className="promo-code-badge" 
+                  aria-label="Copy promo code"
                   onClick={() => copyToClipboard(promoMessages[currentPromoIdx].code)}
                   title="Click to copy promo code"
                   style={{ border: 'none', background: 'linear-gradient(135deg, #FFB400, #ff8c00)' }}
@@ -226,7 +227,7 @@ const Header = () => {
               </form>
               
               <div className="header-actions">
-                <button className="action-btn theme-toggle-btn" onClick={toggleTheme} title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                <button className="action-btn theme-toggle-btn" aria-label="Toggle dark mode" onClick={toggleTheme} title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                   {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
                   <span className="action-label">{theme === 'light' ? 'Dark' : 'Light'}</span>
                 </button>

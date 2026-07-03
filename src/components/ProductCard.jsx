@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
         to={`/product/${product.id}${activeColor ? `?color=${encodeURIComponent(activeColor)}` : ''}`} 
         className="product-image-wrap"
       >
-        <img src={currentImage} alt={product.title} className="product-image" loading="lazy" />
+        <img src={currentImage} alt={product.title} className="product-image" loading="lazy" width="600" height="800" />
         {product.outOfStock ? (
           <div className="out-of-stock-badge">OUT OF STOCK</div>
         ) : product.tag ? (
