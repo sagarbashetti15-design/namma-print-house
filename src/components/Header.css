@@ -109,6 +109,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 .header-left {
@@ -164,6 +165,7 @@
 .desktop-nav {
   display: none;
   gap: 25px;
+  align-items: center;
 }
 
 @media (min-width: 1024px) {
@@ -377,7 +379,8 @@ body.dark-theme .nav-logo-img {
 /* Dropdown CSS */
 .nav-dropdown {
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 
 .nav-dropdown-content {
