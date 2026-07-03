@@ -382,7 +382,7 @@ body.dark-theme .nav-logo-img {
 .nav-dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--color-surface);
+  background-color: var(--color-background-primary);
   min-width: 180px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -394,7 +394,7 @@ body.dark-theme .nav-logo-img {
 }
 
 .nav-dropdown-content a {
-  color: var(--color-text-primary);
+  color: var(--color-text-primary) !important;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -404,7 +404,7 @@ body.dark-theme .nav-logo-img {
 }
 
 .nav-dropdown-content a:hover {
-  background-color: var(--color-primary-light);
+  background-color: var(--color-background-secondary);
 }
 
 .nav-dropdown:hover .nav-dropdown-content {
