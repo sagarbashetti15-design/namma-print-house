@@ -146,8 +146,8 @@ const initialProducts = [
     price: 699,
     originalPrice: 1299,
     tag: "NEW",
-    image: "/images/men-new-5.jpg",
-    images: ["/images/men-new-5.jpg"],
+    image: "/images/men-anime-5.png",
+    images: ["/images/men-anime-5.png"],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt featuring anime character graphics. 100% Cotton."
   },
