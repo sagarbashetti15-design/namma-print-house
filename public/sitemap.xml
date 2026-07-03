@@ -98,7 +98,31 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://nammaprinthouse.com/category/bike</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nammaprinthouse.com/category/cultural</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nammaprinthouse.com/category/anime</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://nammaprinthouse.com/category/women</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nammaprinthouse.com/category/movie</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -111,6 +135,12 @@
   </url>
   <url>
     <loc>https://nammaprinthouse.com/category/couples</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nammaprinthouse.com/category/pets</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -233,6 +263,16 @@
     <image:image>
       <image:loc>https://nammaprinthouse.com/images/men-new-3.jpg</image:loc>
       <image:title><![CDATA[Men's Chill Vibes Oversized T-Shirt]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nammaprinthouse.com/product/anime-naruto-oversized-t-shirt</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://nammaprinthouse.com/images/men-new-5.jpg</image:loc>
+      <image:title><![CDATA[Anime Naruto Oversized T-Shirt]]></image:title>
     </image:image>
   </url>
   <url>

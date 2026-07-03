@@ -614,6 +614,11 @@ const AdminDashboardSecure = () => {
                         <option value="women">Women's Streetwear</option>
                         <option value="couples">Couples Matching</option>
                         <option value="kannada">Kannada Hub</option>
+                        <option value="movie">Movie Collection</option>
+                        <option value="anime">Anime Collection</option>
+                        <option value="cultural">Cultural Collection</option>
+                        <option value="bike">Bike Collection</option>
+                        <option value="pets">Cat & Dogs</option>
                       </select>
                     </div>
 

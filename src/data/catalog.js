@@ -45,7 +45,7 @@ const initialProducts = [
   },
   {
     id: 'mens-ducati-panigale-oversized-t-shirt',
-    category: 'men',
+    category: 'bike',
     title: "Men's Ducati Panigale Oversized T-Shirt",
     price: 20,
     originalPrice: 1299,
@@ -57,7 +57,7 @@ const initialProducts = [
   },
   {
     id: 'mens-royal-enfield-oversized-t-shirt',
-    category: 'men',
+    category: 'bike',
     title: "Men's Royal Enfield Oversized T-Shirt",
     price: 20,
     originalPrice: 1299,
@@ -69,7 +69,7 @@ const initialProducts = [
   },
   {
     id: 'mens-bmw-s1000rr-oversized-t-shirt',
-    category: 'men',
+    category: 'bike',
     title: "Men's BMW S1000RR Oversized T-Shirt",
     price: 699,
     originalPrice: 1299,
@@ -109,7 +109,7 @@ const initialProducts = [
       'Red': '/images/m7-Trending-Blue_v6.jpg',
       'Brown': '/images/m7-Brown_v6.jpg',
     },
-    category: 'men',
+    category: 'cultural',
     title: "Men's Peaceful Buddha Oversized T-Shirt",
     price: 699,
     originalPrice: 1299,
@@ -140,6 +140,18 @@ const initialProducts = [
     description: "Premium white oversized t-shirt featuring a 'CHILL' typography and character graphic. 100% Cotton."
   },
   {
+    id: 'anime-naruto-oversized-t-shirt',
+    category: 'anime',
+    title: "Anime Naruto Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/men-new-5.jpg",
+    images: ["/images/men-new-5.jpg"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt featuring anime character graphics. 100% Cotton."
+  },
+  {
     id: 'm11',
     colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
     colorImages: {
@@ -149,7 +161,7 @@ const initialProducts = [
       'Red': '/images/m11-Red_v6.jpg',
       'Brown': '/images/m11-Brown_v6.jpg'
     },
-    category: 'men',
+    category: 'cultural',
     title: "Men's Divine Gods Oversized T-Shirt",
     price: 699,
     originalPrice: 1299,
@@ -288,7 +300,7 @@ const initialProducts = [
   },
   {
     id: 'tom-jerry-oversized-t-shirt',
-    category: 'women',
+    category: 'movie',
     title: "Tom & Jerry Oversized T-Shirt",
     price: 699,
     originalPrice: 1299,
@@ -432,7 +444,7 @@ const initialProducts = [
       'Red': '/images/w17-Red_v6.jpg',
       'Brown': '/images/w17-Brown_v6.jpg',
     },
-    category: 'women',
+    category: 'cultural',
     title: "Women's Kathakali Black Oversized T-Shirt",
     price: 699,
     originalPrice: 1299,
@@ -589,7 +601,7 @@ const initialProducts = [
   },
   {
     id: 'colorful-beagle-matching-t-shirts',
-    category: 'couples',
+    category: 'pets',
     title: "Colorful Beagle Matching T-Shirts",
     price: 1299,
     originalPrice: 2499,
@@ -620,7 +632,7 @@ const initialProducts = [
   },
   {
     id: 'golden-retriever-matching-t-shirts',
-    category: 'couples',
+    category: 'pets',
     title: "Golden Retriever Matching T-Shirts",
     price: 1299,
     originalPrice: 2499,
@@ -732,7 +744,7 @@ const initialProducts = [
   },
   {
     id: 'shiva-parvati-off-white-matching-t-shirts',
-    category: 'couples',
+    category: 'cultural',
     title: "Shiva Parvati Off-White Matching T-Shirts",
     price: 1299,
     originalPrice: 2499,

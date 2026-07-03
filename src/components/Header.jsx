@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useCatalog } from '../context/CatalogContext';
-import { Search, Heart, ShoppingBag, Menu, User, X, Sun, Moon } from 'lucide-react';
+import { Search, Heart, ShoppingBag, Menu, User, X, Sun, Moon, ChevronDown } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
@@ -197,6 +197,18 @@ const Header = () => {
                 <Link to="/category/men" className="nav-link">MEN</Link>
                 <Link to="/category/women" className="nav-link">WOMEN</Link>
                 <Link to="/category/couples" className="nav-link">COUPLES</Link>
+                <div className="nav-dropdown">
+                  <span className="nav-link dropdown-toggle" style={{ cursor: 'pointer' }}>
+                    COLLECTIONS <ChevronDown size={16} />
+                  </span>
+                  <div className="nav-dropdown-content">
+                    <Link to="/category/movie" style={{ fontWeight: 600 }}>Movie</Link>
+                    <Link to="/category/anime" style={{ fontWeight: 600 }}>Anime</Link>
+                    <Link to="/category/cultural" style={{ fontWeight: 600 }}>Cultural</Link>
+                    <Link to="/category/bike" style={{ fontWeight: 600 }}>Bike</Link>
+                    <Link to="/category/pets" style={{ fontWeight: 600 }}>Cats & Dogs</Link>
+                  </div>
+                </div>
                 <Link to="/category/custom" className="nav-link">CUSTOM PRINT</Link>
               </nav>
             </div>
@@ -249,6 +261,15 @@ const Header = () => {
             <Link to="/category/women" onClick={() => setIsMobileMenuOpen(false)}>WOMEN</Link>
             <Link to="/category/couples" onClick={() => setIsMobileMenuOpen(false)}>COUPLES</Link>
             <Link to="/category/custom" onClick={() => setIsMobileMenuOpen(false)}>CUSTOM PRINT</Link>
+            
+            <div className="mobile-nav-group">COLLECTIONS</div>
+            <div className="mobile-sub-nav">
+              <Link to="/category/movie" onClick={() => setIsMobileMenuOpen(false)}>MOVIE</Link>
+              <Link to="/category/anime" onClick={() => setIsMobileMenuOpen(false)}>ANIME</Link>
+              <Link to="/category/cultural" onClick={() => setIsMobileMenuOpen(false)}>CULTURAL</Link>
+              <Link to="/category/bike" onClick={() => setIsMobileMenuOpen(false)}>BIKE</Link>
+              <Link to="/category/pets" onClick={() => setIsMobileMenuOpen(false)}>CATS & DOGS</Link>
+            </div>
             <hr />
             <Link to="/wishlist" onClick={() => setIsMobileMenuOpen(false)}>MY WISHLIST</Link>
             <Link to="/cart" onClick={() => setIsMobileMenuOpen(false)}>MY BAG</Link>
