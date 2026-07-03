@@ -20,7 +20,7 @@ const BestSellers = () => {
 
   if (loading) return null;
 
-  const newArrivals = products.filter(p => p && !isNaN(Number(p.id)));
+  const newArrivals = products.filter(p => p && !isNaN(Number(p.id))).slice(0, 8);
 
   const bestSellers = [
     ...newArrivals,
@@ -56,7 +56,7 @@ const BestSellers = () => {
               return (
                 <div key={product.id} className="bs-card">
                   <Link to={`/product/${product.id}`} className="bs-image-wrap">
-                    <img src={product.image} alt={product.title} className="bs-image" loading="lazy" />
+                    <img src={product.image} alt={product.title} className="bs-image" loading="lazy" width="600" height="800" />
                     <button 
                       className="bs-wishlist-btn" 
                       style={{ color: isWished ? 'var(--color-error)' : '' }}

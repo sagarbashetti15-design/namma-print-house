@@ -50,6 +50,8 @@ const CustomPrintBanner = () => {
               alt="Custom T-Shirt" 
               className="cpb-image"
               loading="lazy"
+              width="600"
+              height="400"
             />
           </div>
         </div>
