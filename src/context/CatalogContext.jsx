@@ -25,17 +25,23 @@ export const CatalogProvider = ({ children }) => {
         fetchedProducts.forEach(dbProduct => {
           const localIndex = mergedProducts.findIndex(p => p.id === dbProduct.id);
           if (localIndex >= 0) {
-            // Apply admin dashboard overrides (stock) but keep local prices for Razorpay testing
+            // Apply admin dashboard overrides
             mergedProducts[localIndex] = {
               ...mergedProducts[localIndex],
               outOfStock: dbProduct.outOfStock !== undefined ? dbProduct.outOfStock : mergedProducts[localIndex].outOfStock,
-              outOfStockSizes: dbProduct.outOfStockSizes || mergedProducts[localIndex].outOfStockSizes
+              outOfStockSizes: dbProduct.outOfStockSizes || mergedProducts[localIndex].outOfStockSizes,
+              deleted: dbProduct.deleted
             };
           } else {
             // New products added purely via Admin Dashboard
-            mergedProducts.push(dbProduct);
+            if (!dbProduct.deleted) {
+              mergedProducts.push(dbProduct);
+            }
           }
         });
+
+        // Filter out deleted products
+        mergedProducts = mergedProducts.filter(p => !p.deleted);
 
         // Sort newest first
         mergedProducts.sort((a, b) => {
@@ -87,6 +93,18 @@ export const CatalogProvider = ({ children }) => {
     }
   };
 
+  // Admin function to delete a product (soft delete)
+  const deleteProduct = async (productId) => {
+    try {
+      const productRef = doc(db, 'catalog', productId);
+      await setDoc(productRef, { deleted: true }, { merge: true });
+      return true;
+    } catch (err) {
+      console.error("Failed to delete product in Firestore", err);
+      return false;
+    }
+  };
+
   const updateMarketingStore = async (marketingConfig) => {
     try {
       const marketingRef = doc(db, 'settings', 'marketing');
@@ -99,7 +117,7 @@ export const CatalogProvider = ({ children }) => {
   };
 
   return (
-    <CatalogContext.Provider value={{ products, marketing, loading, updateProductStock, updateMarketingStore }}>
+    <CatalogContext.Provider value={{ products, marketing, loading, updateProductStock, deleteProduct, updateMarketingStore }}>
       {children}
     </CatalogContext.Provider>
   );

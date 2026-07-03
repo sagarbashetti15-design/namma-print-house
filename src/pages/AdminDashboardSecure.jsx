@@ -12,7 +12,7 @@ const AdminDashboardSecure = () => {
   const [authError, setAuthError] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   
-  const { products: localCatalog, marketing: marketingConfig, updateMarketingStore } = useCatalog();
+  const { products: localCatalog, marketing: marketingConfig, updateMarketingStore, deleteProduct } = useCatalog();
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -743,6 +743,30 @@ const AdminDashboardSecure = () => {
                                   onClick={() => handleCatalogStockToggle(p.id, !p.outOfStock)}
                                 >
                                   {p.outOfStock ? 'Restock 🟢' : 'Sold Out 🔴'}
+                                </button>
+                                <button 
+                                  onClick={async () => {
+                                    if (window.confirm(`Are you sure you want to permanently delete "${p.title}"?`)) {
+                                      const success = await deleteProduct(p.id);
+                                      if (success) {
+                                        addMessage('system', `🗑️ Product "${p.title}" was deleted successfully.`);
+                                      } else {
+                                        addMessage('system', `❌ Failed to delete product "${p.title}".`);
+                                      }
+                                    }
+                                  }}
+                                  style={{
+                                    marginLeft: '10px',
+                                    padding: '8px 12px',
+                                    backgroundColor: '#fee2e2',
+                                    color: '#ef4444',
+                                    border: '1px solid #fecaca',
+                                    borderRadius: '6px',
+                                    fontWeight: '600',
+                                    cursor: 'pointer'
+                                  }}
+                                >
+                                  Delete 🗑️
                                 </button>
                               </div>
                             </div>
