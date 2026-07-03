@@ -715,23 +715,23 @@ const AdminDashboardSecure = () => {
                   {(() => {
                     const categories = [...new Set(localCatalog.map(p => p.category))];
                     return categories.map(category => (
-                      <div key={category} className="catalog-category-group" style={{ marginBottom: '40px' }}>
-                        <h4 style={{ 
-                          padding: '12px 15px', 
-                          backgroundColor: '#0d2850', 
-                          color: '#fff', 
-                          borderRadius: '8px',
-                          marginBottom: '20px',
-                          textTransform: 'uppercase',
-                          fontWeight: '700',
-                          letterSpacing: '1px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '10px'
-                        }}>
-                          📦 {category}
-                        </h4>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                        <details key={category} className="catalog-category-group" style={{ marginBottom: '20px' }}>
+                          <summary style={{ 
+                            padding: '12px 15px', 
+                            backgroundColor: '#0d2850', 
+                            color: '#fff', 
+                            borderRadius: '8px',
+                            marginBottom: '10px',
+                            textTransform: 'uppercase',
+                            fontWeight: '700',
+                            letterSpacing: '1px',
+                            cursor: 'pointer',
+                            userSelect: 'none',
+                            outline: 'none'
+                          }}>
+                            <span style={{ marginLeft: '5px' }}>📦 {category}</span>
+                          </summary>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', padding: '5px 10px 15px 10px' }}>
                           {localCatalog.filter(p => p.category === category).map(p => (
                             <div key={p.id} className="catalog-item-row">
                               <img src={p.image} alt={p.title} />
@@ -774,12 +774,12 @@ const AdminDashboardSecure = () => {
                                   Delete 🗑️
                                 </button>
                               </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ));
-                  })()}
+                              </div>
+                            ))}
+                          </div>
+                        </details>
+                      ));
+                    })()}
                 </div>
                 </>
                 )}
