@@ -46,7 +46,7 @@ const BestSellers = () => {
         </h2>
         
         <div className="bestsellers-carousel-wrapper">
-          <button className="bs-nav-btn left" onClick={() => scroll('left')}>
+          <button className="bs-nav-btn left" aria-label="Scroll left" onClick={() => scroll('left')}>
             <ChevronLeft size={24} />
           </button>
           
@@ -59,6 +59,7 @@ const BestSellers = () => {
                     <img src={product.image} alt={product.title} className="bs-image" loading="lazy" width="600" height="800" />
                     <button 
                       className="bs-wishlist-btn" 
+                      aria-label={isWished ? "Remove from wishlist" : "Add to wishlist"}
                       style={{ color: isWished ? 'var(--color-error)' : '' }}
                       onClick={(e) => { e.preventDefault(); toggleWishlist(product); }}
                     >
@@ -74,7 +75,7 @@ const BestSellers = () => {
             })}
           </div>
           
-          <button className="bs-nav-btn right" onClick={() => scroll('right')}>
+          <button className="bs-nav-btn right" aria-label="Scroll right" onClick={() => scroll('right')}>
             <ChevronRight size={24} />
           </button>
         </div>

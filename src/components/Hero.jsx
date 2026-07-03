@@ -49,6 +49,8 @@ const Hero = () => {
         loading="eager"
         fetchPriority="high"
         decoding="sync"
+        width="1200"
+        height="800"
       />
 
       {/* Layer 1: Sharp 3D Floating Model (Zoomed out on the right) */}
@@ -91,6 +93,8 @@ const Hero = () => {
           className="hero-main-image" 
           loading="eager"
           fetchPriority="high"
+          width="1200"
+          height="800"
         />
       </div>
       

@@ -18,7 +18,6 @@
 .campaign-banner {
   background: linear-gradient(90deg, #F8B400, #FFE066, #F8B400);
   background-size: 200% 100%;
-  animation: campaignShimmer 3s linear infinite;
   padding: 10px 20px;
   text-align: center;
   position: relative;

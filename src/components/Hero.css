@@ -22,7 +22,6 @@
   filter: blur(40px) brightness(0.4);
   z-index: 0;
   animation: bgPulse 15s infinite alternate ease-in-out;
-  transition: background-image 0.8s ease-in-out;
 }
 
 @keyframes bgPulse {
@@ -46,7 +45,6 @@
   
   /* Add subtle 3D floating effect */
   animation: floatSharp 8s infinite alternate ease-in-out;
-  transition: background-image 0.8s ease-in-out;
 }
 
 @keyframes floatSharp {

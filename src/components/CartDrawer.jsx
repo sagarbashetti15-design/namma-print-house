@@ -64,7 +64,7 @@ const CartDrawer = () => {
             <ShoppingBag size={20} />
             <span>Your Cart ({cartItems.reduce((acc, i) => acc + i.quantity, 0)})</span>
           </div>
-          <button className="cd-close-btn" onClick={closeCartDrawer}>
+          <button className="cd-close-btn" aria-label="Close cart" onClick={closeCartDrawer}>
             <X size={24} />
           </button>
         </div>
