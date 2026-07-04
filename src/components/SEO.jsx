@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ title, description, name, type, image, url, schema }) => {
+const SEO = ({ title, description, keywords, name, type, image, url, schema }) => {
   const siteName = "Namma Print House";
   
   return (
@@ -9,6 +9,7 @@ const SEO = ({ title, description, name, type, image, url, schema }) => {
       { /* Standard metadata tags */ }
       <title>{title}</title>
       <meta name='description' content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
       
       { /* Facebook tags */ }
       <meta property="og:type" content={type || 'website'} />

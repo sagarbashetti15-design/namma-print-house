@@ -22,6 +22,7 @@ const Home = () => {
       <SEO 
         title="Namma Print House | Premium Custom T-Shirts & Apparel"
         description="Shop premium oversized t-shirts, custom graphics, and matching couples apparel at Namma Print House. Fast delivery across India."
+        keywords="oversized t-shirt, oversized t-shirt men, oversized t-shirt women, oversized t-shirt under 500, oversized t-shirt for gym, oversized t-shirt for girls, oversized t-shirt cotton, oversized t-shirt full sleeve, oversized t-shirt combo, custom t-shirts, printed oversized tees india"
         type="website"
         schema={orgSchema}
       />
