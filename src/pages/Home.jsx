@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Hero from '../components/Hero';
 import CategoryCards from '../components/CategoryCards';
-import ProductGrid from '../components/ProductGrid';
-import WhyChooseUs from '../components/WhyChooseUs';
-import BestSellers from '../components/BestSellers';
-import CustomPrintBanner from '../components/CustomPrintBanner';
 import SEO from '../components/SEO';
+
+// Lazy load below-the-fold components
+const ProductGrid = lazy(() => import('../components/ProductGrid'));
+const WhyChooseUs = lazy(() => import('../components/WhyChooseUs'));
+const BestSellers = lazy(() => import('../components/BestSellers'));
+const CustomPrintBanner = lazy(() => import('../components/CustomPrintBanner'));
 
 const Home = () => {
   const orgSchema = {
@@ -25,10 +27,12 @@ const Home = () => {
       />
       <Hero />
       <CategoryCards />
-      <ProductGrid />
-      <WhyChooseUs />
-      <BestSellers />
-      <CustomPrintBanner />
+      <Suspense fallback={<div style={{ minHeight: '400px' }}></div>}>
+        <ProductGrid />
+        <WhyChooseUs />
+        <BestSellers />
+        <CustomPrintBanner />
+      </Suspense>
     </main>
   );
 };
