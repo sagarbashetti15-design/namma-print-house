@@ -4,6 +4,7 @@ import CategoryCards from '../components/CategoryCards';
 import SEO from '../components/SEO';
 
 // Lazy load below-the-fold components
+const FeaturedVideos = lazy(() => import('../components/FeaturedVideos'));
 const ProductGrid = lazy(() => import('../components/ProductGrid'));
 const WhyChooseUs = lazy(() => import('../components/WhyChooseUs'));
 const BestSellers = lazy(() => import('../components/BestSellers'));
@@ -29,6 +30,7 @@ const Home = () => {
       <Hero />
       <CategoryCards />
       <Suspense fallback={<div style={{ minHeight: '400px' }}></div>}>
+        <FeaturedVideos />
         <ProductGrid />
         <WhyChooseUs />
         <BestSellers />
