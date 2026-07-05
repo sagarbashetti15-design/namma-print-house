@@ -42,49 +42,46 @@
   display: block;
 }
 
-/* Premium Floating Audio Button */
+/* Premium Floating Audio Button - Small & Strategic */
 .audio-toggle-btn {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 25px;
+  right: 25px;
   z-index: 10;
-  background-color: rgba(26, 26, 26, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 2px solid var(--color-yellow);
-  color: var(--color-yellow);
-  border-radius: 50px;
-  padding: 15px 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(230, 57, 70, 0.2);
+  padding: 0;
 }
 
 .audio-toggle-btn:hover {
   background-color: var(--color-yellow);
   color: #1a1a1a;
-  transform: translate(-50%, -50%) scale(1.05);
+  transform: scale(1.1);
+  border-color: var(--color-yellow);
 }
 
 .audio-toggle-text {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  letter-spacing: 2px;
-  font-weight: 600;
+  display: none; /* Hide text, just show icon for a cleaner look */
 }
 
 @media (max-width: 767px) {
   .audio-toggle-btn {
-    top: auto;
     bottom: 20px;
-    transform: translateX(-50%);
+    right: 20px;
   }
   .audio-toggle-btn:hover {
-    transform: translateX(-50%) scale(1.05);
+    transform: scale(1.1);
   }
   .video-card {
     max-height: 60vh;
