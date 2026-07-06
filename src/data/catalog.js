@@ -27,10 +27,6 @@ const initialProducts = [
       "/images/dslr_men_hero_bg_1782596728590.png",
       "/images/men_graphic_new.png"
     ],
-    "colorImages": {
-      "Black": "/images/men_graphic_new.png",
-      "White": "/images/men_model_new.png"
-    },
     "sizes": [
       "XS",
       "S",
@@ -144,13 +140,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/m6-White_v6.jpg",
-      "Black": "/images/m6-Black_v6.jpg",
-      "Cream": "/images/m6-Cream_v6.jpg",
-      "Red": "/images/m6-Red_v6.jpg",
-      "Brown": "/images/m6-Brown_v6.jpg"
-    },
     "category": "men",
     "title": "Men's Abstract Face Black Oversized T-Shirt",
     "price": 699,
@@ -179,13 +168,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/m7-White_v6.jpg",
-      "Black": "/images/m7-Black_v6.jpg",
-      "Cream": "/images/m7-Cream_v6.jpg",
-      "Red": "/images/m7-Trending-Blue_v6.jpg",
-      "Brown": "/images/m7-Brown_v6.jpg"
-    },
     "category": "cultural",
     "title": "Men's Peaceful Buddha Oversized T-Shirt",
     "price": 699,
@@ -214,13 +196,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/m8-White_v6.jpg",
-      "Black": "/images/m8-Black_v6.jpg",
-      "Cream": "/images/m8-Cream_v6.jpg",
-      "Red": "/images/m8-Red_v6.jpg",
-      "Brown": "/images/m8-Brown_v6.jpg"
-    },
     "category": "men",
     "title": "Men's Chill Vibes Oversized T-Shirt",
     "price": 699,
@@ -270,13 +245,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/m11-White_v6.jpg",
-      "Black": "/images/m11-Black_v6.jpg",
-      "Cream": "/images/m11-Cream_v6.jpg",
-      "Red": "/images/m11-Red_v6.jpg",
-      "Brown": "/images/m11-Brown_v6.jpg"
-    },
     "category": "cultural",
     "title": "Men's Divine Gods Oversized T-Shirt",
     "price": 699,
@@ -305,13 +273,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/m12-White_v6.jpg",
-      "Black": "/images/m12-Black_v6.jpg",
-      "Cream": "/images/m12-Cream_v6.jpg",
-      "Red": "/images/m12-Red_v6.jpg",
-      "Brown": "/images/m12-Brown_v6.jpg"
-    },
     "category": "men",
     "title": "Men's One Day At A Time Off-White Oversized T-Shirt",
     "price": 699,
@@ -340,13 +301,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/m13-White_v6.jpg",
-      "Black": "/images/m13-Black_v6.jpg",
-      "Cream": "/images/m13-Cream_v6.jpg",
-      "Red": "/images/m13-Red_v6.jpg",
-      "Brown": "/images/m13-Brown_v6.jpg"
-    },
     "category": "men",
     "title": "Men's Chill Swing White Oversized T-Shirt",
     "price": 699,
@@ -572,13 +526,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/w11-White_v6.jpg",
-      "Black": "/images/w11-Black_v6.jpg",
-      "Cream": "/images/w11-Cream_v6.jpg",
-      "Red": "/images/w11-Red_v6.jpg",
-      "Brown": "/images/w11-Brown_v6.jpg"
-    },
     "category": "women",
     "title": "Women's Roll Model White Oversized T-Shirt",
     "price": 699,
@@ -607,13 +554,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/w12-White_v6.jpg",
-      "Black": "/images/w12-Black_v6.jpg",
-      "Cream": "/images/w12-Cream_v6.jpg",
-      "Red": "/images/w12-Red_v6.jpg",
-      "Brown": "/images/w12-Brown_v6.jpg"
-    },
     "category": "women",
     "title": "Women's One Day Off-White Oversized T-Shirt",
     "price": 699,
@@ -642,13 +582,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/w13-White_v6.jpg",
-      "Black": "/images/w13-Black_v6.jpg",
-      "Cream": "/images/w13-Cream_v6.jpg",
-      "Red": "/images/w13-Red_v6.jpg",
-      "Brown": "/images/w13-Brown_v6.jpg"
-    },
     "category": "women",
     "title": "Women's Ravaayat Punjab White Oversized T-Shirt",
     "price": 699,
@@ -677,13 +610,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/w14-White_v6.jpg",
-      "Black": "/images/w14-Black_v6.jpg",
-      "Cream": "/images/w14-Cream_v6.jpg",
-      "Red": "/images/w14-Red_v6.jpg",
-      "Brown": "/images/w14-Brown_v6.jpg"
-    },
     "category": "women",
     "title": "Women's Chill Black Oversized T-Shirt",
     "price": 699,
@@ -712,13 +638,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/w15-White_v6.jpg",
-      "Black": "/images/w15-Black_v6.jpg",
-      "Cream": "/images/w15-Cream_v6.jpg",
-      "Red": "/images/w15-Red_v6.jpg",
-      "Brown": "/images/w15-Brown_v6.jpg"
-    },
     "category": "women",
     "title": "Women's Mandala Pattern White Oversized T-Shirt",
     "price": 699,
@@ -768,13 +687,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/w17-White_v6.jpg",
-      "Black": "/images/w17-Black_v6.jpg",
-      "Cream": "/images/w17-Cream_v6.jpg",
-      "Red": "/images/w17-Red_v6.jpg",
-      "Brown": "/images/w17-Brown_v6.jpg"
-    },
     "category": "cultural",
     "title": "Women's Kathakali Black Oversized T-Shirt",
     "price": 699,
@@ -816,13 +728,6 @@ const initialProducts = [
       "Cream",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/model_men_white_front.jpg",
-      "Black": "/images/model_men_black_front.jpg",
-      "Red": "/images/model_men_red_front.jpg",
-      "Cream": "/images/model_men_cream_front.jpg",
-      "Brown": "/images/model_men_brown_front.jpg"
-    },
     "sizes": [
       "XS",
       "S",
@@ -842,12 +747,6 @@ const initialProducts = [
       "Cream",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp1-White_v6.jpg",
-      "Black": "/images/cp1-Black_v6.jpg",
-      "Cream": "/images/cp1-Cream_v6.jpg",
-      "Brown": "/images/cp1-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Meow Meow Matching T-Shirts",
     "price": 1299,
@@ -875,12 +774,6 @@ const initialProducts = [
       "Cream",
       "Brown"
     ],
-    "colorImages": {
-      "Black": "/images/cp2-Black_v6.jpg",
-      "White": "/images/cp2-White_v6.jpg",
-      "Cream": "/images/cp2-Beige_v6.jpg",
-      "Brown": "/images/cp2-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Sunset Cat Matching T-Shirts",
     "price": 1299,
@@ -908,12 +801,6 @@ const initialProducts = [
       "Cream",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp3-White_v6.jpg",
-      "Black": "/images/cp3-Black_v6.jpg",
-      "Cream": "/images/cp3-Beige_v6.jpg",
-      "Brown": "/images/cp3-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Cool Cat Matching T-Shirts",
     "price": 1299,
@@ -941,12 +828,6 @@ const initialProducts = [
       "Cream",
       "Brown"
     ],
-    "colorImages": {
-      "Black": "/images/cp4-Black_v6.jpg",
-      "White": "/images/cp4-White_v6.jpg",
-      "Cream": "/images/cp4-Beige_v6.jpg",
-      "Brown": "/images/cp4-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Plans With My Dog Matching T-Shirts",
     "price": 1299,
@@ -974,12 +855,6 @@ const initialProducts = [
       "Cream",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp5-White_v6.jpg",
-      "Black": "/images/cp5-Black_v6.jpg",
-      "Cream": "/images/cp5-Beige_v6.jpg",
-      "Brown": "/images/cp5-Charcoal_v6.jpg"
-    },
     "category": "couples",
     "title": "Bruh Dog Matching T-Shirts",
     "price": 1299,
@@ -1007,12 +882,6 @@ const initialProducts = [
       "Cream",
       "Brown"
     ],
-    "colorImages": {
-      "Black": "/images/cp6-Black_v6.jpg",
-      "White": "/images/cp6-White_v6.jpg",
-      "Cream": "/images/cp6-Beige_v6.jpg",
-      "Brown": "/images/cp6-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "My World Dog Matching T-Shirts",
     "price": 1299,
@@ -1061,12 +930,6 @@ const initialProducts = [
       "Cream",
       "Brown"
     ],
-    "colorImages": {
-      "Black": "/images/cp8-Black_v6.jpg",
-      "White": "/images/cp8-White_v6.jpg",
-      "Cream": "/images/cp8-Beige_v6.jpg",
-      "Brown": "/images/cp8-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Dog Paw Fist Bump Matching T-Shirts",
     "price": 1299,
@@ -1116,13 +979,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp10-White_v6.jpg",
-      "Black": "/images/cp10-Black_v6.jpg",
-      "Cream": "/images/cp10-Cream_v6.jpg",
-      "Red": "/images/cp10-Red_v6.jpg",
-      "Brown": "/images/cp10-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Krishna Radha White Matching T-Shirts",
     "price": 1299,
@@ -1151,13 +1007,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp11-White_v6.jpg",
-      "Black": "/images/cp11-Black_v6.jpg",
-      "Cream": "/images/cp11-Cream_v6.jpg",
-      "Red": "/images/cp11-Red_v6.jpg",
-      "Brown": "/images/cp11-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Trishul Om Black Matching T-Shirts",
     "price": 1299,
@@ -1186,13 +1035,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp12-White_v6.jpg",
-      "Black": "/images/cp12-Black_v6.jpg",
-      "Cream": "/images/cp12-Cream_v6.jpg",
-      "Red": "/images/cp12-Red_v6.jpg",
-      "Brown": "/images/cp12-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Royal Tradition Maroon Matching T-Shirts",
     "price": 1299,
@@ -1221,13 +1063,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp13-White_v6.jpg",
-      "Black": "/images/cp13-Black_v6.jpg",
-      "Cream": "/images/cp13-Cream_v6.jpg",
-      "Red": "/images/cp13-Red_v6.jpg",
-      "Brown": "/images/cp13-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Rustic Romance Beige Matching T-Shirts",
     "price": 1299,
@@ -1256,13 +1091,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp14-White_v6.jpg",
-      "Black": "/images/cp14-Black_v6.jpg",
-      "Cream": "/images/cp14-Cream_v6.jpg",
-      "Red": "/images/cp14-Red_v6.jpg",
-      "Brown": "/images/cp14-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Krishna Radha Black Matching T-Shirts",
     "price": 1299,
@@ -1312,13 +1140,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp16-White_v6.jpg",
-      "Black": "/images/cp16-Black_v6.jpg",
-      "Cream": "/images/cp16-Cream_v6.jpg",
-      "Red": "/images/cp16-Red_v6.jpg",
-      "Brown": "/images/cp16-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Mahadev Mahakali Brown Matching T-Shirts",
     "price": 1299,
@@ -1347,13 +1168,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp17-White_v6.jpg",
-      "Black": "/images/cp17-Black_v6.jpg",
-      "Cream": "/images/cp17-Cream_v6.jpg",
-      "Red": "/images/cp17-Red_v6.jpg",
-      "Brown": "/images/cp17-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Culture Soul White Matching T-Shirts",
     "price": 1299,
@@ -1382,13 +1196,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp18-White_v6.jpg",
-      "Black": "/images/cp18-Black_v6.jpg",
-      "Cream": "/images/cp18-Cream_v6.jpg",
-      "Red": "/images/cp18-Red_v6.jpg",
-      "Brown": "/images/cp18-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Balance Energy Navy Matching T-Shirts",
     "price": 1299,
@@ -1417,13 +1224,6 @@ const initialProducts = [
       "Red",
       "Brown"
     ],
-    "colorImages": {
-      "White": "/images/cp19-White_v6.jpg",
-      "Black": "/images/cp19-Black_v6.jpg",
-      "Cream": "/images/cp19-Cream_v6.jpg",
-      "Red": "/images/cp19-Red_v6.jpg",
-      "Brown": "/images/cp19-Brown_v6.jpg"
-    },
     "category": "couples",
     "title": "Rooted Traditions Beige Matching T-Shirts",
     "price": 1299,
@@ -1830,8 +1630,7 @@ const initialProducts = [
   }
 ];
 
+export const products = initialProducts;
 export const getProducts = () => {
   return initialProducts;
 };
-
-export const products = initialProducts;
