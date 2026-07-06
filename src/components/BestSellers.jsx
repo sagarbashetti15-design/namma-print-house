@@ -20,38 +20,37 @@ const BestSellers = () => {
 
   if (loading) return null;
 
-  const newArrivals = products.filter(p => p && !isNaN(Number(p.id))).slice(0, 8);
+  const newArrivals = products.slice(-8);
 
   const bestSellers = [
-    ...newArrivals,
-    // Men's favorites
-    products.find(p => p.id === 'm11'),
-    products.find(p => p.id === 'm3'),
-    // Women's favorites
-    products.find(p => p.id === 'w1'),
-    products.find(p => p.id === 'w11'),
-    // Couples matching
-    products.find(p => p.id === 'cp1'),
-    products.find(p => p.id === 'cp11'),
-    // Kannada collection
-    products.find(p => p.id === 'k2'),
-    products.find(p => p.id === 'k3')
+    // Pick 2 men's, 2 women's, 2 couples, 2 kannada/anime dynamically
+    ...products.filter(p => p.category === 'men').slice(0, 2),
+    ...products.filter(p => p.category === 'women').slice(0, 2),
+    ...products.filter(p => p.category === 'couples').slice(0, 2),
+    ...products.filter(p => p.category !== 'men' && p.category !== 'women' && p.category !== 'couples').slice(0, 2),
+    ...newArrivals.slice(0, 4)
   ].filter(Boolean);
 
+  // Remove duplicates
+  const uniqueBestSellers = [...new Map(bestSellers.map(item => [item.id, item])).values()];
+
   return (
-    <section className="bestsellers-section">
+    <section className="bestsellers-section" style={{ position: 'relative' }}>
       <div className="container">
-        <h2 className="section-heading text-center">
-          BEST <span>SELLERS</span>
-        </h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '30px' }}>
+          <h2 className="section-title" style={{ fontSize: '2rem', fontWeight: 'bold' }}>
+            BEST SELLERS
+            <span className="title-underline"></span>
+          </h2>
+        </div>
         
-        <div className="bestsellers-carousel-wrapper">
-          <button className="bs-nav-btn left" aria-label="Scroll left" onClick={() => scroll('left')}>
+        <div className="bestsellers-carousel-wrapper" style={{ position: 'relative' }}>
+          <button className="bs-nav-btn left" onClick={() => scroll('left')}>
             <ChevronLeft size={24} />
           </button>
           
           <div className="bestsellers-scroll-area" ref={scrollRef}>
-            {bestSellers.map(product => {
+            {uniqueBestSellers.map(product => {
               const isWished = isInWishlist(product.id);
               return (
                 <div key={product.id} className="bs-card">
