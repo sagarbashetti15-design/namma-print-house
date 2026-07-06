@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
+import { IoChevronBackOutline, IoChevronForwardOutline, IoHeartOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { useCatalog } from '../context/CatalogContext';
 import { useWishlist } from '../context/WishlistContext';
@@ -46,7 +46,7 @@ const BestSellers = () => {
         
         <div className="bestsellers-carousel-wrapper" style={{ position: 'relative' }}>
           <button className="bs-nav-btn left" onClick={() => scroll('left')}>
-            <ChevronLeft size={24} />
+            <IoChevronBackOutline size={24} />
           </button>
           
           <div className="bestsellers-scroll-area" ref={scrollRef}>
@@ -62,7 +62,7 @@ const BestSellers = () => {
                       style={{ color: isWished ? 'var(--color-error)' : '' }}
                       onClick={(e) => { e.preventDefault(); toggleWishlist(product); }}
                     >
-                      <Heart size={16} fill={isWished ? 'currentColor' : 'none'} />
+                      <IoHeartOutline size={16} fill={isWished ? 'currentColor' : 'none'} />
                     </button>
                   </Link>
                   <Link to={`/product/${product.id}`} className="bs-info">
@@ -75,7 +75,7 @@ const BestSellers = () => {
           </div>
           
           <button className="bs-nav-btn right" aria-label="Scroll right" onClick={() => scroll('right')}>
-            <ChevronRight size={24} />
+            <IoChevronForwardOutline size={24} />
           </button>
         </div>
       </div>

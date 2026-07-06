@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { IoCloseOutline } from 'react-icons/io5';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NewsletterModal = () => {
@@ -72,7 +72,7 @@ const NewsletterModal = () => {
                 cursor: 'pointer', zIndex: 10
               }}
             >
-              <X size={20} />
+              <IoCloseOutline size={20} />
             </button>
             
             <div style={{ padding: '40px', textAlign: 'center' }}>

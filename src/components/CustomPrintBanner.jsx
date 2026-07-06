@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check } from 'lucide-react';
+import { IoCheckmarkOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import './CustomPrintBanner.css';
 
@@ -16,27 +16,27 @@ const CustomPrintBanner = () => {
             
             <div className="cpb-features-grid">
               <div className="cpb-feature">
-                <Check size={18} className="text-yellow" />
+                <IoCheckmarkOutline size={18} className="text-yellow" />
                 <span>Photo Print</span>
               </div>
               <div className="cpb-feature">
-                <Check size={18} className="text-yellow" />
+                <IoCheckmarkOutline size={18} className="text-yellow" />
                 <span>Couple Print</span>
               </div>
               <div className="cpb-feature">
-                <Check size={18} className="text-yellow" />
+                <IoCheckmarkOutline size={18} className="text-yellow" />
                 <span>Name Print</span>
               </div>
               <div className="cpb-feature">
-                <Check size={18} className="text-yellow" />
+                <IoCheckmarkOutline size={18} className="text-yellow" />
                 <span>Company Orders</span>
               </div>
               <div className="cpb-feature">
-                <Check size={18} className="text-yellow" />
+                <IoCheckmarkOutline size={18} className="text-yellow" />
                 <span>Logo Print</span>
               </div>
               <div className="cpb-feature">
-                <Check size={18} className="text-yellow" />
+                <IoCheckmarkOutline size={18} className="text-yellow" />
                 <span>Bulk Orders</span>
               </div>
             </div>

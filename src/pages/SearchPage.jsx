@@ -2,7 +2,7 @@ import React from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { useCatalog } from '../context/CatalogContext';
 import { useWishlist } from '../context/WishlistContext';
-import { Heart } from 'lucide-react';
+import { IoHeartOutline } from 'react-icons/io5';
 import '../components/ProductGrid.css';
 
 const SearchPage = () => {
@@ -44,7 +44,7 @@ const SearchPage = () => {
                   style={{ position: 'absolute', top: 10, right: 10, zIndex: 10, color: isWished ? 'var(--color-error)' : '' }}
                   onClick={(e) => { e.preventDefault(); toggleWishlist(product); }}
                 >
-                  <Heart size={18} fill={isWished ? 'currentColor' : 'none'} />
+                  <IoHeartOutline size={18} fill={isWished ? 'currentColor' : 'none'} />
                 </button>
                 <Link to={`/product/${product.id}`} className="product-info">
                   <h3 className="product-brand">NAMMA PRINT HOUSE</h3>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { X } from 'lucide-react';
+import { IoCloseOutline } from 'react-icons/io5';
 import { useToast } from '../context/ToastContext';
 import { auth, googleProvider } from '../firebase';
 import { signInWithPopup } from 'firebase/auth';
@@ -50,7 +50,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}><X size={24} /></button>
+        <button className="modal-close" onClick={onClose}><IoCloseOutline size={24} /></button>
         
         <div className="modal-header">
           <h2>Welcome</h2>

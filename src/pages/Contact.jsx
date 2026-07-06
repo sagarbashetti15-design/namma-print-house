@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, ShieldCheck, Award, Heart } from 'lucide-react';
+import { IoMailOutline, IoCallOutline, IoLocationOutline, IoShieldCheckmarkOutline, IoRibbonOutline, IoHeartOutline } from 'react-icons/io5';
 import './Contact.css';
 
 const InstagramIcon = ({ size = 24 }) => (
@@ -45,7 +45,7 @@ const Contact = () => {
           <div className="contact-cards-container">
             <div className="contact-detail-card">
               <div className="card-icon-wrapper">
-                <Phone size={24} />
+                <IoCallOutline size={24} />
               </div>
               <div className="card-text-wrapper">
                 <h3>Phone Number</h3>
@@ -55,7 +55,7 @@ const Contact = () => {
 
             <div className="contact-detail-card">
               <div className="card-icon-wrapper">
-                <Mail size={24} />
+                <IoMailOutline size={24} />
               </div>
               <div className="card-text-wrapper">
                 <h3>Email Address</h3>
@@ -75,7 +75,7 @@ const Contact = () => {
 
             <div className="contact-detail-card">
               <div className="card-icon-wrapper">
-                <MapPin size={24} />
+                <IoLocationOutline size={24} />
               </div>
               <div className="card-text-wrapper">
                 <h3>Location</h3>
@@ -112,15 +112,15 @@ const Contact = () => {
 
           <div className="trust-values">
             <div className="value-item">
-              <Award size={20} className="text-yellow" />
+              <IoRibbonOutline size={20} className="text-yellow" />
               <span>Premium Quality</span>
             </div>
             <div className="value-item">
-              <Heart size={20} className="text-yellow" fill="currentColor" />
+              <IoHeartOutline size={20} className="text-yellow" fill="currentColor" />
               <span>Made For You</span>
             </div>
             <div className="value-item">
-              <ShieldCheck size={20} className="text-yellow" />
+              <IoShieldCheckmarkOutline size={20} className="text-yellow" />
               <span>Printed with Passion</span>
             </div>
           </div>

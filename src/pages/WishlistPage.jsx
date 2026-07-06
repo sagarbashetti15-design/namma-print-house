@@ -1,7 +1,7 @@
 import React from 'react';
 import { useWishlist } from '../context/WishlistContext';
 import { Link } from 'react-router-dom';
-import { Heart } from 'lucide-react';
+import { IoHeartOutline } from 'react-icons/io5';
 import '../components/ProductGrid.css';
 
 const WishlistPage = () => {
@@ -36,7 +36,7 @@ const WishlistPage = () => {
               style={{ position: 'absolute', top: 10, right: 10, zIndex: 10, color: 'var(--color-error)' }}
               onClick={(e) => { e.preventDefault(); toggleWishlist(product); }}
             >
-              <Heart size={18} fill="currentColor" />
+              <IoHeartOutline size={18} fill="currentColor" />
             </button>
             
             <Link to={`/product/${product.id}`} className="product-info">

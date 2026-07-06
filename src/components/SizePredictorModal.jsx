@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Ruler } from 'lucide-react';
+import { IoCloseOutline, IoOptionsOutline } from 'react-icons/io5';
 import './SizePredictorModal.css';
 
 const SizePredictorModal = ({ isOpen, onClose, onApplySize }) => {
@@ -59,11 +59,11 @@ const SizePredictorModal = ({ isOpen, onClose, onApplySize }) => {
       <div className="sp-modal" onClick={(e) => e.stopPropagation()}>
         <div className="sp-header">
           <div className="sp-title-group">
-            <Ruler size={20} className="sp-icon" />
+            <IoOptionsOutline size={20} className="sp-icon" />
             <h2>Find Your Perfect Fit</h2>
           </div>
           <button className="sp-close-btn" onClick={onClose}>
-            <X size={24} />
+            <IoCloseOutline size={24} />
           </button>
         </div>
 

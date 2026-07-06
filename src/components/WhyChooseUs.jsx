@@ -1,29 +1,29 @@
 import React from 'react';
-import { Cloud, PenTool, Truck, Users } from 'lucide-react';
+import { IoCloudOutline, IoCreateOutline, IoCarOutline, IoPeopleOutline } from 'react-icons/io5';
 import './WhyChooseUs.css';
 
 const features = [
   {
     id: 1,
-    icon: <Cloud size={40} className="wcu-icon" />,
+    icon: <IoCloudOutline size={40} className="wcu-icon" />,
     title: 'PREMIUM QUALITY',
     desc: '240 GSM Premium Cotton\nSuper Soft & Durable'
   },
   {
     id: 2,
-    icon: <PenTool size={40} className="wcu-icon" />,
+    icon: <IoCreateOutline size={40} className="wcu-icon" />,
     title: 'CUSTOM PRINTING',
     desc: 'Print Anything You Want\nNo Minimum Order'
   },
   {
     id: 3,
-    icon: <Truck size={40} className="wcu-icon" />,
+    icon: <IoCarOutline size={40} className="wcu-icon" />,
     title: 'FAST DELIVERY',
     desc: 'Pan India Delivery\n2-5 Working Days'
   },
   {
     id: 4,
-    icon: <Users size={40} className="wcu-icon" />,
+    icon: <IoPeopleOutline size={40} className="wcu-icon" />,
     title: 'BULK ORDERS',
     desc: 'Best for Schools, Events,\nCompanies & More'
   }

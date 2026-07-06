@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
 import './Hero.css';
 
 const slides = [
@@ -62,7 +62,7 @@ const Hero = () => {
       <div className="hero-overlay"></div>
       <div className="hero-content-wrapper">
         <button className="slider-arrow arrow-left" onClick={prevSlide}>
-          <ChevronLeft size={24} />
+          <IoChevronBackOutline size={24} />
         </button>
 
         <div className="hero-content">
@@ -82,7 +82,7 @@ const Hero = () => {
         </div>
         
         <button className="slider-arrow arrow-right" onClick={nextSlide}>
-          <ChevronRight size={24} />
+          <IoChevronForwardOutline size={24} />
         </button>
       </div>
 

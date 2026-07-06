@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import './TrendingCollections.css';
 
@@ -34,7 +34,7 @@ const TrendingCollections = () => {
         
         <div className="collection-carousel-wrapper">
           <button className="col-nav-btn left" onClick={() => scroll('left')}>
-            <ChevronLeft size={24} />
+            <IoChevronBackOutline size={24} />
           </button>
           
           <div className="collection-scroll-area" ref={scrollRef}>
@@ -49,7 +49,7 @@ const TrendingCollections = () => {
           </div>
           
           <button className="col-nav-btn right" onClick={() => scroll('right')}>
-            <ChevronRight size={24} />
+            <IoChevronForwardOutline size={24} />
           </button>
         </div>
       </div>

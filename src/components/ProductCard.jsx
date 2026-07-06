@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useCatalog } from '../context/CatalogContext';
-import { Heart, ShoppingBag } from 'lucide-react';
+import { IoHeartOutline, IoBagOutline } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
 import { useWishlist } from '../context/WishlistContext';
 import { useCart } from '../context/CartContext';
@@ -102,7 +102,7 @@ const ProductCard = ({ product }) => {
           showToast(!isWished ? 'Added to Wishlist' : 'Removed from Wishlist', 'info', product.image);
         }}
       >
-        <Heart size={18} fill={isWished ? 'currentColor' : 'none'} />
+        <IoHeartOutline size={18} fill={isWished ? 'currentColor' : 'none'} />
       </button>
 
       <div className="product-info">
@@ -164,7 +164,7 @@ const ProductCard = ({ product }) => {
             'OUT OF STOCK'
           ) : (
             <>
-              <ShoppingBag size={16} /> ADD TO CART
+              <IoBagOutline size={16} /> ADD TO CART
             </>
           )}
         </button>

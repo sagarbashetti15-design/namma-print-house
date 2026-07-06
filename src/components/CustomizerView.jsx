@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
-import { Upload, Trash2, Info, Move, Type, RotateCcw, Loader2 } from 'lucide-react';
+import { IoCloudUploadOutline, IoTrashOutline, IoInformationCircleOutline, IoMoveOutline, IoTextOutline, IoReloadOutline, IoSyncOutline } from 'react-icons/io5';
 import './CustomizerView.css';
 
 const CustomizerView = ({ product }) => {
@@ -307,7 +307,7 @@ const CustomizerView = ({ product }) => {
                       onTouchStart={(e) => handleDragStart(e, 'image')}
                     />
                     <div className="drag-handle-badge" title="Drag to reposition">
-                      <Move size={12} />
+                      <IoMoveOutline size={12} />
                     </div>
                   </div>
                 )}
@@ -328,7 +328,7 @@ const CustomizerView = ({ product }) => {
                   >
                     <span className="overlay-custom-text">{customText}</span>
                     <div className="drag-handle-badge text-badge" title="Drag to reposition">
-                      <Type size={12} />
+                      <IoTextOutline size={12} />
                     </div>
                   </div>
                 )}
@@ -342,7 +342,7 @@ const CustomizerView = ({ product }) => {
             </div>
 
             <div className="preview-instructions">
-              <Move size={14} /> Click & drag graphic/text elements directly on the shirt to position them.
+              <IoMoveOutline size={14} /> Click & drag graphic/text elements directly on the shirt to position them.
             </div>
           </div>
         </div>
@@ -359,7 +359,7 @@ const CustomizerView = ({ product }) => {
           {/* Action Row: Reset Workspace */}
           {(uploadedImage || customText) && (
             <button className="reset-ws-btn" onClick={resetWorkspace}>
-              <RotateCcw size={14} /> Reset Graphic Position & Scaling
+              <IoReloadOutline size={14} /> Reset Graphic Position & Scaling
             </button>
           )}
 
@@ -369,7 +369,7 @@ const CustomizerView = ({ product }) => {
               <h3>1. Graphic Design</h3>
               {uploadedImage && (
                 <button className="text-danger-btn" onClick={removeImage}>
-                  <Trash2 size={14} /> Remove Image
+                  <IoTrashOutline size={14} /> Remove Image
                 </button>
               )}
             </div>
@@ -385,9 +385,9 @@ const CustomizerView = ({ product }) => {
                   id="upload-design"
                 />
                 <label htmlFor="upload-design" className="upload-btn">
-                  <Upload size={18} /> Upload Logo / Graphic
+                  <IoCloudUploadOutline size={18} /> Upload Logo / Graphic
                 </label>
-                <p className="upload-hint"><Info size={12}/> High resolution transparent PNGs recommended.</p>
+                <p className="upload-hint"><IoInformationCircleOutline size={12}/> High resolution transparent PNGs recommended.</p>
               </div>
             ) : (
               <div className="scale-control-group">
@@ -553,7 +553,7 @@ const CustomizerView = ({ product }) => {
           
           {/* Section 5: Add to Cart */}
           <button className="add-to-cart-btn custom-cart-btn" onClick={handleAddToCart} disabled={isGenerating}>
-            {isGenerating ? <><Loader2 size={18} className="spin-icon" /> GENERATING PREVIEW...</> : `ADD TO BAG - ₹${product.price}`}
+            {isGenerating ? <><IoSyncOutline size={18} className="spin-icon" /> GENERATING PREVIEW...</> : `ADD TO BAG - ₹${product.price}`}
           </button>
           
         </div>

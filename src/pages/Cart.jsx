@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
-import { Trash2 } from 'lucide-react';
+import { IoTrashOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 
@@ -35,7 +35,7 @@ const Cart = () => {
                     <p className="cart-item-price">₹{item.customPrice !== null ? item.customPrice : item.product.price}</p>
                   </div>
                   <button className="remove-btn" onClick={() => removeFromCart(item.product.id, item.size)}>
-                    <Trash2 size={20} />
+                    <IoTrashOutline size={20} />
                   </button>
                 </div>
                 

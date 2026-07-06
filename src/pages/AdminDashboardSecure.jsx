@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, Database, LogOut } from 'lucide-react';
+import { IoCloseOutline, IoSendOutline, IoServerOutline, IoLogOutOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { useCatalog } from '../context/CatalogContext';
@@ -412,15 +412,15 @@ const AdminDashboardSecure = () => {
               <div className="sync-dashboard-layout" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <div className="sync-modal-header">
                   <div>
-                    <h3><Database size={20} /> Meta WhatsApp Catalog Sync Dashboard</h3>
+                    <h3><IoServerOutline size={20} /> Meta WhatsApp Catalog Sync Dashboard</h3>
                     <p>🟢 Authenticated as Admin • Simulates webhook data sync with the React storefront.</p>
                   </div>
                   <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                     <button className="admin-logout-btn" onClick={handleLogout} style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'none', border: '1px solid #ccc', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer', color: 'white' }}>
-                      <LogOut size={16} /> Sign out
+                      <IoLogOutOutline size={16} /> Sign out
                     </button>
                     <Link to="/" className="close-sync-modal" style={{ textDecoration: 'none' }}>
-                      <X size={24} />
+                      <IoCloseOutline size={24} />
                     </Link>
                   </div>
                 </div>
@@ -470,7 +470,7 @@ const AdminDashboardSecure = () => {
                     onChange={(e) => setInputText(e.target.value)}
                   />
                   <button type="submit" className="chat-send-btn">
-                    <Send size={18} />
+                    <IoSendOutline size={18} />
                   </button>
                 </form>
               </div>

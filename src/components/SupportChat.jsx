@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageSquare, X, User, Bot } from 'lucide-react';
+import { IoChatbubbleOutline, IoCloseOutline, IoPersonOutline, IoHardwareChipOutline } from 'react-icons/io5';
 import './SupportChat.css';
 
 const SupportChat = () => {
@@ -79,7 +79,7 @@ const SupportChat = () => {
         onClick={() => setIsOpen(!isOpen)}
         title="Customer Support Chat"
       >
-        {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+        {isOpen ? <IoCloseOutline size={24} /> : <IoChatbubbleOutline size={24} />}
       </button>
 
       {/* Chat Window Panel */}
@@ -94,7 +94,7 @@ const SupportChat = () => {
               </div>
             </div>
             <button className="close-chat-btn" onClick={() => setIsOpen(false)}>
-              <X size={18} />
+              <IoCloseOutline size={18} />
             </button>
           </div>
 
@@ -102,7 +102,7 @@ const SupportChat = () => {
             {messages.map(msg => (
               <div key={msg.id} className={`message-bubble-row ${msg.sender}`}>
                 <div className="message-icon">
-                  {msg.sender === 'bot' ? <Bot size={14} /> : <User size={14} />}
+                  {msg.sender === 'bot' ? <IoHardwareChipOutline size={14} /> : <IoPersonOutline size={14} />}
                 </div>
                 <div className="message-bubble-content">
                   <p>{msg.text}</p>
@@ -114,7 +114,7 @@ const SupportChat = () => {
             {isTyping && (
               <div className="message-bubble-row bot">
                 <div className="message-icon">
-                  <Bot size={14} />
+                  <IoHardwareChipOutline size={14} />
                 </div>
                 <div className="message-bubble-content typing-bubble">
                   <div className="typing-dots">

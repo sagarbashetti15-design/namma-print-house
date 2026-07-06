@@ -5,7 +5,7 @@ import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
 import SkeletonCard from '../components/SkeletonCard';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Filter } from 'lucide-react';
+import { IoFilterOutline } from 'react-icons/io5';
 import '../components/ProductGrid.css';
 
 const CategoryPage = () => {
@@ -69,7 +69,7 @@ const CategoryPage = () => {
           onClick={() => setIsFilterOpen(!isFilterOpen)}
           style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: '1px solid #ddd', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer' }}
         >
-          <Filter size={18} /> {isFilterOpen ? 'Hide Filters' : 'Filters'}
+          <IoFilterOutline size={18} /> {isFilterOpen ? 'Hide Filters' : 'Filters'}
         </button>
       </div>
 

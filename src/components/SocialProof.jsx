@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
 import './SocialProof.css';
 
 const instagramImages = [
@@ -37,7 +37,7 @@ const SocialProof = () => {
             </div>
             
             <div className="ig-grid-container">
-              <button className="sp-nav-btn left"><ChevronLeft size={20}/></button>
+              <button className="sp-nav-btn left"><IoChevronBackOutline size={20}/></button>
               <div className="ig-grid">
                 {instagramImages.map((img, idx) => (
                   <img key={idx} src={img} alt={`Customer ${idx}`} className="ig-image" />
@@ -59,7 +59,7 @@ const SocialProof = () => {
                   </div>
                 ))}
               </div>
-              <button className="sp-nav-btn right"><ChevronRight size={20}/></button>
+              <button className="sp-nav-btn right"><IoChevronForwardOutline size={20}/></button>
             </div>
           </div>
           

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Volume2, VolumeX } from 'lucide-react';
+import { IoVolumeHighOutline, IoVolumeMuteOutline } from 'react-icons/io5';
 import './FeaturedVideos.css';
 
 const FeaturedVideos = () => {
@@ -67,7 +67,7 @@ const FeaturedVideos = () => {
             onClick={toggleMute}
             aria-label="Toggle Audio"
           >
-            {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+            {isMuted ? <IoVolumeMuteOutline size={24} /> : <IoVolumeHighOutline size={24} />}
             <span className="audio-toggle-text">{isMuted ? "UNMUTE" : "MUTED"}</span>
           </button>
 

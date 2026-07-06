@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { useCatalog } from '../context/CatalogContext';
-import { X, Trash2, Minus, Plus, ShoppingBag, PlusCircle } from 'lucide-react';
+import { IoCloseOutline, IoTrashOutline, IoRemoveOutline, IoAddOutline, IoBagOutline, IoAddCircleOutline } from 'react-icons/io5';
 import './CartDrawer.css';
 
 const CartDrawer = () => {
@@ -61,18 +61,18 @@ const CartDrawer = () => {
       <div className={`cart-drawer ${isCartDrawerOpen ? 'open' : ''}`}>
         <div className="cart-drawer-header">
           <div className="cd-title">
-            <ShoppingBag size={20} />
+            <IoBagOutline size={20} />
             <span>Your Cart ({cartItems.reduce((acc, i) => acc + i.quantity, 0)})</span>
           </div>
           <button className="cd-close-btn" aria-label="Close cart" onClick={closeCartDrawer}>
-            <X size={24} />
+            <IoCloseOutline size={24} />
           </button>
         </div>
 
         <div className="cart-drawer-items">
           {cartItems.length === 0 ? (
             <div className="cd-empty-state">
-              <ShoppingBag size={48} className="cd-empty-icon" />
+              <IoBagOutline size={48} className="cd-empty-icon" />
               <h3>Your cart is empty</h3>
               <p>Add some premium oversized T-shirts to get started!</p>
               <button className="btn btn-navy" onClick={closeCartDrawer}>
@@ -98,13 +98,13 @@ const CartDrawer = () => {
                           onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}
                           disabled={item.quantity <= 1}
                         >
-                          <Minus size={14} />
+                          <IoRemoveOutline size={14} />
                         </button>
                         <span>{item.quantity}</span>
                         <button 
                           onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}
                         >
-                          <Plus size={14} />
+                          <IoAddOutline size={14} />
                         </button>
                       </div>
                       
@@ -117,7 +117,7 @@ const CartDrawer = () => {
                     onClick={() => removeFromCart(item.product.id, item.size)}
                     title="Remove item"
                   >
-                    <Trash2 size={16} />
+                    <IoTrashOutline size={16} />
                   </button>
                 </div>
               );
@@ -145,7 +145,7 @@ const CartDrawer = () => {
                       }}
                       title="Add size L to cart"
                     >
-                      <PlusCircle size={18} />
+                      <IoAddCircleOutline size={18} />
                     </button>
                   </div>
                 ))}

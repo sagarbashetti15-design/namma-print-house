@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useCatalog } from '../context/CatalogContext';
-import { Search, Heart, ShoppingBag, Menu, User, X, Sun, Moon, ChevronDown } from 'lucide-react';
+import { IoSearchOutline, IoHeartOutline, IoBagOutline, IoMenuOutline, IoPersonOutline, IoCloseOutline, IoSunnyOutline, IoMoonOutline, IoChevronDownOutline } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
@@ -184,7 +184,7 @@ const Header = () => {
           <div className="container header-container">
             <div className="header-left">
               <button className="mobile-menu-btn" aria-label="Open mobile menu" onClick={() => setIsMobileMenuOpen(true)}>
-                <Menu size={24} aria-hidden="true" />
+                <IoMenuOutline size={24} aria-hidden="true" />
               </button>
               <Link to="/" className="logo" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
                 <img src="/nph-logo.png" alt="Namma Print House" className="nav-logo-img" />
@@ -200,7 +200,7 @@ const Header = () => {
                 <Link to="/category/couples" className="nav-link">COUPLES</Link>
                 <div className="nav-dropdown">
                   <span className="nav-link dropdown-toggle" style={{ cursor: 'pointer' }}>
-                    COLLECTIONS <ChevronDown size={16} />
+                    COLLECTIONS <IoChevronDownOutline size={16} />
                   </span>
                   <div className="nav-dropdown-content">
                     <Link to="/category/movie" style={{ fontWeight: 600 }}>Movie</Link>
@@ -216,7 +216,7 @@ const Header = () => {
 
             <div className="header-right">
               <form className="search-bar" onSubmit={handleSearchSubmit} role="search">
-                <Search size={18} className="search-icon" aria-hidden="true" />
+                <IoSearchOutline size={18} className="search-icon" aria-hidden="true" />
                 <input 
                   type="text" 
                   placeholder="Search products..." 
@@ -228,16 +228,16 @@ const Header = () => {
               
               <div className="header-actions">
                 <button className="action-btn theme-toggle-btn" aria-label="Toggle dark mode" onClick={toggleTheme} title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-                  {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+                  {theme === 'light' ? <IoMoonOutline size={20} /> : <IoSunnyOutline size={20} />}
                   <span className="action-label">{theme === 'light' ? 'Dark' : 'Light'}</span>
                 </button>
                 <button className="action-btn" onClick={handleUserClick}>
-                  <User size={22} />
+                  <IoPersonOutline size={22} />
                   <span className="action-label">{isLoggedIn ? 'Profile' : 'Login'}</span>
                 </button>
-                <Link to="/wishlist" className="action-btn" aria-label="View Wishlist"><Heart size={22} aria-hidden="true" /></Link>
+                <Link to="/wishlist" className="action-btn" aria-label="View Wishlist"><IoHeartOutline size={22} aria-hidden="true" /></Link>
                 <button className="action-btn cart-btn" aria-label="View Cart" onClick={openCartDrawer} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-                  <ShoppingBag size={22} aria-hidden="true" />
+                  <IoBagOutline size={22} aria-hidden="true" />
                   {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
                 </button>
               </div>
@@ -254,7 +254,7 @@ const Header = () => {
               <span className="logo-text text-primary">Namma</span>
               <span className="logo-sub">Print House</span>
             </div>
-            <button className="close-btn" aria-label="Close mobile menu" onClick={() => setIsMobileMenuOpen(false)}><X size={24} aria-hidden="true" /></button>
+            <button className="close-btn" aria-label="Close mobile menu" onClick={() => setIsMobileMenuOpen(false)}><IoCloseOutline size={24} aria-hidden="true" /></button>
           </div>
           <nav className="mobile-nav">
             <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>HOME</Link>

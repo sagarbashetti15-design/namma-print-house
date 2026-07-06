@@ -8,7 +8,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
 import CustomizerView from '../components/CustomizerView';
 import SizePredictorModal from '../components/SizePredictorModal';
-import { Star, Heart, ShoppingBag, ShieldCheck, RefreshCcw, Truck, ChevronDown, ChevronUp, FileText, X, Ruler } from 'lucide-react';
+import { IoStarOutline, IoHeartOutline, IoBagOutline, IoShieldCheckmarkOutline, IoRefreshOutline, IoCarOutline, IoChevronDownOutline, IoChevronUpOutline, IoDocumentTextOutline, IoCloseOutline, IoOptionsOutline } from 'react-icons/io5';
 import SEO from '../components/SEO';
 import './ProductDetail.css';
 
@@ -273,7 +273,7 @@ const ProductDetail = () => {
           <h2 className="pdp-title">{product.title}</h2>
           
           <div className="pdp-rating-badge">
-            <Star size={14} fill="#F8B400" color="#F8B400" />
+            <IoStarOutline size={14} fill="#F8B400" color="#F8B400" />
             <span>4.5</span>
             <span className="count">| 540</span>
           </div>
@@ -366,7 +366,7 @@ const ProductDetail = () => {
               <h3>Select Size</h3>
               <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                 <span className="size-predictor-link" onClick={() => setIsSizePredictorOpen(true)} style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.85rem', color: '#f8b400', cursor: 'pointer', fontWeight: 600 }}>
-                  <Ruler size={14} /> Find your size
+                  <IoOptionsOutline size={14} /> Find your size
                 </span>
                 <span className="size-guide-link" onClick={() => setIsSizeGuideOpen(true)}>Size guide &gt;</span>
               </div>
@@ -441,7 +441,7 @@ const ProductDetail = () => {
               onClick={handleAddToCart}
               disabled={product.outOfStock}
             >
-              {product.outOfStock ? 'SOLD OUT' : <><ShoppingBag size={20} /> ADD TO BAG</>}
+              {product.outOfStock ? 'SOLD OUT' : <><IoBagOutline size={20} /> ADD TO BAG</>}
             </button>
             <button 
               className={`wishlist-icon-btn ${isWished ? 'wished' : ''}`}
@@ -450,7 +450,7 @@ const ProductDetail = () => {
                 showToast(!isWished ? 'Added to Wishlist' : 'Removed from Wishlist', 'info', product.image);
               }}
             >
-              <Heart size={24} fill={isWished ? 'currentColor' : 'none'} />
+              <IoHeartOutline size={24} fill={isWished ? 'currentColor' : 'none'} />
             </button>
           </div>
 
@@ -472,7 +472,7 @@ const ProductDetail = () => {
             )}
             <div className="pdp-trust-badges" style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', marginTop: '10px', borderTop: '1px solid rgba(13, 40, 80, 0.08)', paddingTop: '10px' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1, gap: '4px' }}>
-                <ShieldCheck size={20} style={{ color: '#51cccc' }} />
+                <IoShieldCheckmarkOutline size={20} style={{ color: '#51cccc' }} />
                 <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0d2850' }}>Secure Checkout</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1, gap: '4px' }}>
@@ -480,7 +480,7 @@ const ProductDetail = () => {
                 <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0d2850' }}>Premium Cotton</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1, gap: '4px' }}>
-                <RefreshCcw size={18} style={{ color: '#f8b400' }} />
+                <IoRefreshOutline size={18} style={{ color: '#f8b400' }} />
                 <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0d2850' }}>7-Day Returns</span>
               </div>
             </div>
@@ -520,7 +520,7 @@ const ProductDetail = () => {
             {deliveryStatus && deliveryStatus.startsWith('available:') && (
               <div style={{ marginTop: '12px', fontSize: '0.85rem', color: '#333' }}>
                 <p style={{ color: '#00b852', fontWeight: '600', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                  <Truck size={16} /> Delivery available to {deliveryStatus.split(':')[1]} ({pincode})
+                  <IoCarOutline size={16} /> Delivery available to {deliveryStatus.split(':')[1]} ({pincode})
                 </p>
                 <p style={{ color: '#737373' }}>We deliver PAN India! Expect delivery in 3-5 business days.</p>
               </div>
@@ -562,13 +562,13 @@ const ProductDetail = () => {
           <div className="pdp-accordion">
             <div className="accordion-header" onClick={() => toggleAccordion('desc')}>
               <div className="accordion-header-left">
-                <FileText size={20} color="#737373" />
+                <IoDocumentTextOutline size={20} color="#737373" />
                 <div>
                   <span>Product Description</span>
                   <small>Manufacture, Care and Fit</small>
                 </div>
               </div>
-              {openAccordion === 'desc' ? <ChevronUp size={20} color="#737373" /> : <ChevronDown size={20} color="#737373" />}
+              {openAccordion === 'desc' ? <IoChevronUpOutline size={20} color="#737373" /> : <IoChevronDownOutline size={20} color="#737373" />}
             </div>
             {openAccordion === 'desc' && (
               <div className="accordion-content">
@@ -602,13 +602,13 @@ const ProductDetail = () => {
           <div className="pdp-accordion">
             <div className="accordion-header" onClick={() => toggleAccordion('returns')}>
               <div className="accordion-header-left">
-                <RefreshCcw size={20} color="#737373" />
+                <IoRefreshOutline size={20} color="#737373" />
                 <div>
                   <span>15 Days Returns & Exchange</span>
                   <small>Know about return & exchange policy</small>
                 </div>
               </div>
-              {openAccordion === 'returns' ? <ChevronUp size={20} color="#737373" /> : <ChevronDown size={20} color="#737373" />}
+              {openAccordion === 'returns' ? <IoChevronUpOutline size={20} color="#737373" /> : <IoChevronDownOutline size={20} color="#737373" />}
             </div>
             {openAccordion === 'returns' && (
               <div className="accordion-content">
@@ -620,15 +620,15 @@ const ProductDetail = () => {
           {/* Trust Badges */}
           <div className="pdp-trust-badges">
             <div className="trust-badge">
-              <ShieldCheck size={28} color="#f8b400" />
+              <IoShieldCheckmarkOutline size={28} color="#f8b400" />
               <span>100% GENUINE PRODUCT</span>
             </div>
             <div className="trust-badge">
-              <ShieldCheck size={28} color="#f8b400" />
+              <IoShieldCheckmarkOutline size={28} color="#f8b400" />
               <span>100% SECURE PAYMENT</span>
             </div>
             <div className="trust-badge">
-              <RefreshCcw size={28} color="#f8b400" />
+              <IoRefreshOutline size={28} color="#f8b400" />
               <span>EASY RETURNS & EXCHANGES</span>
             </div>
           </div>
@@ -969,7 +969,7 @@ const ProductDetail = () => {
           <div className="size-guide-modal" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h3>Size Guide</h3>
-              <button className="close-btn" aria-label="Close size guide" onClick={() => setIsSizeGuideOpen(false)}><X size={20} aria-hidden="true" /></button>
+              <button className="close-btn" aria-label="Close size guide" onClick={() => setIsSizeGuideOpen(false)}><IoCloseOutline size={20} aria-hidden="true" /></button>
             </div>
             
             <div className="modal-product-info">
@@ -1096,7 +1096,7 @@ const ProductDetail = () => {
               cursor: 'pointer', display: 'flex', alignItems: 'center',
               justifyContent: 'center', padding: '5px'
             }}>
-              <X size={28} />
+              <IoCloseOutline size={28} />
             </button>
             <img 
               src={(product.colorImages && selectedColor && product.colorImages[selectedColor]) || product.images[activeImageIdx]} 
