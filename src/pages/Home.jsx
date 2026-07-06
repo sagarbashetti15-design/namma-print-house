@@ -11,7 +11,6 @@ const ProductGrid = lazy(() => import('../components/ProductGrid'));
 const WhyChooseUs = lazy(() => import('../components/WhyChooseUs'));
 const BestSellers = lazy(() => import('../components/BestSellers'));
 const CustomPrintBanner = lazy(() => import('../components/CustomPrintBanner'));
-const SocialProof = lazy(() => import('../components/SocialProof'));
 
 const Home = () => {
   const orgSchema = {
@@ -43,7 +42,6 @@ const Home = () => {
         <WhyChooseUs />
         <BestSellers />
         <CustomPrintBanner />
-        <SocialProof />
       </Suspense>
     </motion.main>
   );
