@@ -24,6 +24,7 @@ const FeaturedVideos = () => {
 
   // Intersection Observer to auto-mute when scrolled out of view
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -42,13 +43,13 @@ const FeaturedVideos = () => {
       { threshold: 0.3 } // Triggers when 30% of the video section is visible
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [userHasUnmuted]);

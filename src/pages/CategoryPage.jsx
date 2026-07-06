@@ -5,7 +5,7 @@ import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
 import SkeletonCard from '../components/SkeletonCard';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Filter, X } from 'lucide-react';
+import { Filter } from 'lucide-react';
 import '../components/ProductGrid.css';
 
 const CategoryPage = () => {

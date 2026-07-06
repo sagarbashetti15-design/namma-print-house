@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Database, LogOut } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useToast } from '../context/ToastContext';
 import { useCatalog } from '../context/CatalogContext';
 import { db } from '../firebase';
 import { doc, updateDoc, setDoc, collection, query, orderBy, onSnapshot } from 'firebase/firestore';
@@ -28,6 +30,7 @@ const AdminDashboardSecure = () => {
     }
   ]);
   const [inputText, setInputText] = useState('');
+  const { showToast } = useToast();
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('orders'); // 'catalog', 'marketing', or 'orders'
   const [orders, setOrders] = useState([]);
@@ -113,7 +116,7 @@ const AdminDashboardSecure = () => {
     if (!file) return;
     const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
     if (!validTypes.includes(file.type)) {
-      alert('Please upload a JPG, PNG, or WEBP image.');
+      showToast('Please upload a JPG, PNG, or WEBP image.');
       return;
     }
     
@@ -312,7 +315,7 @@ const AdminDashboardSecure = () => {
     
     const colorKeys = Object.keys(uploadedImages);
     if (colorKeys.length === 0) {
-      alert('Please upload at least one color mockup image.');
+      showToast('Please upload at least one color mockup image.');
       return;
     }
     
@@ -363,7 +366,7 @@ const AdminDashboardSecure = () => {
       } catch (error) {
         console.error("API/Storage error:", error);
         addMessage('system', `❌ *Sync Error:*\nFailed to add product to live database.`);
-        alert("⚠️ Failed to process product.");
+        showToast("⚠️ Failed to process product.");
       }
     }, 1200);
   };
@@ -416,9 +419,9 @@ const AdminDashboardSecure = () => {
                     <button className="admin-logout-btn" onClick={handleLogout} style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'none', border: '1px solid #ccc', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer', color: 'white' }}>
                       <LogOut size={16} /> Sign out
                     </button>
-                    <a href="/" className="close-sync-modal" style={{ textDecoration: 'none' }}>
+                    <Link to="/" className="close-sync-modal" style={{ textDecoration: 'none' }}>
                       <X size={24} />
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
@@ -558,7 +561,7 @@ const AdminDashboardSecure = () => {
                                           await updateDoc(doc(db, 'orders', order.docId), { status: step });
                                         } catch (error) {
                                           console.error("Error updating status:", error);
-                                          alert("Failed to update status. See console.");
+                                          showToast("Failed to update status. See console.");
                                         }
                                       }}
                                       style={{

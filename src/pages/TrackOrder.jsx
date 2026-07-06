@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { useToast } from '../context/ToastContext';
 import './InfoPage.css';
 
 const TrackOrder = () => {
@@ -8,6 +9,7 @@ const TrackOrder = () => {
   const [trackingResult, setTrackingResult] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
+  const { showToast } = useToast();
   const [activeQueryId, setActiveQueryId] = useState(null);
 
   useEffect(() => {
@@ -78,12 +80,12 @@ const TrackOrder = () => {
       }
     }, (error) => {
       console.error("Error tracking order:", error);
-      alert("Something went wrong while tracking your order. Please try again.");
+      showToast("Something went wrong while tracking your order. Please try again.", "error");
       setIsLoading(false);
     });
 
     return () => unsubscribe();
-  }, [activeQueryId]);
+  }, [activeQueryId, showToast]);
 
   const handleTrack = (e) => {
     e.preventDefault();
