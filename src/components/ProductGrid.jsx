@@ -9,10 +9,16 @@ const ProductGrid = () => {
   
   if (loading || !products) return null;
   
-  // Exclude test products and get a mix of 8 items
-  const displayProducts = products
-    .filter(p => p.id !== 'rzp_test_1')
-    .slice(0, 8); // Just take the first 8 mixed items from catalog
+  // Exclude test products
+  const validProducts = products.filter(p => p.id !== 'rzp_test_1');
+  
+  // Pick a mix of products from different categories
+  const menProducts = validProducts.filter(p => p.category === 'men').slice(0, 3);
+  const womenProducts = validProducts.filter(p => p.category === 'women').slice(0, 3);
+  const couplesProducts = validProducts.filter(p => p.category === 'couples').slice(0, 2);
+  
+  // Combine and optionally shuffle (or just interleave)
+  const displayProducts = [...menProducts, ...womenProducts, ...couplesProducts].sort(() => Math.random() - 0.5);
 
   return (
     <section className="product-section">
