@@ -6,9 +6,9 @@ const initialProducts = [
     "price": 20,
     "originalPrice": 20,
     "tag": "TEST",
-    "image": "/images/dslr_full_men_hero_1782625090319.png",
+    "image": "/images/dslr_full_men_hero_1782625090319.png?v=2",
     "images": [
-      "/images/dslr_full_men_hero_1782625090319.png"
+      "/images/dslr_full_men_hero_1782625090319.png?v=2"
     ],
     "sizes": [
       "XS"
@@ -22,10 +22,10 @@ const initialProducts = [
     "price": 20,
     "originalPrice": 1299,
     "tag": "BEST SELLER",
-    "image": "/images/dslr_men_hero_bg_1782596728590.png",
+    "image": "/images/dslr_men_hero_bg_1782596728590.png?v=2",
     "images": [
-      "/images/dslr_men_hero_bg_1782596728590.png",
-      "/images/men_graphic_new.png"
+      "/images/dslr_men_hero_bg_1782596728590.png?v=2",
+      "/images/men_graphic_new.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -45,11 +45,11 @@ const initialProducts = [
     "price": 20,
     "originalPrice": 1299,
     "tag": "TRENDING",
-    "image": "/images/dslr_perfect_men_hero_1782625798307.png",
+    "image": "/images/dslr_perfect_men_hero_1782625798307.png?v=2",
     "images": [
-      "/images/dslr_perfect_men_hero_1782625798307.png",
-      "/images/men-rcb-white-front.png",
-      "/images/men-rcb-white-back.png"
+      "/images/dslr_perfect_men_hero_1782625798307.png?v=2",
+      "/images/men-rcb-white-front.png?v=2",
+      "/images/men-rcb-white-back.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -72,10 +72,10 @@ const initialProducts = [
     "price": 20,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/cat_men_1782994663572.png",
+    "image": "/images/cat_men_1782994663572.png?v=2",
     "images": [
-      "/images/cat_men_1782994663572.png",
-      "/images/men-model-ducati-back.jpg"
+      "/images/cat_men_1782994663572.png?v=2",
+      "/images/men-model-ducati-back.jpg?v=2"
     ],
     "sizes": [
       "XS",
@@ -94,10 +94,10 @@ const initialProducts = [
     "price": 20,
     "originalPrice": 1299,
     "tag": "HOT",
-    "image": "/images/cat_men_graphic_1782994898287.png",
+    "image": "/images/cat_men_graphic_1782994898287.png?v=2",
     "images": [
-      "/images/cat_men_graphic_1782994898287.png",
-      "/images/men-bike-enfield.png"
+      "/images/cat_men_graphic_1782994898287.png?v=2",
+      "/images/men-bike-enfield.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -116,10 +116,10 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "TRENDING",
-    "image": "/images/dslr_full_men_hero_1782625090319.png",
+    "image": "/images/dslr_full_men_hero_1782625090319.png?v=2",
     "images": [
-      "/images/dslr_full_men_hero_1782625090319.png",
-      "/images/men-bike-bmw.png"
+      "/images/dslr_full_men_hero_1782625090319.png?v=2",
+      "/images/men-bike-bmw.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -145,9 +145,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/cat_men_1782994663572.png",
+    "image": "/images/cat_men_1782994663572.png?v=2",
     "images": [
-      "/images/cat_men_1782994663572.png"
+      "/images/cat_men_1782994663572.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -173,9 +173,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "TRENDING",
-    "image": "/images/dslr_perfect_men_hero_1782625798307.png",
+    "image": "/images/dslr_perfect_men_hero_1782625798307.png?v=2",
     "images": [
-      "/images/dslr_perfect_men_hero_1782625798307.png"
+      "/images/dslr_perfect_men_hero_1782625798307.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -201,9 +201,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "POPULAR",
-    "image": "/images/dslr_full_men_hero_1782625090319.png",
+    "image": "/images/dslr_full_men_hero_1782625090319.png?v=2",
     "images": [
-      "/images/dslr_full_men_hero_1782625090319.png"
+      "/images/dslr_full_men_hero_1782625090319.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -222,9 +222,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_unique_men_hero_1782622970266.png",
+    "image": "/images/dslr_unique_men_hero_1782622970266.png?v=2",
     "images": [
-      "/images/dslr_unique_men_hero_1782622970266.png"
+      "/images/dslr_unique_men_hero_1782622970266.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -250,9 +250,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "BEST SELLER",
-    "image": "/images/dslr_wide_men_hero_1782624596610.png",
+    "image": "/images/dslr_wide_men_hero_1782624596610.png?v=2",
     "images": [
-      "/images/dslr_wide_men_hero_1782624596610.png"
+      "/images/dslr_wide_men_hero_1782624596610.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -278,9 +278,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_right_men_hero_1782624165523.png",
+    "image": "/images/dslr_right_men_hero_1782624165523.png?v=2",
     "images": [
-      "/images/dslr_right_men_hero_1782624165523.png"
+      "/images/dslr_right_men_hero_1782624165523.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -306,9 +306,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "TRENDING",
-    "image": "/images/dslr_unique_men_hero_1782622970266.png",
+    "image": "/images/dslr_unique_men_hero_1782622970266.png?v=2",
     "images": [
-      "/images/dslr_unique_men_hero_1782622970266.png"
+      "/images/dslr_unique_men_hero_1782622970266.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -327,10 +327,10 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "BEST SELLER",
-    "image": "/images/dslr_full_women_happy_hero_1782625021735.png",
+    "image": "/images/dslr_full_women_happy_hero_1782625021735.png?v=2",
     "images": [
-      "/images/dslr_full_women_happy_hero_1782625021735.png",
-      "/images/oversized-tee-1.jpg"
+      "/images/dslr_full_women_happy_hero_1782625021735.png?v=2",
+      "/images/oversized-tee-1.jpg?v=2"
     ],
     "sizes": [
       "XS",
@@ -349,9 +349,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "TRENDING",
-    "image": "/images/dslr_full_women_hero_1782625123498.png",
+    "image": "/images/dslr_full_women_hero_1782625123498.png?v=2",
     "images": [
-      "/images/dslr_full_women_hero_1782625123498.png"
+      "/images/dslr_full_women_hero_1782625123498.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -370,10 +370,10 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW ARRIVAL",
-    "image": "/images/dslr_girl_hero_bg_1782596897448.png",
+    "image": "/images/dslr_girl_hero_bg_1782596897448.png?v=2",
     "images": [
-      "/images/dslr_girl_hero_bg_1782596897448.png",
-      "/images/oversized-tee-3.jpg"
+      "/images/dslr_girl_hero_bg_1782596897448.png?v=2",
+      "/images/oversized-tee-3.jpg?v=2"
     ],
     "sizes": [
       "XS",
@@ -392,10 +392,10 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "HOT",
-    "image": "/images/dslr_kendall_hero_bg_1782596999821.png",
+    "image": "/images/dslr_kendall_hero_bg_1782596999821.png?v=2",
     "images": [
-      "/images/dslr_kendall_hero_bg_1782596999821.png",
-      "/images/oversized-tee-4.jpg"
+      "/images/dslr_kendall_hero_bg_1782596999821.png?v=2",
+      "/images/oversized-tee-4.jpg?v=2"
     ],
     "sizes": [
       "XS",
@@ -414,10 +414,10 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_new_women_hero_1782622535422.png",
+    "image": "/images/dslr_new_women_hero_1782622535422.png?v=2",
     "images": [
-      "/images/dslr_new_women_hero_1782622535422.png",
-      "/images/oversized-tee-5.png"
+      "/images/dslr_new_women_hero_1782622535422.png?v=2",
+      "/images/oversized-tee-5.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -436,10 +436,10 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "CUTE",
-    "image": "/images/dslr_perfect_women_happy_hero_1782625731390.png",
+    "image": "/images/dslr_perfect_women_happy_hero_1782625731390.png?v=2",
     "images": [
-      "/images/dslr_perfect_women_happy_hero_1782625731390.png",
-      "/images/oversized-tee-6.png"
+      "/images/dslr_perfect_women_happy_hero_1782625731390.png?v=2",
+      "/images/oversized-tee-6.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -458,10 +458,10 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "TRENDING",
-    "image": "/images/dslr_right_women_happy_hero_1782624129514.png",
+    "image": "/images/dslr_right_women_happy_hero_1782624129514.png?v=2",
     "images": [
-      "/images/dslr_right_women_happy_hero_1782624129514.png",
-      "/images/oversized-tee-7.png"
+      "/images/dslr_right_women_happy_hero_1782624129514.png?v=2",
+      "/images/oversized-tee-7.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -480,10 +480,10 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "CLASSIC",
-    "image": "/images/dslr_full_men_hero_1782625090319.png",
+    "image": "/images/dslr_full_men_hero_1782625090319.png?v=2",
     "images": [
-      "/images/dslr_full_men_hero_1782625090319.png",
-      "/images/oversized-tee-8.jpg"
+      "/images/dslr_full_men_hero_1782625090319.png?v=2",
+      "/images/oversized-tee-8.jpg?v=2"
     ],
     "sizes": [
       "XS",
@@ -502,10 +502,10 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "VINTAGE",
-    "image": "/images/dslr_unique_girl_oversized_1782598993712.png",
+    "image": "/images/dslr_unique_girl_oversized_1782598993712.png?v=2",
     "images": [
-      "/images/dslr_unique_girl_oversized_1782598993712.png",
-      "/images/oversized-tee-9.png"
+      "/images/dslr_unique_girl_oversized_1782598993712.png?v=2",
+      "/images/oversized-tee-9.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -531,9 +531,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "TRENDING",
-    "image": "/images/dslr_women_happy_hero_bg_1782597287881.png",
+    "image": "/images/dslr_women_happy_hero_bg_1782597287881.png?v=2",
     "images": [
-      "/images/dslr_women_happy_hero_bg_1782597287881.png"
+      "/images/dslr_women_happy_hero_bg_1782597287881.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -559,9 +559,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "POPULAR",
-    "image": "/images/cat_women_1782994683790.png",
+    "image": "/images/cat_women_1782994683790.png?v=2",
     "images": [
-      "/images/cat_women_1782994683790.png"
+      "/images/cat_women_1782994683790.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -587,9 +587,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_full_women_happy_hero_1782625021735.png",
+    "image": "/images/dslr_full_women_happy_hero_1782625021735.png?v=2",
     "images": [
-      "/images/dslr_full_women_happy_hero_1782625021735.png"
+      "/images/dslr_full_women_happy_hero_1782625021735.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -615,9 +615,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "HOT",
-    "image": "/images/dslr_full_women_hero_1782625123498.png",
+    "image": "/images/dslr_full_women_hero_1782625123498.png?v=2",
     "images": [
-      "/images/dslr_full_women_hero_1782625123498.png"
+      "/images/dslr_full_women_hero_1782625123498.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -643,9 +643,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "BEST SELLER",
-    "image": "/images/dslr_girl_hero_bg_1782596897448.png",
+    "image": "/images/dslr_girl_hero_bg_1782596897448.png?v=2",
     "images": [
-      "/images/dslr_girl_hero_bg_1782596897448.png"
+      "/images/dslr_girl_hero_bg_1782596897448.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -664,9 +664,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "CLASSIC",
-    "image": "/images/dslr_kendall_hero_bg_1782596999821.png",
+    "image": "/images/dslr_kendall_hero_bg_1782596999821.png?v=2",
     "images": [
-      "/images/dslr_kendall_hero_bg_1782596999821.png"
+      "/images/dslr_kendall_hero_bg_1782596999821.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -692,9 +692,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW ARRIVAL",
-    "image": "/images/dslr_men_hero_bg_1782596728590.png",
+    "image": "/images/dslr_men_hero_bg_1782596728590.png?v=2",
     "images": [
-      "/images/dslr_men_hero_bg_1782596728590.png"
+      "/images/dslr_men_hero_bg_1782596728590.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -713,13 +713,13 @@ const initialProducts = [
     "price": 799,
     "originalPrice": 1499,
     "tag": "CUSTOM",
-    "image": "/images/dslr_perfect_men_hero_1782625798307.png",
+    "image": "/images/dslr_perfect_men_hero_1782625798307.png?v=2",
     "images": [
-      "/images/dslr_perfect_men_hero_1782625798307.png",
-      "/images/model_men_black_front.jpg",
-      "/images/model_men_red_front.jpg",
-      "/images/model_men_cream_front.jpg",
-      "/images/model_men_brown_front.jpg"
+      "/images/dslr_perfect_men_hero_1782625798307.png?v=2",
+      "/images/model_men_black_front.jpg?v=2",
+      "/images/model_men_red_front.jpg?v=2",
+      "/images/model_men_cream_front.jpg?v=2",
+      "/images/model_men_brown_front.jpg?v=2"
     ],
     "colors": [
       "White",
@@ -752,9 +752,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "BEST SELLER",
-    "image": "/images/dslr_couples_hero_bg_1782596616376.png",
+    "image": "/images/dslr_couples_hero_bg_1782596616376.png?v=2",
     "images": [
-      "/images/dslr_couples_hero_bg_1782596616376.png"
+      "/images/dslr_couples_hero_bg_1782596616376.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -779,9 +779,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "TRENDING",
-    "image": "/images/dslr_full_couples_hero_1782625062165.png",
+    "image": "/images/dslr_full_couples_hero_1782625062165.png?v=2",
     "images": [
-      "/images/dslr_full_couples_hero_1782625062165.png"
+      "/images/dslr_full_couples_hero_1782625062165.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -806,9 +806,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "NEW",
-    "image": "/images/dslr_perfect_couples_hero_1782625770118.png",
+    "image": "/images/dslr_perfect_couples_hero_1782625770118.png?v=2",
     "images": [
-      "/images/dslr_perfect_couples_hero_1782625770118.png"
+      "/images/dslr_perfect_couples_hero_1782625770118.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -833,9 +833,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "CUTE",
-    "image": "/images/dslr_hero_bg_1782596486969.png",
+    "image": "/images/dslr_hero_bg_1782596486969.png?v=2",
     "images": [
-      "/images/dslr_hero_bg_1782596486969.png"
+      "/images/dslr_hero_bg_1782596486969.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -860,9 +860,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "HOT",
-    "image": "/images/cat_couples_1782994706378.png",
+    "image": "/images/cat_couples_1782994706378.png?v=2",
     "images": [
-      "/images/cat_couples_1782994706378.png"
+      "/images/cat_couples_1782994706378.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -887,9 +887,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "COUPLES",
-    "image": "/images/dslr_couples_hero_bg_1782596616376.png",
+    "image": "/images/dslr_couples_hero_bg_1782596616376.png?v=2",
     "images": [
-      "/images/dslr_couples_hero_bg_1782596616376.png"
+      "/images/dslr_couples_hero_bg_1782596616376.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -908,9 +908,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "NEW",
-    "image": "/images/dslr_right_men_hero_1782624165523.png",
+    "image": "/images/dslr_right_men_hero_1782624165523.png?v=2",
     "images": [
-      "/images/dslr_right_men_hero_1782624165523.png"
+      "/images/dslr_right_men_hero_1782624165523.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -935,9 +935,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "COUPLES",
-    "image": "/images/dslr_full_couples_hero_1782625062165.png",
+    "image": "/images/dslr_full_couples_hero_1782625062165.png?v=2",
     "images": [
-      "/images/dslr_full_couples_hero_1782625062165.png"
+      "/images/dslr_full_couples_hero_1782625062165.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -956,9 +956,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "HOT",
-    "image": "/images/dslr_unique_men_hero_1782622970266.png",
+    "image": "/images/dslr_unique_men_hero_1782622970266.png?v=2",
     "images": [
-      "/images/dslr_unique_men_hero_1782622970266.png"
+      "/images/dslr_unique_men_hero_1782622970266.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -984,9 +984,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "COUPLES",
-    "image": "/images/dslr_perfect_couples_hero_1782625770118.png",
+    "image": "/images/dslr_perfect_couples_hero_1782625770118.png?v=2",
     "images": [
-      "/images/dslr_perfect_couples_hero_1782625770118.png"
+      "/images/dslr_perfect_couples_hero_1782625770118.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1012,9 +1012,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "BEST SELLER",
-    "image": "/images/dslr_hero_bg_1782596486969.png",
+    "image": "/images/dslr_hero_bg_1782596486969.png?v=2",
     "images": [
-      "/images/dslr_hero_bg_1782596486969.png"
+      "/images/dslr_hero_bg_1782596486969.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1040,9 +1040,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "COUPLES",
-    "image": "/images/cat_couples_1782994706378.png",
+    "image": "/images/cat_couples_1782994706378.png?v=2",
     "images": [
-      "/images/cat_couples_1782994706378.png"
+      "/images/cat_couples_1782994706378.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1068,9 +1068,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "NEW",
-    "image": "/images/dslr_couples_hero_bg_1782596616376.png",
+    "image": "/images/dslr_couples_hero_bg_1782596616376.png?v=2",
     "images": [
-      "/images/dslr_couples_hero_bg_1782596616376.png"
+      "/images/dslr_couples_hero_bg_1782596616376.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1096,9 +1096,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "TRENDING",
-    "image": "/images/dslr_full_couples_hero_1782625062165.png",
+    "image": "/images/dslr_full_couples_hero_1782625062165.png?v=2",
     "images": [
-      "/images/dslr_full_couples_hero_1782625062165.png"
+      "/images/dslr_full_couples_hero_1782625062165.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1117,9 +1117,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "POPULAR",
-    "image": "/images/dslr_wide_men_hero_1782624596610.png",
+    "image": "/images/dslr_wide_men_hero_1782624596610.png?v=2",
     "images": [
-      "/images/dslr_wide_men_hero_1782624596610.png"
+      "/images/dslr_wide_men_hero_1782624596610.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1145,9 +1145,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "COUPLES",
-    "image": "/images/dslr_perfect_couples_hero_1782625770118.png",
+    "image": "/images/dslr_perfect_couples_hero_1782625770118.png?v=2",
     "images": [
-      "/images/dslr_perfect_couples_hero_1782625770118.png"
+      "/images/dslr_perfect_couples_hero_1782625770118.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1173,9 +1173,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "NEW",
-    "image": "/images/dslr_hero_bg_1782596486969.png",
+    "image": "/images/dslr_hero_bg_1782596486969.png?v=2",
     "images": [
-      "/images/dslr_hero_bg_1782596486969.png"
+      "/images/dslr_hero_bg_1782596486969.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1201,9 +1201,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "COUPLES",
-    "image": "/images/cat_couples_1782994706378.png",
+    "image": "/images/cat_couples_1782994706378.png?v=2",
     "images": [
-      "/images/cat_couples_1782994706378.png"
+      "/images/cat_couples_1782994706378.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1229,9 +1229,9 @@ const initialProducts = [
     "price": 1299,
     "originalPrice": 2499,
     "tag": "HOT",
-    "image": "/images/dslr_couples_hero_bg_1782596616376.png",
+    "image": "/images/dslr_couples_hero_bg_1782596616376.png?v=2",
     "images": [
-      "/images/dslr_couples_hero_bg_1782596616376.png"
+      "/images/dslr_couples_hero_bg_1782596616376.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1250,9 +1250,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/cat_men_1782994663572.png",
+    "image": "/images/cat_men_1782994663572.png?v=2",
     "images": [
-      "/images/cat_men_1782994663572.png"
+      "/images/cat_men_1782994663572.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1271,9 +1271,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "TRENDING",
-    "image": "/images/cat_men_graphic_1782994898287.png",
+    "image": "/images/cat_men_graphic_1782994898287.png?v=2",
     "images": [
-      "/images/cat_men_graphic_1782994898287.png"
+      "/images/cat_men_graphic_1782994898287.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1292,9 +1292,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "POPULAR",
-    "image": "/images/dslr_full_men_hero_1782625090319.png",
+    "image": "/images/dslr_full_men_hero_1782625090319.png?v=2",
     "images": [
-      "/images/dslr_full_men_hero_1782625090319.png"
+      "/images/dslr_full_men_hero_1782625090319.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1313,9 +1313,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "CLASSIC",
-    "image": "/images/dslr_men_hero_bg_1782596728590.png",
+    "image": "/images/dslr_men_hero_bg_1782596728590.png?v=2",
     "images": [
-      "/images/dslr_men_hero_bg_1782596728590.png"
+      "/images/dslr_men_hero_bg_1782596728590.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1334,9 +1334,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_perfect_men_hero_1782625798307.png",
+    "image": "/images/dslr_perfect_men_hero_1782625798307.png?v=2",
     "images": [
-      "/images/dslr_perfect_men_hero_1782625798307.png"
+      "/images/dslr_perfect_men_hero_1782625798307.png?v=2"
     ],
     "sizes": [
       "XS",
@@ -1355,9 +1355,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_full_men_hero_1782625090319.png",
+    "image": "/images/dslr_full_men_hero_1782625090319.png?v=2",
     "images": [
-      "/images/dslr_full_men_hero_1782625090319.png"
+      "/images/dslr_full_men_hero_1782625090319.png?v=2"
     ],
     "colors": [
       "Black",
@@ -1383,9 +1383,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_new_women_hero_1782622535422.png",
+    "image": "/images/dslr_new_women_hero_1782622535422.png?v=2",
     "images": [
-      "/images/dslr_new_women_hero_1782622535422.png"
+      "/images/dslr_new_women_hero_1782622535422.png?v=2"
     ],
     "colors": [
       "Black",
@@ -1411,9 +1411,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_men_hero_bg_1782596728590.png",
+    "image": "/images/dslr_men_hero_bg_1782596728590.png?v=2",
     "images": [
-      "/images/dslr_men_hero_bg_1782596728590.png"
+      "/images/dslr_men_hero_bg_1782596728590.png?v=2"
     ],
     "colors": [
       "Black",
@@ -1439,9 +1439,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_perfect_women_happy_hero_1782625731390.png",
+    "image": "/images/dslr_perfect_women_happy_hero_1782625731390.png?v=2",
     "images": [
-      "/images/dslr_perfect_women_happy_hero_1782625731390.png"
+      "/images/dslr_perfect_women_happy_hero_1782625731390.png?v=2"
     ],
     "colors": [
       "Black",
@@ -1467,9 +1467,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_perfect_men_hero_1782625798307.png",
+    "image": "/images/dslr_perfect_men_hero_1782625798307.png?v=2",
     "images": [
-      "/images/dslr_perfect_men_hero_1782625798307.png"
+      "/images/dslr_perfect_men_hero_1782625798307.png?v=2"
     ],
     "colors": [
       "Black",
@@ -1495,9 +1495,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_right_women_happy_hero_1782624129514.png",
+    "image": "/images/dslr_right_women_happy_hero_1782624129514.png?v=2",
     "images": [
-      "/images/dslr_right_women_happy_hero_1782624129514.png"
+      "/images/dslr_right_women_happy_hero_1782624129514.png?v=2"
     ],
     "colors": [
       "Black",
@@ -1523,9 +1523,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_right_men_hero_1782624165523.png",
+    "image": "/images/dslr_right_men_hero_1782624165523.png?v=2",
     "images": [
-      "/images/dslr_right_men_hero_1782624165523.png"
+      "/images/dslr_right_men_hero_1782624165523.png?v=2"
     ],
     "colors": [
       "Black",
@@ -1551,9 +1551,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_unique_girl_oversized_1782598993712.png",
+    "image": "/images/dslr_unique_girl_oversized_1782598993712.png?v=2",
     "images": [
-      "/images/dslr_unique_girl_oversized_1782598993712.png"
+      "/images/dslr_unique_girl_oversized_1782598993712.png?v=2"
     ],
     "colors": [
       "Black",
@@ -1579,9 +1579,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_unique_men_hero_1782622970266.png",
+    "image": "/images/dslr_unique_men_hero_1782622970266.png?v=2",
     "images": [
-      "/images/dslr_unique_men_hero_1782622970266.png"
+      "/images/dslr_unique_men_hero_1782622970266.png?v=2"
     ],
     "colors": [
       "Black",
@@ -1607,9 +1607,9 @@ const initialProducts = [
     "price": 699,
     "originalPrice": 1299,
     "tag": "NEW",
-    "image": "/images/dslr_women_happy_hero_bg_1782597287881.png",
+    "image": "/images/dslr_women_happy_hero_bg_1782597287881.png?v=2",
     "images": [
-      "/images/dslr_women_happy_hero_bg_1782597287881.png"
+      "/images/dslr_women_happy_hero_bg_1782597287881.png?v=2"
     ],
     "colors": [
       "Black",
