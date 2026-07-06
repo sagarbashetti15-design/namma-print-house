@@ -2,8 +2,6 @@ import React, { Suspense, lazy } from 'react';
 import Hero from '../components/Hero';
 import SEO from '../components/SEO';
 
-import { motion } from 'framer-motion';
-
 // Lazy load below-the-fold components
 const FeaturedVideos = lazy(() => import('../components/FeaturedVideos'));
 const ProductGrid = lazy(() => import('../components/ProductGrid'));
@@ -20,12 +18,7 @@ const Home = () => {
     "logo": "https://nammaprinthouse.com/logo.png"
   };
   return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <main>
       <SEO 
         title="Namma Print House | Premium Custom T-Shirts & Apparel"
         description="Shop premium oversized t-shirts, custom graphics, and matching couples apparel at Namma Print House. Fast delivery across India."
@@ -41,7 +34,7 @@ const Home = () => {
         <BestSellers />
         <CustomPrintBanner />
       </Suspense>
-    </motion.main>
+    </main>
   );
 };
 
