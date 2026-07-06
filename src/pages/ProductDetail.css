@@ -1,6 +1,6 @@
 .pdp-wrapper {
   background-color: var(--color-background-secondary);
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .pdp-container {
@@ -1054,7 +1054,7 @@ body.dark-theme .review-fit-tag {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-color: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;

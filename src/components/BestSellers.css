@@ -120,3 +120,6 @@
 .bs-nav-btn.right {
   right: -10px;
 }
+
+.bestsellers-scroll-area { scroll-snap-type: x mandatory; }
+.bs-card { scroll-snap-align: start; }
