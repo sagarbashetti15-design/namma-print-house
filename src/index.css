@@ -122,38 +122,3 @@ button {
     margin: 8px; /* Instead of min-width 48px which breaks aspect, just add spacing so clickable area effectively increases */
   }
 }
-/* Mobile Safari Touch Fixes */
-@media (hover: none) {
-  .product-card:hover {
-    transform: none !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
-  }
-  .product-card:hover .product-image {
-    transform: none !important;
-  }
-  .product-card:hover .secondary {
-    opacity: 0 !important;
-  }
-  .product-card:hover .primary {
-    opacity: 1 !important;
-  }
-}
-
-/* Hide redundant top nav icons on mobile because of BottomNav */
-@media (max-width: 768px) {
-  .header-actions .cart-btn,
-  .header-actions .action-btn:nth-child(2), /* Profile */
-  .header-actions .action-btn:nth-child(3) /* Wishlist */ {
-    display: none !important;
-  }
-}
-
-/* Scroll snapping for horizontal lists */
-@media (max-width: 768px) {
-  .bestsellers-scroll-area, .trending-grid {
-    scroll-snap-type: x mandatory;
-  }
-  .bs-card, .trending-item {
-    scroll-snap-align: start;
-  }
-}

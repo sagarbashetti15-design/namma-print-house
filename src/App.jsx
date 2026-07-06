@@ -4,7 +4,6 @@ import SEO from './components/SEO'
 import { CartProvider } from './context/CartContext'
 
 import Header from './components/Header'
-import BottomNav from './components/BottomNav'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import ScrollToTop from './components/ScrollToTop'
@@ -49,7 +48,6 @@ const AppContent = () => {
         description="Shop premium oversized t-shirts, custom graphics, and matching couples apparel."
       />
       {!isAdmin && <Header />}
-      {!isAdmin && <BottomNav />}
       {!isAdmin && <NewsletterModal />}
       <main style={{ minHeight: isAdmin ? '100vh' : '60vh' }}>
         <AnimatePresence mode="wait">

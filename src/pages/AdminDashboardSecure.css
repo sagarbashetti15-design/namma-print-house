@@ -7,7 +7,7 @@
   justify-content: center;
   width: 100%;
   flex: 1;
-  min-height: 100dvh;
+  min-height: 100vh;
   background: linear-gradient(135deg, #0d2850 0%, #075E54 100%);
 }
 
@@ -203,7 +203,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100dvh;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
   z-index: 9999;
