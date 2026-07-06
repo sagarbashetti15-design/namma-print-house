@@ -48,7 +48,7 @@ const CategoryCards = () => {
           {categories.map((cat) => (
             <Link to={cat.link} key={cat.id} className="cat-card-wrapper">
               <div className="cat-card">
-                <img src={cat.image} alt={cat.title} className="cat-image" loading="lazy" width="600" height="800" />
+                <img src={cat.image} alt={cat.title} className="cat-image" loading="lazy" />
                 <div className="cat-overlay"></div>
                 
                 <div className="cat-content">

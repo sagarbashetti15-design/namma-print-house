@@ -56,7 +56,7 @@ const BestSellers = () => {
               return (
                 <div key={product.id} className="bs-card">
                   <Link to={`/product/${product.id}`} className="bs-image-wrap">
-                    <img src={product.image} alt={product.title} className="bs-image" loading="lazy" width="600" height="800" />
+                    <img src={product.image} alt={product.title} className="bs-image" loading="lazy" />
                     <button 
                       className="bs-wishlist-btn" 
                       aria-label={isWished ? "Remove from wishlist" : "Add to wishlist"}
