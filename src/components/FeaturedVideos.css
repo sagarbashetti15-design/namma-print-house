@@ -84,6 +84,6 @@
     transform: scale(1.1);
   }
   .video-card {
-    /* max-height: 60vh removed to preserve 9:16 aspect ratio */
+    max-height: 60vh;
   }
 }

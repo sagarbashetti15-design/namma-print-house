@@ -8,21 +8,21 @@ const categories = [
     title: 'MEN',
     btnText: 'SHOP NOW',
     link: '/category/men',
-    image: '/images/cat_men_graphic.png'
+    image: '/images/cat_men_graphic.jpg'
   },
   {
     id: 2,
     title: 'WOMEN',
     btnText: 'SHOP NOW',
     link: '/category/women',
-    image: '/images/cat_women.png'
+    image: '/images/cat_women.jpg'
   },
   {
     id: 3,
     title: 'COUPLES',
     btnText: 'SHOP NOW',
     link: '/category/couples',
-    image: '/images/cat_couples.png'
+    image: '/images/cat_couples.jpg'
   },
   {
     id: 4,
