@@ -3,12 +3,15 @@ import Hero from '../components/Hero';
 import CategoryCards from '../components/CategoryCards';
 import SEO from '../components/SEO';
 
+import { motion } from 'framer-motion';
+
 // Lazy load below-the-fold components
 const FeaturedVideos = lazy(() => import('../components/FeaturedVideos'));
 const ProductGrid = lazy(() => import('../components/ProductGrid'));
 const WhyChooseUs = lazy(() => import('../components/WhyChooseUs'));
 const BestSellers = lazy(() => import('../components/BestSellers'));
 const CustomPrintBanner = lazy(() => import('../components/CustomPrintBanner'));
+const SocialProof = lazy(() => import('../components/SocialProof'));
 
 const Home = () => {
   const orgSchema = {
@@ -19,7 +22,12 @@ const Home = () => {
     "logo": "https://nammaprinthouse.com/logo.png"
   };
   return (
-    <main>
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <SEO 
         title="Namma Print House | Premium Custom T-Shirts & Apparel"
         description="Shop premium oversized t-shirts, custom graphics, and matching couples apparel at Namma Print House. Fast delivery across India."
@@ -35,8 +43,9 @@ const Home = () => {
         <WhyChooseUs />
         <BestSellers />
         <CustomPrintBanner />
+        <SocialProof />
       </Suspense>
-    </main>
+    </motion.main>
   );
 };
 

@@ -34,6 +34,9 @@ const TrackOrder = lazy(() => import('./pages/TrackOrder'))
 const AdminDashboardSecure = lazy(() => import('./pages/AdminDashboardSecure'))
 const Sitemap = lazy(() => import('./pages/Sitemap'))
 
+import { AnimatePresence } from 'framer-motion';
+import NewsletterModal from './components/NewsletterModal';
+
 const AppContent = () => {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
@@ -45,9 +48,11 @@ const AppContent = () => {
         description="Shop premium oversized t-shirts, custom graphics, and matching couples apparel."
       />
       {!isAdmin && <Header />}
+      {!isAdmin && <NewsletterModal />}
       <main style={{ minHeight: isAdmin ? '100vh' : '60vh' }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
           <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route path="/product/:productId" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
@@ -68,7 +73,9 @@ const AppContent = () => {
           <Route path="/admin" element={<AdminDashboardSecure />} />
           <Route path="/admin-secure-portal" element={<AdminDashboardSecure />} />
           <Route path="/sitemap" element={<Sitemap />} />
-        </Routes>
+          <Route path="*" element={<div style={{ textAlign: 'center', padding: '100px 20px' }}><h2>404 - Page Not Found</h2><p>The page you are looking for does not exist.</p></div>} />
+          </Routes>
+        </AnimatePresence>
       </main>
       {!isAdmin && <Footer />}
       {!isAdmin && <WhatsAppButton />}
