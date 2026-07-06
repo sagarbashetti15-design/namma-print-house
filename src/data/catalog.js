@@ -7,8 +7,8 @@ const initialProducts = [
     price: 20,
     originalPrice: 20,
     tag: "TEST",
-    image: "/images/men_model_new.png?v=3",
-    images: ["/images/men_model_new.png?v=3"],
+    image: "/images/men_model_new.jpg?v=3",
+    images: ["/images/men_model_new.jpg?v=3"],
     sizes: ['XS'],
     description: "Test product for verifying Razorpay checkout.",
   },
@@ -20,11 +20,11 @@ const initialProducts = [
     price: 20,
     originalPrice: 1299,
     tag: "BEST SELLER",
-    image: "/images/men_model_new.png?v=3",
-    images: ["/images/men_model_new.png?v=3", "/images/men_graphic_new.png?v=3"],
+    image: "/images/men_model_new.jpg?v=3",
+    images: ["/images/men_model_new.jpg?v=3", "/images/men_graphic_new.jpg?v=3"],
     colorImages: {
-      Black: "/images/men_graphic_new.png?v=3",
-      White: "/images/men_model_new.png?v=3"
+      Black: "/images/men_graphic_new.jpg?v=3",
+      White: "/images/men_model_new.jpg?v=3"
     },
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with gold RCB logo and 'Be bold' back print. 100% Cotton.",
@@ -233,8 +233,8 @@ const initialProducts = [
     price: 699,
     originalPrice: 1299,
     tag: "TRENDING",
-    image: "/images/women_model_new.png?v=3",
-    images: ["/images/women_model_new.png?v=3"],
+    image: "/images/women_model_new.jpg?v=3",
+    images: ["/images/women_model_new.jpg?v=3"],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     description: "Premium black oversized t-shirt with a retro 'Love Yourself' graphic print. 100% Cotton."
   },
@@ -499,8 +499,8 @@ const initialProducts = [
       price: 1299,
       originalPrice: 2499,
       tag: "BEST SELLER",
-      image: "/images/couples_model_new.png?v=3",
-      images: ["/images/couples_model_new.png?v=3"],
+      image: "/images/couples_model_new.jpg?v=3",
+      images: ["/images/couples_model_new.jpg?v=3"],
       sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
       description: "Premium matching black oversized t-shirts for couples featuring a cute cat graphic."
     },

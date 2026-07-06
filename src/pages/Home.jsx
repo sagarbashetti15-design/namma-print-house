@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react';
 import Hero from '../components/Hero';
-import CategoryCards from '../components/CategoryCards';
 import SEO from '../components/SEO';
 
 import { motion } from 'framer-motion';
@@ -35,10 +34,9 @@ const Home = () => {
         schema={orgSchema}
       />
       <Hero />
-      <CategoryCards />
       <Suspense fallback={<div style={{ minHeight: '400px' }}></div>}>
-        <FeaturedVideos />
         <ProductGrid />
+        <FeaturedVideos />
         <WhyChooseUs />
         <BestSellers />
         <CustomPrintBanner />
