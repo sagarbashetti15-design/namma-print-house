@@ -1,1636 +1,1034 @@
 const initialProducts = [
+  // TEST
   {
-    "id": "rzp_test_1",
-    "category": "men",
-    "title": "Razorpay Test Product",
-    "price": 20,
-    "originalPrice": 20,
-    "tag": "TEST",
-    "image": "/images/dslr_full_men_hero_1782625090319.jpg?v=2",
-    "images": [
-      "/images/dslr_full_men_hero_1782625090319.jpg?v=2"
-    ],
-    "sizes": [
-      "XS"
-    ],
-    "description": "Test product for verifying Razorpay checkout."
+    id: "rzp_test_1",
+    category: "men",
+    title: "Razorpay Test Product",
+    price: 20,
+    originalPrice: 20,
+    tag: "TEST",
+    image: "/images/men_model_new.png?v=3",
+    images: ["/images/men_model_new.png?v=3"],
+    sizes: ['XS'],
+    description: "Test product for verifying Razorpay checkout.",
+  },
+  // MEN
+  {
+    id: "m1",
+    category: "men",
+    title: "Premium Graphic Oversized Tee",
+    price: 20,
+    originalPrice: 1299,
+    tag: "BEST SELLER",
+    image: "/images/men_model_new.png?v=3",
+    images: ["/images/men_model_new.png?v=3", "/images/men_graphic_new.png?v=3"],
+    colorImages: {
+      Black: "/images/men_graphic_new.png?v=3",
+      White: "/images/men_model_new.png?v=3"
+    },
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt with gold RCB logo and 'Be bold' back print. 100% Cotton.",
+    outOfStock: true
   },
   {
-    "id": "m1",
-    "category": "men",
-    "title": "Premium Graphic Oversized Tee",
-    "price": 20,
-    "originalPrice": 1299,
-    "tag": "BEST SELLER",
-    "image": "/images/dslr_men_hero_bg_1782596728590.jpg?v=2",
-    "images": [
-      "/images/dslr_men_hero_bg_1782596728590.jpg?v=2",
-      "/images/men_graphic_new.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black oversized t-shirt with gold RCB logo and 'Be bold' back print. 100% Cotton.",
-    "outOfStock": true
+    id: 'mens-rcb-white-oversized-t-shirt',
+    category: 'men',
+    title: "Men's RCB White Oversized T-Shirt",
+    price: 20,
+    originalPrice: 1299,
+    tag: "TRENDING",
+    image: "/images/men-model-white.png?v=3",
+    images: ["/images/men-model-white.png?v=3", "/images/men-rcb-white-front.png?v=3", "/images/men-rcb-white-back.png?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt with gold RCB logo and 'Be bold' back print. 100% Cotton.",
+    outOfStockSizes: ['S', 'XL']
   },
   {
-    "id": "mens-rcb-white-oversized-t-shirt",
-    "category": "men",
-    "title": "Men's RCB White Oversized T-Shirt",
-    "price": 20,
-    "originalPrice": 1299,
-    "tag": "TRENDING",
-    "image": "/images/dslr_perfect_men_hero_1782625798307.jpg?v=2",
-    "images": [
-      "/images/dslr_perfect_men_hero_1782625798307.jpg?v=2",
-      "/images/men-rcb-white-front.png?v=2",
-      "/images/men-rcb-white-back.png?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt with gold RCB logo and 'Be bold' back print. 100% Cotton.",
-    "outOfStockSizes": [
-      "S",
-      "XL"
-    ]
+    id: 'mens-ducati-panigale-oversized-t-shirt',
+    category: 'bike',
+    title: "Men's Ducati Panigale Oversized T-Shirt",
+    price: 20,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/men-model-ducati-front.jpg?v=3",
+    images: ["/images/men-model-ducati-front.jpg?v=3", "/images/men-model-ducati-back.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt featuring a clean Ducati logo on the front and a high-quality Ducati Panigale motorcycle poster graphic printed on the back. 100% Cotton."
   },
   {
-    "id": "mens-ducati-panigale-oversized-t-shirt",
-    "category": "bike",
-    "title": "Men's Ducati Panigale Oversized T-Shirt",
-    "price": 20,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/cat_men_1782994663572.jpg?v=2",
-    "images": [
-      "/images/cat_men_1782994663572.jpg?v=2",
-      "/images/men-model-ducati-back.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt featuring a clean Ducati logo on the front and a high-quality Ducati Panigale motorcycle poster graphic printed on the back. 100% Cotton."
+    id: 'mens-royal-enfield-oversized-t-shirt',
+    category: 'bike',
+    title: "Men's Royal Enfield Oversized T-Shirt",
+    price: 20,
+    originalPrice: 1299,
+    tag: "HOT",
+    image: "/images/men-model-enfield.png?v=3",
+    images: ["/images/men-model-enfield.png?v=3", "/images/men-bike-enfield.png?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt featuring a vintage Royal Enfield motorcycle graphic on the front. 100% Cotton."
   },
   {
-    "id": "mens-royal-enfield-oversized-t-shirt",
-    "category": "bike",
-    "title": "Men's Royal Enfield Oversized T-Shirt",
-    "price": 20,
-    "originalPrice": 1299,
-    "tag": "HOT",
-    "image": "/images/cat_men_graphic_1782994898287.jpg?v=2",
-    "images": [
-      "/images/cat_men_graphic_1782994898287.jpg?v=2",
-      "/images/men-bike-enfield.png?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt featuring a vintage Royal Enfield motorcycle graphic on the front. 100% Cotton."
+    id: 'mens-bmw-s1000rr-oversized-t-shirt',
+    category: 'bike',
+    title: "Men's BMW S1000RR Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "TRENDING",
+    image: "/images/men-model-bmw.png?v=3",
+    images: ["/images/men-model-bmw.png?v=3", "/images/men-bike-bmw.png?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt featuring a BMW S1000RR motorcycle graphic on the front. 100% Cotton."
   },
   {
-    "id": "mens-bmw-s1000rr-oversized-t-shirt",
-    "category": "bike",
-    "title": "Men's BMW S1000RR Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "TRENDING",
-    "image": "/images/dslr_full_men_hero_1782625090319.jpg?v=2",
-    "images": [
-      "/images/dslr_full_men_hero_1782625090319.jpg?v=2",
-      "/images/men-bike-bmw.png?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt featuring a BMW S1000RR motorcycle graphic on the front. 100% Cotton."
+    id: 'm6',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/m6-White_v6.jpg',
+      'Black': '/images/m6-Black_v6.jpg',
+      'Cream': '/images/m6-Cream_v6.jpg',
+      'Red': '/images/m6-Red_v6.jpg',
+      'Brown': '/images/m6-Brown_v6.jpg',
+    },
+    category: 'men',
+    title: "Men's Abstract Face Black Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/men-new-1.jpg?v=3",
+    images: ["/images/men-new-1.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt featuring a vibrant abstract face graphic. 100% Cotton."
   },
   {
-    "id": "m6",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "men",
-    "title": "Men's Abstract Face Black Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/cat_men_1782994663572.jpg?v=2",
-    "images": [
-      "/images/cat_men_1782994663572.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black oversized t-shirt featuring a vibrant abstract face graphic. 100% Cotton."
+    id: 'm7',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/m7-White_v6.jpg',
+      'Black': '/images/m7-Black_v6.jpg',
+      'Cream': '/images/m7-Cream_v6.jpg',
+      'Red': '/images/m7-Trending-Blue_v6.jpg',
+      'Brown': '/images/m7-Brown_v6.jpg',
+    },
+    category: 'cultural',
+    title: "Men's Peaceful Buddha Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "TRENDING",
+    image: "/images/men-new-2.jpg?v=3",
+    images: ["/images/men-new-2.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt with a serene Buddha watercolor style graphic. 100% Cotton."
   },
   {
-    "id": "m7",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "cultural",
-    "title": "Men's Peaceful Buddha Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "TRENDING",
-    "image": "/images/dslr_perfect_men_hero_1782625798307.jpg?v=2",
-    "images": [
-      "/images/dslr_perfect_men_hero_1782625798307.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt with a serene Buddha watercolor style graphic. 100% Cotton."
+    id: 'm8',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/m8-White_v6.jpg',
+      'Black': '/images/m8-Black_v6.jpg',
+      'Cream': '/images/m8-Cream_v6.jpg',
+      'Red': '/images/m8-Red_v6.jpg',
+      'Brown': '/images/m8-Brown_v6.jpg'
+    },
+    category: 'men',
+    title: "Men's Chill Vibes Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "POPULAR",
+    image: "/images/men-new-3.jpg?v=3",
+    images: ["/images/men-new-3.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt featuring a 'CHILL' typography and character graphic. 100% Cotton."
   },
   {
-    "id": "m8",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "men",
-    "title": "Men's Chill Vibes Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "POPULAR",
-    "image": "/images/dslr_full_men_hero_1782625090319.jpg?v=2",
-    "images": [
-      "/images/dslr_full_men_hero_1782625090319.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt featuring a 'CHILL' typography and character graphic. 100% Cotton."
+    id: 'anime-naruto-oversized-t-shirt',
+    category: 'anime',
+    title: "Anime Naruto Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/men-anime-5.png?v=3",
+    images: ["/images/men-anime-5.png?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt featuring anime character graphics. 100% Cotton."
   },
   {
-    "id": "anime-naruto-oversized-t-shirt",
-    "category": "anime",
-    "title": "Anime Naruto Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_unique_men_hero_1782622970266.jpg?v=2",
-    "images": [
-      "/images/dslr_unique_men_hero_1782622970266.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black oversized t-shirt featuring anime character graphics. 100% Cotton."
+    id: 'm11',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/m11-White_v6.jpg',
+      'Black': '/images/m11-Black_v6.jpg',
+      'Cream': '/images/m11-Cream_v6.jpg',
+      'Red': '/images/m11-Red_v6.jpg',
+      'Brown': '/images/m11-Brown_v6.jpg'
+    },
+    category: 'cultural',
+    title: "Men's Divine Gods Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "BEST SELLER",
+    image: "/images/men-new-6.jpg?v=3",
+    images: ["/images/men-new-6.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt featuring a beautiful collage of Hindu deities graphic print. 100% Cotton."
   },
   {
-    "id": "m11",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "cultural",
-    "title": "Men's Divine Gods Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "BEST SELLER",
-    "image": "/images/dslr_wide_men_hero_1782624596610.jpg?v=2",
-    "images": [
-      "/images/dslr_wide_men_hero_1782624596610.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt featuring a beautiful collage of Hindu deities graphic print. 100% Cotton."
+    id: 'm12',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/m12-White_v6.jpg',
+      'Black': '/images/m12-Black_v6.jpg',
+      'Cream': '/images/m12-Cream_v6.jpg',
+      'Red': '/images/m12-Red_v6.jpg',
+      'Brown': '/images/m12-Brown_v6.jpg'
+    },
+    category: 'men',
+    title: "Men's One Day At A Time Off-White Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/men-new-7.jpg?v=3",
+    images: ["/images/men-new-7.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium off-white oversized t-shirt featuring a minimalist 'One Day At A Time' landscape graphic. 100% Cotton."
   },
   {
-    "id": "m12",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "men",
-    "title": "Men's One Day At A Time Off-White Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_right_men_hero_1782624165523.jpg?v=2",
-    "images": [
-      "/images/dslr_right_men_hero_1782624165523.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium off-white oversized t-shirt featuring a minimalist 'One Day At A Time' landscape graphic. 100% Cotton."
+    id: 'm13',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/m13-White_v6.jpg',
+      'Black': '/images/m13-Black_v6.jpg',
+      'Cream': '/images/m13-Cream_v6.jpg',
+      'Red': '/images/m13-Red_v6.jpg',
+      'Brown': '/images/m13-Brown_v6.jpg',
+    },
+    category: 'men',
+    title: "Men's Chill Swing White Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "TRENDING",
+    image: "/images/men-new-8.jpg?v=3",
+    images: ["/images/men-new-8.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt with a cool blue character on a swing and red 'CHILL' typography. 100% Cotton."
+  },
+
+
+  // WOMEN (Girls Fashion)
+  {
+    id: 'womens-positive-oversized-t-shirt',
+    category: 'women',
+    title: "Women's Positive Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "BEST SELLER",
+    image: "/images/model-1.png?v=3",
+    images: ["/images/model-1.png?v=3", "/images/oversized-tee-1.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt with a beautiful positive floral graphic print. 100% Cotton."
   },
   {
-    "id": "m13",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "men",
-    "title": "Men's Chill Swing White Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "TRENDING",
-    "image": "/images/dslr_unique_men_hero_1782622970266.jpg?v=2",
-    "images": [
-      "/images/dslr_unique_men_hero_1782622970266.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt with a cool blue character on a swing and red 'CHILL' typography. 100% Cotton."
+    id: 'love-yourself-oversized-t-shirt',
+    category: 'women',
+    title: "Love Yourself Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "TRENDING",
+    image: "/images/women_model_new.png?v=3",
+    images: ["/images/women_model_new.png?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt with a retro 'Love Yourself' graphic print. 100% Cotton."
   },
   {
-    "id": "womens-positive-oversized-t-shirt",
-    "category": "women",
-    "title": "Women's Positive Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "BEST SELLER",
-    "image": "/images/dslr_full_women_happy_hero_1782625021735.jpg?v=2",
-    "images": [
-      "/images/dslr_full_women_happy_hero_1782625021735.jpg?v=2",
-      "/images/oversized-tee-1.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black oversized t-shirt with a beautiful positive floral graphic print. 100% Cotton."
+    id: 'you-grow-girl-oversized-t-shirt',
+    category: 'women',
+    title: "You Grow Girl Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW ARRIVAL",
+    image: "/images/model-3.png?v=3",
+    images: ["/images/model-3.png?v=3", "/images/oversized-tee-3.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt with a 'You Grow Girl' floral graphic print. 100% Cotton."
   },
   {
-    "id": "love-yourself-oversized-t-shirt",
-    "category": "women",
-    "title": "Love Yourself Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "TRENDING",
-    "image": "/images/dslr_full_women_hero_1782625123498.jpg?v=2",
-    "images": [
-      "/images/dslr_full_women_hero_1782625123498.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black oversized t-shirt with a retro 'Love Yourself' graphic print. 100% Cotton."
+    id: 'sunflower-oversized-t-shirt',
+    category: 'women',
+    title: "Sunflower Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "HOT",
+    image: "/images/model-4.png?v=3",
+    images: ["/images/model-4.png?v=3", "/images/oversized-tee-4.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt with a vibrant sunflower graphic print. 100% Cotton."
   },
   {
-    "id": "you-grow-girl-oversized-t-shirt",
-    "category": "women",
-    "title": "You Grow Girl Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW ARRIVAL",
-    "image": "/images/dslr_girl_hero_bg_1782596897448.jpg?v=2",
-    "images": [
-      "/images/dslr_girl_hero_bg_1782596897448.jpg?v=2",
-      "/images/oversized-tee-3.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black oversized t-shirt with a 'You Grow Girl' floral graphic print. 100% Cotton."
+    id: 'love-parrot-oversized-t-shirt',
+    category: 'women',
+    title: "Love Parrot Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/model-5.png?v=3",
+    images: ["/images/model-5.png?v=3", "/images/oversized-tee-5.png?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt with a colorful parrot and 'LOVE' graphic print. 100% Cotton."
   },
   {
-    "id": "sunflower-oversized-t-shirt",
-    "category": "women",
-    "title": "Sunflower Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "HOT",
-    "image": "/images/dslr_kendall_hero_bg_1782596999821.jpg?v=2",
-    "images": [
-      "/images/dslr_kendall_hero_bg_1782596999821.jpg?v=2",
-      "/images/oversized-tee-4.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black oversized t-shirt with a vibrant sunflower graphic print. 100% Cotton."
+    id: 'cute-panda-heart-oversized-t-shirt',
+    category: 'women',
+    title: "Cute Panda Heart Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "CUTE",
+    image: "/images/model-6.png?v=3",
+    images: ["/images/model-6.png?v=3", "/images/oversized-tee-6.png?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt with an adorable panda holding a heart balloon. 100% Cotton."
   },
   {
-    "id": "love-parrot-oversized-t-shirt",
-    "category": "women",
-    "title": "Love Parrot Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_new_women_hero_1782622535422.jpg?v=2",
-    "images": [
-      "/images/dslr_new_women_hero_1782622535422.jpg?v=2",
-      "/images/oversized-tee-5.png?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt with a colorful parrot and 'LOVE' graphic print. 100% Cotton."
+    id: 'just-a-girl-bow-oversized-t-shirt',
+    category: 'women',
+    title: "Just a Girl Bow Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "TRENDING",
+    image: "/images/model-7.png?v=3",
+    images: ["/images/model-7.png?v=3", "/images/oversized-tee-7.png?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt featuring a pink bow and 'I'm just a girl' text. 100% Cotton."
   },
   {
-    "id": "cute-panda-heart-oversized-t-shirt",
-    "category": "women",
-    "title": "Cute Panda Heart Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "CUTE",
-    "image": "/images/dslr_perfect_women_happy_hero_1782625731390.jpg?v=2",
-    "images": [
-      "/images/dslr_perfect_women_happy_hero_1782625731390.jpg?v=2",
-      "/images/oversized-tee-6.png?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt with an adorable panda holding a heart balloon. 100% Cotton."
+    id: 'tom-jerry-oversized-t-shirt',
+    category: 'movie',
+    title: "Tom & Jerry Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "CLASSIC",
+    image: "/images/model-8.png?v=3",
+    images: ["/images/model-8.png?v=3", "/images/oversized-tee-8.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt with classic Tom & Jerry cartoon graphic. 100% Cotton."
   },
   {
-    "id": "just-a-girl-bow-oversized-t-shirt",
-    "category": "women",
-    "title": "Just a Girl Bow Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "TRENDING",
-    "image": "/images/dslr_right_women_happy_hero_1782624129514.jpg?v=2",
-    "images": [
-      "/images/dslr_right_women_happy_hero_1782624129514.jpg?v=2",
-      "/images/oversized-tee-7.png?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt featuring a pink bow and 'I'm just a girl' text. 100% Cotton."
+    id: 'retro-flower-oversized-t-shirt',
+    category: 'women',
+    title: "Retro Flower Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "VINTAGE",
+    image: "/images/model-9.png?v=3",
+    images: ["/images/model-9.png?v=3", "/images/oversized-tee-9.png?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt with a retro 70s 'FLOWER' graphic print. 100% Cotton."
   },
   {
-    "id": "tom-jerry-oversized-t-shirt",
-    "category": "movie",
-    "title": "Tom & Jerry Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "CLASSIC",
-    "image": "/images/dslr_full_men_hero_1782625090319.jpg?v=2",
-    "images": [
-      "/images/dslr_full_men_hero_1782625090319.jpg?v=2",
-      "/images/oversized-tee-8.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black oversized t-shirt with classic Tom & Jerry cartoon graphic. 100% Cotton."
+    id: 'w11',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/w11-White_v6.jpg',
+      'Black': '/images/w11-Black_v6.jpg',
+      'Cream': '/images/w11-Cream_v6.jpg',
+      'Red': '/images/w11-Red_v6.jpg',
+      'Brown': '/images/w11-Brown_v6.jpg',
+    },
+    category: 'women',
+    title: "Women's Roll Model White Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "TRENDING",
+    image: "/images/women-new-2.jpg?v=3",
+    images: ["/images/women-new-2.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt with a fun 'Roll Model' graphic print. 100% Cotton."
   },
   {
-    "id": "retro-flower-oversized-t-shirt",
-    "category": "women",
-    "title": "Retro Flower Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "VINTAGE",
-    "image": "/images/dslr_unique_girl_oversized_1782598993712.jpg?v=2",
-    "images": [
-      "/images/dslr_unique_girl_oversized_1782598993712.jpg?v=2",
-      "/images/oversized-tee-9.png?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt with a retro 70s 'FLOWER' graphic print. 100% Cotton."
+    id: 'w12',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/w12-White_v6.jpg',
+      'Black': '/images/w12-Black_v6.jpg',
+      'Cream': '/images/w12-Cream_v6.jpg',
+      'Red': '/images/w12-Red_v6.jpg',
+      'Brown': '/images/w12-Brown_v6.jpg',
+    },
+    category: 'women',
+    title: "Women's One Day Off-White Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "POPULAR",
+    image: "/images/women-new-3.jpg?v=3",
+    images: ["/images/women-new-3.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium off-white oversized t-shirt featuring a minimalist 'One Day At A Time' landscape graphic. 100% Cotton."
   },
   {
-    "id": "w11",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "women",
-    "title": "Women's Roll Model White Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "TRENDING",
-    "image": "/images/dslr_women_happy_hero_bg_1782597287881.jpg?v=2",
-    "images": [
-      "/images/dslr_women_happy_hero_bg_1782597287881.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt with a fun 'Roll Model' graphic print. 100% Cotton."
+    id: 'w13',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/w13-White_v6.jpg',
+      'Black': '/images/w13-Black_v6.jpg',
+      'Cream': '/images/w13-Cream_v6.jpg',
+      'Red': '/images/w13-Red_v6.jpg',
+      'Brown': '/images/w13-Brown_v6.jpg',
+    },
+    category: 'women',
+    title: "Women's Ravaayat Punjab White Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/women-new-4.jpg?v=3",
+    images: ["/images/women-new-4.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt featuring traditional 'Ravaayat Punjab Di Phulkari' art. 100% Cotton."
   },
   {
-    "id": "w12",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "women",
-    "title": "Women's One Day Off-White Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "POPULAR",
-    "image": "/images/cat_women_1782994683790.jpg?v=2",
-    "images": [
-      "/images/cat_women_1782994683790.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium off-white oversized t-shirt featuring a minimalist 'One Day At A Time' landscape graphic. 100% Cotton."
+    id: 'w14',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/w14-White_v6.jpg',
+      'Black': '/images/w14-Black_v6.jpg',
+      'Cream': '/images/w14-Cream_v6.jpg',
+      'Red': '/images/w14-Red_v6.jpg',
+      'Brown': '/images/w14-Brown_v6.jpg',
+    },
+    category: 'women',
+    title: "Women's Chill Black Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "HOT",
+    image: "/images/women-new-5.jpg?v=3",
+    images: ["/images/women-new-5.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt with a cool blue character on a swing and red 'CHILL' typography. 100% Cotton."
   },
   {
-    "id": "w13",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "women",
-    "title": "Women's Ravaayat Punjab White Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_full_women_happy_hero_1782625021735.jpg?v=2",
-    "images": [
-      "/images/dslr_full_women_happy_hero_1782625021735.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt featuring traditional 'Ravaayat Punjab Di Phulkari' art. 100% Cotton."
+    id: 'w15',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/w15-White_v6.jpg',
+      'Black': '/images/w15-Black_v6.jpg',
+      'Cream': '/images/w15-Cream_v6.jpg',
+      'Red': '/images/w15-Red_v6.jpg',
+      'Brown': '/images/w15-Brown_v6.jpg',
+    },
+    category: 'women',
+    title: "Women's Mandala Pattern White Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "BEST SELLER",
+    image: "/images/women-new-6.jpg?v=3",
+    images: ["/images/women-new-6.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white oversized t-shirt featuring an intricate mandala side pattern. 100% Cotton."
   },
   {
-    "id": "w14",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "women",
-    "title": "Women's Chill Black Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "HOT",
-    "image": "/images/dslr_full_women_hero_1782625123498.jpg?v=2",
-    "images": [
-      "/images/dslr_full_women_hero_1782625123498.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black oversized t-shirt with a cool blue character on a swing and red 'CHILL' typography. 100% Cotton."
+    id: 'womens-roll-model-rust-oversized-t-shirt',
+    category: 'women',
+    title: "Women's Roll Model Rust Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "CLASSIC",
+    image: "/images/women-new-7.jpg?v=3",
+    images: ["/images/women-new-7.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium rust-colored oversized t-shirt featuring a 'Roll Model' graphic print. 100% Cotton."
   },
   {
-    "id": "w15",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
+    id: 'w17',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/w17-White_v6.jpg',
+      'Black': '/images/w17-Black_v6.jpg',
+      'Cream': '/images/w17-Cream_v6.jpg',
+      'Red': '/images/w17-Red_v6.jpg',
+      'Brown': '/images/w17-Brown_v6.jpg',
+    },
+    category: 'cultural',
+    title: "Women's Kathakali Black Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW ARRIVAL",
+    image: "/images/women-new-8.jpg?v=3",
+    images: ["/images/women-new-8.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black oversized t-shirt featuring a vibrant Kathakali face mask graphic. 100% Cotton."
+  },
+
+  // CUSTOM PRINT
+  {
+    id: 'custom-tee',
+    category: 'custom',
+    title: 'Design Your Own Oversized T-Shirt',
+    price: 799,
+    originalPrice: 1499,
+    tag: 'CUSTOM',
+    image: '/images/model_men_white_front.jpg',
+    images: [
+      '/images/model_men_white_front.jpg',
+      '/images/model_men_black_front.jpg',
+      '/images/model_men_red_front.jpg',
+      '/images/model_men_cream_front.jpg',
+      '/images/model_men_brown_front.jpg'
     ],
-    "category": "women",
-    "title": "Women's Mandala Pattern White Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "BEST SELLER",
-    "image": "/images/dslr_girl_hero_bg_1782596897448.jpg?v=2",
-    "images": [
-      "/images/dslr_girl_hero_bg_1782596897448.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white oversized t-shirt featuring an intricate mandala side pattern. 100% Cotton."
+    colors: ['White', 'Black', 'Red', 'Cream', 'Brown'],
+    colorImages: {
+      'White': '/images/model_men_white_front.jpg',
+      'Black': '/images/model_men_black_front.jpg',
+      'Red': '/images/model_men_red_front.jpg',
+      'Cream': '/images/model_men_cream_front.jpg',
+      'Brown': '/images/model_men_brown_front.jpg'
+    },
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    isVisualCustomizer: true,
+    description: 'Upload your own design to be printed on our premium oversized t-shirts.'
+  },
+
+  // COUPLES
+    {
+      id: 'cp1',
+      colors: ['White', 'Black', 'Cream', 'Brown'],
+      colorImages: {
+        'White': '/images/cp1-White_v6.jpg',
+        'Black': '/images/cp1-Black_v6.jpg',
+        'Cream': '/images/cp1-Cream_v6.jpg',
+        'Brown': '/images/cp1-Brown_v6.jpg',
+      },
+      category: 'couples',
+      title: "Meow Meow Matching T-Shirts",
+      price: 1299,
+      originalPrice: 2499,
+      tag: "BEST SELLER",
+      image: "/images/couples_model_new.png?v=3",
+      images: ["/images/couples_model_new.png?v=3"],
+      sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+      description: "Premium matching black oversized t-shirts for couples featuring a cute cat graphic."
+    },
+  {
+    id: 'cp2',
+    colors: ['Black', 'White', 'Cream', 'Brown'],
+    colorImages: {
+      'Black': '/images/cp2-Black_v6.jpg',
+      'White': '/images/cp2-White_v6.jpg',
+      'Cream': '/images/cp2-Beige_v6.jpg',
+      'Brown': '/images/cp2-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Sunset Cat Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "TRENDING",
+    image: "/images/couples-2.jpg?v=3",
+    images: ["/images/couples-2.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching black oversized t-shirts for couples featuring a cool sunset cat graphic."
   },
   {
-    "id": "womens-roll-model-rust-oversized-t-shirt",
-    "category": "women",
-    "title": "Women's Roll Model Rust Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "CLASSIC",
-    "image": "/images/dslr_kendall_hero_bg_1782596999821.jpg?v=2",
-    "images": [
-      "/images/dslr_kendall_hero_bg_1782596999821.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium rust-colored oversized t-shirt featuring a 'Roll Model' graphic print. 100% Cotton."
+    id: 'cp3',
+    colors: ['White', 'Black', 'Cream', 'Brown'],
+    colorImages: {
+      'White': '/images/cp3-White_v6.jpg',
+      'Black': '/images/cp3-Black_v6.jpg',
+      'Cream': '/images/cp3-Beige_v6.jpg',
+      'Brown': '/images/cp3-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Cool Cat Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "NEW",
+    image: "/images/couples-3.jpg?v=3",
+    images: ["/images/couples-3.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching white oversized t-shirts for couples featuring a cool cat in sunglasses."
   },
   {
-    "id": "w17",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "cultural",
-    "title": "Women's Kathakali Black Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW ARRIVAL",
-    "image": "/images/dslr_men_hero_bg_1782596728590.jpg?v=2",
-    "images": [
-      "/images/dslr_men_hero_bg_1782596728590.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black oversized t-shirt featuring a vibrant Kathakali face mask graphic. 100% Cotton."
+    id: 'cp4',
+    colors: ['Black', 'White', 'Cream', 'Brown'],
+    colorImages: {
+      'Black': '/images/cp4-Black_v6.jpg',
+      'White': '/images/cp4-White_v6.jpg',
+      'Cream': '/images/cp4-Beige_v6.jpg',
+      'Brown': '/images/cp4-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Plans With My Dog Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "CUTE",
+    image: "/images/couples-4.jpg?v=3",
+    images: ["/images/couples-4.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching black oversized t-shirts for couples featuring a dog graphic."
   },
   {
-    "id": "custom-tee",
-    "category": "custom",
-    "title": "Design Your Own Oversized T-Shirt",
-    "price": 799,
-    "originalPrice": 1499,
-    "tag": "CUSTOM",
-    "image": "/images/dslr_perfect_men_hero_1782625798307.jpg?v=2",
-    "images": [
-      "/images/dslr_perfect_men_hero_1782625798307.jpg?v=2",
-      "/images/model_men_black_front.jpg?v=2",
-      "/images/model_men_red_front.jpg?v=2",
-      "/images/model_men_cream_front.jpg?v=2",
-      "/images/model_men_brown_front.jpg?v=2"
-    ],
-    "colors": [
-      "White",
-      "Black",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "isVisualCustomizer": true,
-    "description": "Upload your own design to be printed on our premium oversized t-shirts."
+    id: 'cp5',
+    colors: ['White', 'Black', 'Cream', 'Brown'],
+    colorImages: {
+      'White': '/images/cp5-White_v6.jpg',
+      'Black': '/images/cp5-Black_v6.jpg',
+      'Cream': '/images/cp5-Beige_v6.jpg',
+      'Brown': '/images/cp5-Charcoal_v6.jpg',
+    },
+    category: 'couples',
+    title: "Bruh Dog Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "HOT",
+    image: "/images/couples-5.jpg?v=3",
+    images: ["/images/couples-5.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching white oversized t-shirts for couples featuring a funny 'Bruh' dog graphic."
   },
   {
-    "id": "cp1",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Meow Meow Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "BEST SELLER",
-    "image": "/images/dslr_couples_hero_bg_1782596616376.jpg?v=2",
-    "images": [
-      "/images/dslr_couples_hero_bg_1782596616376.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching black oversized t-shirts for couples featuring a cute cat graphic."
+    id: 'cp6',
+    colors: ['Black', 'White', 'Cream', 'Brown'],
+    colorImages: {
+      'Black': '/images/cp6-Black_v6.jpg',
+      'White': '/images/cp6-White_v6.jpg',
+      'Cream': '/images/cp6-Beige_v6.jpg',
+      'Brown': '/images/cp6-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "My World Dog Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "COUPLES",
+    image: "/images/couples-6.jpg?v=3",
+    images: ["/images/couples-6.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching black oversized t-shirts for couples featuring a 'My World' dog graphic."
   },
   {
-    "id": "cp2",
-    "colors": [
-      "Black",
-      "White",
-      "Cream",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Sunset Cat Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "TRENDING",
-    "image": "/images/dslr_full_couples_hero_1782625062165.jpg?v=2",
-    "images": [
-      "/images/dslr_full_couples_hero_1782625062165.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching black oversized t-shirts for couples featuring a cool sunset cat graphic."
+    id: 'colorful-beagle-matching-t-shirts',
+    category: 'pets',
+    title: "Colorful Beagle Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "NEW",
+    image: "/images/couples-7.jpg?v=3",
+    images: ["/images/couples-7.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching white oversized t-shirts for couples featuring a colorful artistic Beagle dog graphic."
   },
   {
-    "id": "cp3",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Cool Cat Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "NEW",
-    "image": "/images/dslr_perfect_couples_hero_1782625770118.jpg?v=2",
-    "images": [
-      "/images/dslr_perfect_couples_hero_1782625770118.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching white oversized t-shirts for couples featuring a cool cat in sunglasses."
+    id: 'cp8',
+    colors: ['Black', 'White', 'Cream', 'Brown'],
+    colorImages: {
+      'Black': '/images/cp8-Black_v6.jpg',
+      'White': '/images/cp8-White_v6.jpg',
+      'Cream': '/images/cp8-Beige_v6.jpg',
+      'Brown': '/images/cp8-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Dog Paw Fist Bump Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "COUPLES",
+    image: "/images/couples-8.jpg?v=3",
+    images: ["/images/couples-8.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching black oversized t-shirts for couples featuring a cute human and dog paw fist bump design."
   },
   {
-    "id": "cp4",
-    "colors": [
-      "Black",
-      "White",
-      "Cream",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Plans With My Dog Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "CUTE",
-    "image": "/images/dslr_hero_bg_1782596486969.jpg?v=2",
-    "images": [
-      "/images/dslr_hero_bg_1782596486969.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching black oversized t-shirts for couples featuring a dog graphic."
+    id: 'golden-retriever-matching-t-shirts',
+    category: 'pets',
+    title: "Golden Retriever Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "HOT",
+    image: "/images/couples-9.jpg?v=3",
+    images: ["/images/couples-9.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching black oversized t-shirts for couples featuring a cool Golden Retriever with sunglasses graphic."
   },
   {
-    "id": "cp5",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Bruh Dog Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "HOT",
-    "image": "/images/cat_couples_1782994706378.jpg?v=2",
-    "images": [
-      "/images/cat_couples_1782994706378.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching white oversized t-shirts for couples featuring a funny 'Bruh' dog graphic."
+    id: 'cp10',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/cp10-White_v6.jpg',
+      'Black': '/images/cp10-Black_v6.jpg',
+      'Cream': '/images/cp10-Cream_v6.jpg',
+      'Red': '/images/cp10-Red_v6.jpg',
+      'Brown': '/images/cp10-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Krishna Radha White Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "COUPLES",
+    image: "/images/couples-new-1.jpg?v=3",
+    images: ["/images/couples-new-1.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching white oversized t-shirts for couples featuring divine Krishna and Radha artwork."
   },
   {
-    "id": "cp6",
-    "colors": [
-      "Black",
-      "White",
-      "Cream",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "My World Dog Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "COUPLES",
-    "image": "/images/dslr_couples_hero_bg_1782596616376.jpg?v=2",
-    "images": [
-      "/images/dslr_couples_hero_bg_1782596616376.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching black oversized t-shirts for couples featuring a 'My World' dog graphic."
+    id: 'cp11',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/cp11-White_v6.jpg',
+      'Black': '/images/cp11-Black_v6.jpg',
+      'Cream': '/images/cp11-Cream_v6.jpg',
+      'Red': '/images/cp11-Red_v6.jpg',
+      'Brown': '/images/cp11-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Trishul Om Black Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "BEST SELLER",
+    image: "/images/couples-new-2.jpg?v=3",
+    images: ["/images/couples-new-2.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching black oversized t-shirts for couples featuring intricate golden Trishul and Om mandala designs."
   },
   {
-    "id": "colorful-beagle-matching-t-shirts",
-    "category": "pets",
-    "title": "Colorful Beagle Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "NEW",
-    "image": "/images/dslr_right_men_hero_1782624165523.jpg?v=2",
-    "images": [
-      "/images/dslr_right_men_hero_1782624165523.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching white oversized t-shirts for couples featuring a colorful artistic Beagle dog graphic."
+    id: 'cp12',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/cp12-White_v6.jpg',
+      'Black': '/images/cp12-Black_v6.jpg',
+      'Cream': '/images/cp12-Cream_v6.jpg',
+      'Red': '/images/cp12-Red_v6.jpg',
+      'Brown': '/images/cp12-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Royal Tradition Maroon Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "COUPLES",
+    image: "/images/couples-new-3.jpg?v=3",
+    images: ["/images/couples-new-3.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching maroon oversized t-shirts for couples featuring beautiful traditional Indian couple attire graphics."
   },
   {
-    "id": "cp8",
-    "colors": [
-      "Black",
-      "White",
-      "Cream",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Dog Paw Fist Bump Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "COUPLES",
-    "image": "/images/dslr_full_couples_hero_1782625062165.jpg?v=2",
-    "images": [
-      "/images/dslr_full_couples_hero_1782625062165.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching black oversized t-shirts for couples featuring a cute human and dog paw fist bump design."
+    id: 'cp13',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/cp13-White_v6.jpg',
+      'Black': '/images/cp13-Black_v6.jpg',
+      'Cream': '/images/cp13-Cream_v6.jpg',
+      'Red': '/images/cp13-Red_v6.jpg',
+      'Brown': '/images/cp13-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Rustic Romance Beige Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "NEW",
+    image: "/images/couples-new-4.jpg?v=3",
+    images: ["/images/couples-new-4.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching beige oversized t-shirts for couples featuring a traditional flute player and listener graphic."
   },
   {
-    "id": "golden-retriever-matching-t-shirts",
-    "category": "pets",
-    "title": "Golden Retriever Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "HOT",
-    "image": "/images/dslr_unique_men_hero_1782622970266.jpg?v=2",
-    "images": [
-      "/images/dslr_unique_men_hero_1782622970266.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching black oversized t-shirts for couples featuring a cool Golden Retriever with sunglasses graphic."
+    id: 'cp14',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/cp14-White_v6.jpg',
+      'Black': '/images/cp14-Black_v6.jpg',
+      'Cream': '/images/cp14-Cream_v6.jpg',
+      'Red': '/images/cp14-Red_v6.jpg',
+      'Brown': '/images/cp14-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Krishna Radha Black Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "TRENDING",
+    image: "/images/couples-new-5.jpg?v=3",
+    images: ["/images/couples-new-5.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching black oversized t-shirts for couples featuring minimalist Krishna and Radha line art."
   },
   {
-    "id": "cp10",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Krishna Radha White Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "COUPLES",
-    "image": "/images/dslr_perfect_couples_hero_1782625770118.jpg?v=2",
-    "images": [
-      "/images/dslr_perfect_couples_hero_1782625770118.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching white oversized t-shirts for couples featuring divine Krishna and Radha artwork."
+    id: 'shiva-parvati-off-white-matching-t-shirts',
+    category: 'cultural',
+    title: "Shiva Parvati Off-White Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "POPULAR",
+    image: "/images/couples-new-6.jpg?v=3",
+    images: ["/images/couples-new-6.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching off-white oversized t-shirts for couples featuring divine Shiva and Parvati line art graphics."
   },
   {
-    "id": "cp11",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Trishul Om Black Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "BEST SELLER",
-    "image": "/images/dslr_hero_bg_1782596486969.jpg?v=2",
-    "images": [
-      "/images/dslr_hero_bg_1782596486969.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching black oversized t-shirts for couples featuring intricate golden Trishul and Om mandala designs."
+    id: 'cp16',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/cp16-White_v6.jpg',
+      'Black': '/images/cp16-Black_v6.jpg',
+      'Cream': '/images/cp16-Cream_v6.jpg',
+      'Red': '/images/cp16-Red_v6.jpg',
+      'Brown': '/images/cp16-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Mahadev Mahakali Brown Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "COUPLES",
+    image: "/images/couples-new-7.jpg?v=3",
+    images: ["/images/couples-new-7.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching brown oversized t-shirts for couples featuring Mahadev and Mahakali Hindi typography."
   },
   {
-    "id": "cp12",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Royal Tradition Maroon Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "COUPLES",
-    "image": "/images/cat_couples_1782994706378.jpg?v=2",
-    "images": [
-      "/images/cat_couples_1782994706378.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching maroon oversized t-shirts for couples featuring beautiful traditional Indian couple attire graphics."
+    id: 'cp17',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/cp17-White_v6.jpg',
+      'Black': '/images/cp17-Black_v6.jpg',
+      'Cream': '/images/cp17-Cream_v6.jpg',
+      'Red': '/images/cp17-Red_v6.jpg',
+      'Brown': '/images/cp17-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Culture Soul White Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "NEW",
+    image: "/images/couples-new-8.jpg?v=3",
+    images: ["/images/couples-new-8.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching white oversized t-shirts for couples featuring architectural temple 'Culture' and 'Soul' prints."
   },
   {
-    "id": "cp13",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Rustic Romance Beige Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "NEW",
-    "image": "/images/dslr_couples_hero_bg_1782596616376.jpg?v=2",
-    "images": [
-      "/images/dslr_couples_hero_bg_1782596616376.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching beige oversized t-shirts for couples featuring a traditional flute player and listener graphic."
+    id: 'cp18',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/cp18-White_v6.jpg',
+      'Black': '/images/cp18-Black_v6.jpg',
+      'Cream': '/images/cp18-Cream_v6.jpg',
+      'Red': '/images/cp18-Red_v6.jpg',
+      'Brown': '/images/cp18-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Balance Energy Navy Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "COUPLES",
+    
+    image: "/images/cp18.png?v=3",
+    images: ["/images/cp18.png?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching navy oversized t-shirts for couples featuring minimalist lotus 'Balance' and 'Energy' designs."
   },
   {
-    "id": "cp14",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Krishna Radha Black Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "TRENDING",
-    "image": "/images/dslr_full_couples_hero_1782625062165.jpg?v=2",
-    "images": [
-      "/images/dslr_full_couples_hero_1782625062165.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching black oversized t-shirts for couples featuring minimalist Krishna and Radha line art."
+    id: 'cp19',
+    colors: ['White', 'Black', 'Cream', 'Red', 'Brown'],
+    colorImages: {
+      'White': '/images/cp19-White_v6.jpg',
+      'Black': '/images/cp19-Black_v6.jpg',
+      'Cream': '/images/cp19-Cream_v6.jpg',
+      'Red': '/images/cp19-Red_v6.jpg',
+      'Brown': '/images/cp19-Brown_v6.jpg',
+    },
+    category: 'couples',
+    title: "Rooted Traditions Beige Matching T-Shirts",
+    price: 1299,
+    originalPrice: 2499,
+    tag: "HOT",
+    image: "/images/couples-new-10.jpg?v=3",
+    images: ["/images/couples-new-10.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium matching beige oversized t-shirts for couples featuring 'Rooted in Culture' and 'Grateful for Traditions' typography."
+  },
+  // KANNADA & REGIONAL
+  {
+    id: 'hodi-maja-madi-graphic-mens-oversized-t-shirt',
+    category: 'kannada',
+    title: "Hodi Maja Madi Graphic Men's Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/kannada-1.jpg?v=3",
+    images: ["/images/kannada-1.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black men's oversized t-shirt featuring a stylized Kannada graphic print on the front. 100% Cotton."
   },
   {
-    "id": "shiva-parvati-off-white-matching-t-shirts",
-    "category": "cultural",
-    "title": "Shiva Parvati Off-White Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "POPULAR",
-    "image": "/images/dslr_wide_men_hero_1782624596610.jpg?v=2",
-    "images": [
-      "/images/dslr_wide_men_hero_1782624596610.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching off-white oversized t-shirts for couples featuring divine Shiva and Parvati line art graphics."
+    id: 'maa-graphic-mens-oversized-t-shirt',
+    category: 'kannada',
+    title: "Maa Graphic Men's Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "TRENDING",
+    image: "/images/kannada-2.jpg?v=3",
+    images: ["/images/kannada-2.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black men's oversized t-shirt featuring a beautiful 'Maa' graphic print on the front. 100% Cotton."
   },
   {
-    "id": "cp16",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Mahadev Mahakali Brown Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "COUPLES",
-    "image": "/images/dslr_perfect_couples_hero_1782625770118.jpg?v=2",
-    "images": [
-      "/images/dslr_perfect_couples_hero_1782625770118.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching brown oversized t-shirts for couples featuring Mahadev and Mahakali Hindi typography."
+    id: 'appa-cycle-graphic-mens-oversized-t-shirt',
+    category: 'kannada',
+    title: "Appa Cycle Graphic Men's Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "POPULAR",
+    image: "/images/kannada-3.jpg?v=3",
+    images: ["/images/kannada-3.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black men's oversized t-shirt featuring an emotional 'Appa' graphic print on the front. 100% Cotton."
   },
   {
-    "id": "cp17",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Culture Soul White Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "NEW",
-    "image": "/images/dslr_hero_bg_1782596486969.jpg?v=2",
-    "images": [
-      "/images/dslr_hero_bg_1782596486969.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching white oversized t-shirts for couples featuring architectural temple 'Culture' and 'Soul' prints."
+    id: 'deshada-bennelubu-graphic-mens-oversized-t-shirt',
+    category: 'kannada',
+    title: "Deshada Bennelubu Graphic Men's Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "CLASSIC",
+    image: "/images/kannada-4.jpg?v=3",
+    images: ["/images/kannada-4.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium white men's oversized t-shirt featuring a traditional farmer graphic print on the front. 100% Cotton."
   },
   {
-    "id": "cp18",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Balance Energy Navy Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "COUPLES",
-    "image": "/images/cat_couples_1782994706378.jpg?v=2",
-    "images": [
-      "/images/cat_couples_1782994706378.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching navy oversized t-shirts for couples featuring minimalist lotus 'Balance' and 'Energy' designs."
-  },
-  {
-    "id": "cp19",
-    "colors": [
-      "White",
-      "Black",
-      "Cream",
-      "Red",
-      "Brown"
-    ],
-    "category": "couples",
-    "title": "Rooted Traditions Beige Matching T-Shirts",
-    "price": 1299,
-    "originalPrice": 2499,
-    "tag": "HOT",
-    "image": "/images/dslr_couples_hero_bg_1782596616376.jpg?v=2",
-    "images": [
-      "/images/dslr_couples_hero_bg_1782596616376.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium matching beige oversized t-shirts for couples featuring 'Rooted in Culture' and 'Grateful for Traditions' typography."
-  },
-  {
-    "id": "hodi-maja-madi-graphic-mens-oversized-t-shirt",
-    "category": "kannada",
-    "title": "Hodi Maja Madi Graphic Men's Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/cat_men_1782994663572.jpg?v=2",
-    "images": [
-      "/images/cat_men_1782994663572.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black men's oversized t-shirt featuring a stylized Kannada graphic print on the front. 100% Cotton."
-  },
-  {
-    "id": "maa-graphic-mens-oversized-t-shirt",
-    "category": "kannada",
-    "title": "Maa Graphic Men's Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "TRENDING",
-    "image": "/images/cat_men_graphic_1782994898287.jpg?v=2",
-    "images": [
-      "/images/cat_men_graphic_1782994898287.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black men's oversized t-shirt featuring a beautiful 'Maa' graphic print on the front. 100% Cotton."
-  },
-  {
-    "id": "appa-cycle-graphic-mens-oversized-t-shirt",
-    "category": "kannada",
-    "title": "Appa Cycle Graphic Men's Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "POPULAR",
-    "image": "/images/dslr_full_men_hero_1782625090319.jpg?v=2",
-    "images": [
-      "/images/dslr_full_men_hero_1782625090319.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black men's oversized t-shirt featuring an emotional 'Appa' graphic print on the front. 100% Cotton."
-  },
-  {
-    "id": "deshada-bennelubu-graphic-mens-oversized-t-shirt",
-    "category": "kannada",
-    "title": "Deshada Bennelubu Graphic Men's Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "CLASSIC",
-    "image": "/images/dslr_men_hero_bg_1782596728590.jpg?v=2",
-    "images": [
-      "/images/dslr_men_hero_bg_1782596728590.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium white men's oversized t-shirt featuring a traditional farmer graphic print on the front. 100% Cotton."
-  },
-  {
-    "id": "payana-graphic-mens-oversized-t-shirt",
-    "category": "kannada",
-    "title": "Payana Graphic Men's Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_perfect_men_hero_1782625798307.jpg?v=2",
-    "images": [
-      "/images/dslr_perfect_men_hero_1782625798307.jpg?v=2"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium black men's oversized t-shirt featuring a journey 'Payana' graphic print on the front. 100% Cotton."
-  },
-  {
-    "id": "mens-matte-sigona-cat-oversized-tee",
-    "category": "men",
-    "title": "Men's Matte Sigona Cat Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_full_men_hero_1782625090319.jpg?v=2",
-    "images": [
-      "/images/dslr_full_men_hero_1782625090319.jpg?v=2"
-    ],
-    "colors": [
-      "Black",
-      "White",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium oversized t-shirt featuring a playful cat graphic and 'Matte Sigona' typography. 100% Cotton."
-  },
-  {
-    "id": "womens-matte-sigona-cat-oversized-tee",
-    "category": "women",
-    "title": "Women's Matte Sigona Cat Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_new_women_hero_1782622535422.jpg?v=2",
-    "images": [
-      "/images/dslr_new_women_hero_1782622535422.jpg?v=2"
-    ],
-    "colors": [
-      "Black",
-      "White",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium oversized t-shirt featuring a playful cat graphic and 'Matte Sigona' typography. 100% Cotton."
-  },
-  {
-    "id": "mens-thug-life-typography-oversized-tee",
-    "category": "men",
-    "title": "Men's Thug Life Typography Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_men_hero_bg_1782596728590.jpg?v=2",
-    "images": [
-      "/images/dslr_men_hero_bg_1782596728590.jpg?v=2"
-    ],
-    "colors": [
-      "Black",
-      "White",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium oversized t-shirt featuring Kannada typography with retro pixel glasses. 100% Cotton."
-  },
-  {
-    "id": "womens-thug-life-typography-oversized-tee",
-    "category": "women",
-    "title": "Women's Thug Life Typography Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_perfect_women_happy_hero_1782625731390.jpg?v=2",
-    "images": [
-      "/images/dslr_perfect_women_happy_hero_1782625731390.jpg?v=2"
-    ],
-    "colors": [
-      "Black",
-      "White",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium oversized t-shirt featuring Kannada typography with retro pixel glasses. 100% Cotton."
-  },
-  {
-    "id": "mens-payana-journey-oversized-tee",
-    "category": "men",
-    "title": "Men's Payana Journey Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_perfect_men_hero_1782625798307.jpg?v=2",
-    "images": [
-      "/images/dslr_perfect_men_hero_1782625798307.jpg?v=2"
-    ],
-    "colors": [
-      "Black",
-      "White",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium oversized t-shirt with 'Payana' graphic featuring a motorcycle silhouette. Perfect for riders. 100% Cotton."
-  },
-  {
-    "id": "womens-payana-journey-oversized-tee",
-    "category": "women",
-    "title": "Women's Payana Journey Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_right_women_happy_hero_1782624129514.jpg?v=2",
-    "images": [
-      "/images/dslr_right_women_happy_hero_1782624129514.jpg?v=2"
-    ],
-    "colors": [
-      "Black",
-      "White",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium oversized t-shirt with 'Payana' graphic featuring a motorcycle silhouette. Perfect for riders. 100% Cotton."
-  },
-  {
-    "id": "mens-deshada-bennelubu-farmer-oversized-tee",
-    "category": "men",
-    "title": "Men's Deshada Bennelubu Farmer Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_right_men_hero_1782624165523.jpg?v=2",
-    "images": [
-      "/images/dslr_right_men_hero_1782624165523.jpg?v=2"
-    ],
-    "colors": [
-      "Black",
-      "White",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium oversized t-shirt paying tribute to farmers with 'Deshada Bennelubu' artwork. 100% Cotton."
-  },
-  {
-    "id": "womens-deshada-bennelubu-farmer-oversized-tee",
-    "category": "women",
-    "title": "Women's Deshada Bennelubu Farmer Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_unique_girl_oversized_1782598993712.jpg?v=2",
-    "images": [
-      "/images/dslr_unique_girl_oversized_1782598993712.jpg?v=2"
-    ],
-    "colors": [
-      "Black",
-      "White",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium oversized t-shirt paying tribute to farmers with 'Deshada Bennelubu' artwork. 100% Cotton."
-  },
-  {
-    "id": "mens-halli-life-village-oversized-tee",
-    "category": "men",
-    "title": "Men's Halli Life Village Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_unique_men_hero_1782622970266.jpg?v=2",
-    "images": [
-      "/images/dslr_unique_men_hero_1782622970266.jpg?v=2"
-    ],
-    "colors": [
-      "Black",
-      "White",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium oversized t-shirt showcasing a beautiful village sunset and bullock cart graphic. 100% Cotton."
-  },
-  {
-    "id": "womens-halli-life-village-oversized-tee",
-    "category": "women",
-    "title": "Women's Halli Life Village Oversized T-Shirt",
-    "price": 699,
-    "originalPrice": 1299,
-    "tag": "NEW",
-    "image": "/images/dslr_women_happy_hero_bg_1782597287881.jpg?v=2",
-    "images": [
-      "/images/dslr_women_happy_hero_bg_1782597287881.jpg?v=2"
-    ],
-    "colors": [
-      "Black",
-      "White",
-      "Red",
-      "Cream",
-      "Brown"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "description": "Premium oversized t-shirt showcasing a beautiful village sunset and bullock cart graphic. 100% Cotton."
+    id: 'payana-graphic-mens-oversized-t-shirt',
+    category: 'kannada',
+    title: "Payana Graphic Men's Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/kannada-5.jpg?v=3",
+    images: ["/images/kannada-5.jpg?v=3"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium black men's oversized t-shirt featuring a journey 'Payana' graphic print on the front. 100% Cotton."
   }
+,
+
+  // NEW ADDITIONS
+  {
+    id: "mens-matte-sigona-cat-oversized-tee",
+    category: "men",
+    title: "Men's Matte Sigona Cat Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/products/matte-sigona.png?v=3",
+    images: ["/images/products/matte-sigona.png?v=3"],
+    colors: ["Black", "White", "Red", "Cream", "Brown"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium oversized t-shirt featuring a playful cat graphic and 'Matte Sigona' typography. 100% Cotton."
+  },
+  {
+    id: "womens-matte-sigona-cat-oversized-tee",
+    category: "women",
+    title: "Women's Matte Sigona Cat Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/products/matte-sigona.png?v=3",
+    images: ["/images/products/matte-sigona.png?v=3"],
+    colors: ["Black", "White", "Red", "Cream", "Brown"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium oversized t-shirt featuring a playful cat graphic and 'Matte Sigona' typography. 100% Cotton."
+  },
+  {
+    id: "mens-thug-life-typography-oversized-tee",
+    category: "men",
+    title: "Men's Thug Life Typography Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/products/thug-life.png?v=3",
+    images: ["/images/products/thug-life.png?v=3"],
+    colors: ["Black", "White", "Red", "Cream", "Brown"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium oversized t-shirt featuring Kannada typography with retro pixel glasses. 100% Cotton."
+  },
+  {
+    id: "womens-thug-life-typography-oversized-tee",
+    category: "women",
+    title: "Women's Thug Life Typography Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/products/thug-life.png?v=3",
+    images: ["/images/products/thug-life.png?v=3"],
+    colors: ["Black", "White", "Red", "Cream", "Brown"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium oversized t-shirt featuring Kannada typography with retro pixel glasses. 100% Cotton."
+  },
+  {
+    id: "mens-payana-journey-oversized-tee",
+    category: "men",
+    title: "Men's Payana Journey Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/products/payana.png?v=3",
+    images: ["/images/products/payana.png?v=3"],
+    colors: ["Black", "White", "Red", "Cream", "Brown"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium oversized t-shirt with 'Payana' graphic featuring a motorcycle silhouette. Perfect for riders. 100% Cotton."
+  },
+  {
+    id: "womens-payana-journey-oversized-tee",
+    category: "women",
+    title: "Women's Payana Journey Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/products/payana.png?v=3",
+    images: ["/images/products/payana.png?v=3"],
+    colors: ["Black", "White", "Red", "Cream", "Brown"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium oversized t-shirt with 'Payana' graphic featuring a motorcycle silhouette. Perfect for riders. 100% Cotton."
+  },
+  {
+    id: "mens-deshada-bennelubu-farmer-oversized-tee",
+    category: "men",
+    title: "Men's Deshada Bennelubu Farmer Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/products/deshada-bennelubu.png?v=3",
+    images: ["/images/products/deshada-bennelubu.png?v=3"],
+    colors: ["Black", "White", "Red", "Cream", "Brown"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium oversized t-shirt paying tribute to farmers with 'Deshada Bennelubu' artwork. 100% Cotton."
+  },
+  {
+    id: "womens-deshada-bennelubu-farmer-oversized-tee",
+    category: "women",
+    title: "Women's Deshada Bennelubu Farmer Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/products/deshada-bennelubu.png?v=3",
+    images: ["/images/products/deshada-bennelubu.png?v=3"],
+    colors: ["Black", "White", "Red", "Cream", "Brown"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium oversized t-shirt paying tribute to farmers with 'Deshada Bennelubu' artwork. 100% Cotton."
+  },
+  {
+    id: "mens-halli-life-village-oversized-tee",
+    category: "men",
+    title: "Men's Halli Life Village Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/products/halli-life.png?v=3",
+    images: ["/images/products/halli-life.png?v=3"],
+    colors: ["Black", "White", "Red", "Cream", "Brown"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium oversized t-shirt showcasing a beautiful village sunset and bullock cart graphic. 100% Cotton."
+  },
+  {
+    id: "womens-halli-life-village-oversized-tee",
+    category: "women",
+    title: "Women's Halli Life Village Oversized T-Shirt",
+    price: 699,
+    originalPrice: 1299,
+    tag: "NEW",
+    image: "/images/products/halli-life.png?v=3",
+    images: ["/images/products/halli-life.png?v=3"],
+    colors: ["Black", "White", "Red", "Cream", "Brown"],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    description: "Premium oversized t-shirt showcasing a beautiful village sunset and bullock cart graphic. 100% Cotton."
+  },
 ];
 
 export const products = initialProducts;
-export const getProducts = () => {
-  return initialProducts;
-};
