@@ -19,7 +19,10 @@ const CustomizerView = ({ product }) => {
     // Only front-view men's model images exist for these 5 colors
     const availableColors = ['white', 'black', 'red', 'cream', 'brown'];
     const safeColor = availableColors.includes(colorLower) ? colorLower : 'white';
-    // Always use front model image (back view images not available yet)
+    // Use back view image for Back side, color-specific front image for Front side
+    if (printSide === 'Back') {
+      return `/images/men-model-ducati-back.jpg`;
+    }
     return `/images/model_men_${safeColor}_front.jpg`;
   };
   
