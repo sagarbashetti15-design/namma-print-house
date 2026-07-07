@@ -20,15 +20,12 @@ const CustomizerView = ({ product }) => {
     const availableColors = ['white', 'black', 'red', 'cream', 'brown'];
     const safeColor = availableColors.includes(colorLower) ? colorLower : 'white';
     
-    // Using ?v=4 to bypass any cached 404 errors in the browser
+    // Using ?v=5 to bypass any cached 404 errors in the browser
     if (printSide === 'Back') {
-      if (genderLower === 'women') {
-        return `/images/model_women_${safeColor}_back.jpg?v=4`;
-      }
-      return `/images/men-model-ducati-back.jpg?v=4`;
+      return `/images/model_${genderLower}_${safeColor}_back.jpg?v=5`;
     }
     
-    return `/images/model_${genderLower}_${safeColor}_front.jpg?v=4`;
+    return `/images/model_${genderLower}_${safeColor}_front.jpg?v=5`;
   };
   
   // Customizer canvas states
