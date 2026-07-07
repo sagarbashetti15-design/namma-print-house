@@ -17,8 +17,15 @@ const CustomizerView = ({ product }) => {
   const getMockupImage = () => {
     const colorLower = selectedColor.toLowerCase();
     const genderLower = selectedGender.toLowerCase();
-    const sideLower = printSide.toLowerCase();
-    return `/images/model_${genderLower}_${colorLower}_${sideLower}.jpg`;
+    const availableColors = ['white', 'black', 'red', 'cream', 'brown'];
+    const safeColor = availableColors.includes(colorLower) ? colorLower : 'white';
+    
+    // For back view, we currently only have one shared back photo to avoid broken images
+    if (printSide === 'Back') {
+      return `/images/men-model-ducati-back.jpg`;
+    }
+    
+    return `/images/model_${genderLower}_${safeColor}_front.jpg`;
   };
   
   // Customizer canvas states
