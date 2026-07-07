@@ -47,8 +47,8 @@ const CategoryPage = () => {
 
   const pageTitle = categoryId === 'all' ? 'All Products' : categoryId;
   const capitalizedTitle = pageTitle.charAt(0).toUpperCase() + pageTitle.slice(1);
-  const seoTitle = `Buy ${capitalizedTitle} Online | Namma Print House`;
-  const seoDesc = `Shop the best collection of ${pageTitle} at Namma Print House. Premium quality, great designs, and fast shipping across India.`;
+  const seoTitle = `Buy Oversized T-Shirts & ${capitalizedTitle} Custom Tees Online | Namma Print House`;
+  const seoDesc = `Shop the best collection of ${pageTitle} oversized t-shirts and custom streetwear at Namma Print House. Premium quality, great designs, and fast shipping across India.`;
 
   return (
     <motion.div 

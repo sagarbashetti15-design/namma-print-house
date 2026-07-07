@@ -20,9 +20,9 @@ const Home = () => {
   return (
     <main>
       <SEO 
-        title="Namma Print House | Premium Custom T-Shirts & Apparel"
-        description="Shop premium oversized t-shirts, custom graphics, and matching couples apparel at Namma Print House. Fast delivery across India."
-        keywords="oversized t-shirt, oversized t-shirt men, oversized t-shirt women, oversized t-shirt under 500, oversized t-shirt for gym, oversized t-shirt for girls, oversized t-shirt cotton, oversized t-shirt full sleeve, oversized t-shirt combo, custom t-shirts, printed oversized tees india"
+        title="Oversized T-Shirts & Custom Printed Tees Online in India | Namma Print House"
+        description="Buy premium oversized t-shirts, custom graphics, and personalized couple outfits online. Best quality customized t-shirts with fast delivery across India."
+        keywords="t shirts, oversize t shirts, oversized t-shirt, custom t-shirt, customized t shirt, printed oversized tees india, buy tshirts online, custom print shop bengaluru, couple matching t-shirts, anime oversized t-shirts"
         type="website"
         schema={orgSchema}
       />
