@@ -46,8 +46,8 @@ const CustomPrintBanner = () => {
           
           <div className="cpb-image-wrapper">
             <img 
-              src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=600&h=400" 
-              alt="Custom T-Shirt" 
+              src="/images/model_men_white_front.jpg" 
+              alt="Custom T-Shirt Printing - Namma Print House" 
               className="cpb-image"
               loading="lazy"
               width="600"
