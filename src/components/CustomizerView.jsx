@@ -16,19 +16,10 @@ const CustomizerView = ({ product }) => {
 
   const getMockupImage = () => {
     const colorLower = selectedColor.toLowerCase();
-    const availableColors = ['white', 'black', 'red', 'cream', 'brown'];
-    const safeColor = availableColors.includes(colorLower) ? colorLower : 'white';
-    if (printSide === 'Back') {
-      return `/images/men-model-ducati-back.jpg`;
-    }
-    return `/images/model_men_${safeColor}_front.jpg`;
+    const genderLower = selectedGender.toLowerCase();
+    const sideLower = printSide.toLowerCase();
+    return `/images/model_${genderLower}_${colorLower}_${sideLower}.jpg`;
   };
-
-  const getMockupStyle = () => ({
-    transition: 'opacity 0.3s ease',
-  });
-
-
   
   // Customizer canvas states
   const [printSide, setPrintSide] = useState('Front'); // 'Front' or 'Back'
@@ -290,9 +281,8 @@ const CustomizerView = ({ product }) => {
             <div className="tshirt-preview-wrapper">
               <img 
                 src={getMockupImage()} 
-                alt={`Plain ${selectedColor} T-Shirt ${printSide} View`} 
+                alt={`Blank T-Shirt ${selectedColor}`} 
                 className="base-tshirt" 
-                style={getMockupStyle()}
               />
               
               {/* Dynamic Print Bounds Overlay */}
