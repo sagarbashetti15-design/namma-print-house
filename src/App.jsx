@@ -10,6 +10,7 @@ import ScrollToTop from './components/ScrollToTop'
 import { WishlistProvider } from './context/WishlistContext'
 import { ToastProvider } from './context/ToastContext'
 import { CatalogProvider } from './context/CatalogContext'
+import { AuthProvider } from './context/AuthContext'
 
 import Home from './pages/Home'
 
@@ -33,6 +34,7 @@ const CareInstructions = lazy(() => import('./pages/CareInstructions'))
 const TrackOrder = lazy(() => import('./pages/TrackOrder'))
 const AdminDashboardSecure = lazy(() => import('./pages/AdminDashboardSecure'))
 const Sitemap = lazy(() => import('./pages/Sitemap'))
+const MyOrders = lazy(() => import('./pages/MyOrders'))
 
 import { AnimatePresence } from 'framer-motion';
 import NewsletterModal from './components/NewsletterModal';
@@ -73,6 +75,7 @@ const AppContent = () => {
           <Route path="/admin" element={<AdminDashboardSecure />} />
           <Route path="/admin-secure-portal" element={<AdminDashboardSecure />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/my-orders" element={<MyOrders />} />
           <Route path="*" element={<div style={{ textAlign: 'center', padding: '100px 20px' }}><h2>404 - Page Not Found</h2><p>The page you are looking for does not exist.</p></div>} />
           </Routes>
         </AnimatePresence>
@@ -85,20 +88,22 @@ const AppContent = () => {
 
 function App() {
   return (
-    <ToastProvider>
-      <CatalogProvider>
-        <CartProvider>
-          <WishlistProvider>
-            <Router>
-              <ScrollToTop />
-              <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#0a0a0a', color: '#fff' }}>Loading Namma Print House...</div>}>
-                <AppContent />
-              </Suspense>
-            </Router>
-          </WishlistProvider>
-        </CartProvider>
-      </CatalogProvider>
-    </ToastProvider>
+    <AuthProvider>
+      <ToastProvider>
+        <CatalogProvider>
+          <CartProvider>
+            <WishlistProvider>
+              <Router>
+                <ScrollToTop />
+                <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#0a0a0a', color: '#fff' }}>Loading Namma Print House...</div>}>
+                  <AppContent />
+                </Suspense>
+              </Router>
+            </WishlistProvider>
+          </CartProvider>
+        </CatalogProvider>
+      </ToastProvider>
+    </AuthProvider>
   )
 }
 

@@ -3,6 +3,7 @@ import { useCart } from '../context/CartContext';
 import { useCatalog } from '../context/CatalogContext';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -12,6 +13,7 @@ const Checkout = () => {
   const { cartItems, totalPrice, totalItems, clearCart } = useCart();
   const { showToast } = useToast();
   const navigate = useNavigate();
+  const { currentUser, loginWithGoogle } = useAuth();
   const [step, setStep] = useState(1); // 1: Shipping, 2: Payment, 3: Confirmation
   
   const [couponInput, setCouponInput] = useState('');
@@ -321,6 +323,16 @@ ${itemsText}
         return;
       }
       
+      if (!currentUser) {
+        try {
+          showToast("Please log in to continue with your checkout", "info");
+          await loginWithGoogle();
+        } catch (error) {
+          showToast("You must log in to proceed to payment.", "warning");
+          return;
+        }
+      }
+      
       setStep(2);
     }
   };
@@ -383,6 +395,8 @@ ${itemsText}
     const newOrder = {
       id: orderId,
       date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+      userId: currentUser?.uid || '',
+      userEmail: currentUser?.email || '',
       items: processedItems,
       total: grandTotal,
       paymentMethod: paymentId ? 'Razorpay' : 'UPI',

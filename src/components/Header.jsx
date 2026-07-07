@@ -6,6 +6,7 @@ import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
+import { useAuth } from '../context/AuthContext';
 import LoginModal from './LoginModal';
 import UserProfileModal from './UserProfileModal';
 import CartDrawer from './CartDrawer';
@@ -22,19 +23,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return localStorage.getItem('nph_is_logged_in') === 'true';
-  });
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
-  const [userProfile, setUserProfile] = useState(() => {
-    try {
-      const stored = localStorage.getItem('nph_user_profile');
-      return stored ? JSON.parse(stored) : { name: '', email: '', mobile: '' };
-    } catch (e) {
-      console.error("Error parsing user info:", e);
-      return { name: '', email: '', mobile: '' };
-    }
-  });
   const [searchQuery, setSearchQuery] = useState('');
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   
@@ -110,42 +99,28 @@ const Header = () => {
     }
   };
 
+  const { currentUser, logout } = useAuth();
+  
+  const handleUserClick = () => {
+    if (currentUser) {
+      setIsProfileModalOpen(true);
+    } else {
+      setIsLoginModalOpen(true);
+    }
+  };
+
   const handleLogin = (profile) => {
-    setIsLoggedIn(true);
-    localStorage.setItem('nph_is_logged_in', 'true');
-    setUserProfile(profile);
-    localStorage.setItem('nph_user_profile', JSON.stringify(profile));
     setIsLoginModalOpen(false);
     showToast(`Welcome back, ${profile.name}!`, 'success');
   };
 
-  const handleSaveProfile = (updatedProfile) => {
-    setUserProfile(updatedProfile);
-    localStorage.setItem('nph_user_profile', JSON.stringify(updatedProfile));
-    setIsProfileModalOpen(false);
-    showToast('Profile updated successfully!', 'success');
-  };
-
   const handleLogout = async () => {
     try {
-      await signOut(auth);
+      await logout();
+      setIsProfileModalOpen(false);
+      showToast('Logged out successfully', 'info');
     } catch (e) {
       console.error('Firebase sign out error:', e);
-    }
-    setIsLoggedIn(false);
-    localStorage.setItem('nph_is_logged_in', 'false');
-    setIsProfileModalOpen(false);
-    localStorage.removeItem('nph_user_profile');
-    localStorage.removeItem('nph_token');
-    setUserProfile({ name: '', email: '', mobile: '' });
-    showToast('Logged out successfully', 'info');
-  };
-
-  const handleUserClick = () => {
-    if (isLoggedIn) {
-      setIsProfileModalOpen(true);
-    } else {
-      setIsLoginModalOpen(true);
     }
   };
 
@@ -233,7 +208,7 @@ const Header = () => {
                 </button>
                 <button className="action-btn" onClick={handleUserClick}>
                   <IoPersonOutline size={22} />
-                  <span className="action-label">{isLoggedIn ? 'Profile' : 'Login'}</span>
+                  <span className="action-label">{currentUser ? 'Profile' : 'Login'}</span>
                 </button>
                 <Link to="/wishlist" className="action-btn" aria-label="View Wishlist"><IoHeartOutline size={22} aria-hidden="true" /></Link>
                 <button className="action-btn cart-btn" aria-label="View Cart" onClick={openCartDrawer} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
@@ -286,9 +261,6 @@ const Header = () => {
       <UserProfileModal
         isOpen={isProfileModalOpen}
         onClose={() => setIsProfileModalOpen(false)}
-        userProfile={userProfile}
-        onSave={handleSaveProfile}
-        onLogout={handleLogout}
       />
       <CartDrawer />
     </>
