@@ -22,8 +22,14 @@ class ErrorBoundary extends React.Component {
       errorString.includes('Importing a module script failed') ||
       errorString.includes('Loading chunk')
     ) {
-      console.log('Chunk load error detected, reloading page...');
-      window.location.reload();
+      // Only reload once to prevent infinite loop
+      if (!sessionStorage.getItem('chunk_reloaded')) {
+        sessionStorage.setItem('chunk_reloaded', 'true');
+        // Force a completely fresh fetch from the server by appending a random query parameter
+        const newUrl = window.location.pathname + '?cachebust=' + new Date().getTime();
+        window.location.href = newUrl;
+        return;
+      }
     }
   }
 
