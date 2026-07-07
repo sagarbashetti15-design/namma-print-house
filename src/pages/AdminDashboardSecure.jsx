@@ -536,7 +536,19 @@ const AdminDashboardSecure = () => {
                                   {order.items && order.items.map((item, idx) => (
                                     <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', backgroundColor: '#f9f9f9', padding: '8px', borderRadius: '4px' }}>
                                       {item.image && (
-                                        <a href={item.image} target="_blank" rel="noreferrer" title="Click to view full image">
+                                        <a 
+                                          href={item.image} 
+                                          target="_blank" 
+                                          rel="noreferrer" 
+                                          title="Click to view full image"
+                                          onClick={(e) => {
+                                            if (item.image.startsWith('data:')) {
+                                              e.preventDefault();
+                                              const win = window.open();
+                                              win.document.write(`<body style="margin:0;display:flex;justify-content:center;align-items:center;background:#0d2850;min-height:100vh;"><img src="${item.image}" style="max-width:100%;max-height:100vh;object-fit:contain;"/></body>`);
+                                            }
+                                          }}
+                                        >
                                           <img src={item.image} alt={item.title} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #ccc' }} />
                                         </a>
                                       )}
