@@ -20,8 +20,11 @@ const CustomizerView = ({ product }) => {
     const availableColors = ['white', 'black', 'red', 'cream', 'brown'];
     const safeColor = availableColors.includes(colorLower) ? colorLower : 'white';
     
-    // For back view, we currently only have one shared back photo to avoid broken images
     if (printSide === 'Back') {
+      if (genderLower === 'women') {
+        return `/images/model_women_${safeColor}_back.jpg`;
+      }
+      // For men, we still only have the generic ducati back image
       return `/images/men-model-ducati-back.jpg`;
     }
     
