@@ -59,7 +59,8 @@ const AdminDashboardSecure = () => {
     { id: 'c2', name: 'Diwali Bash', label: '🪔 DIWALI BASH: LIGHT UP YOUR WARDROBE WITH OUR FESTIVE DROP' },
     { id: 'c3', name: 'Flash Sale Friday', label: '⚡ FLASH SALE FRIDAY: 24 HOURS ONLY - GRAB YOUR FAVORITES NOW!' },
     { id: 'c4', name: 'Clearance Drop', label: '🚨 CLEARANCE DROP: EVERYTHING MUST GO! LAST CHANCE TO BUY' },
-    { id: 'c5', name: 'Weekend Steals', label: '🎉 WEEKEND STEALS: PREMIUM STREETWEAR AT UNBEATABLE PRICES' }
+    { id: 'c5', name: 'Weekend Steals', label: '🎉 WEEKEND STEALS: PREMIUM STREETWEAR AT UNBEATABLE PRICES' },
+    { id: 'c6', name: 'Monsoon Sale', label: '🌧️ MONSOON SALE: DON\'T LET THE RAIN STOP YOUR STYLE - GET 20% OFF' }
   ];
 
   const PROMO_CODES = [
@@ -534,7 +535,11 @@ const AdminDashboardSecure = () => {
                                   <h5 style={{ margin: '0 0 5px' }}>Items</h5>
                                   {order.items && order.items.map((item, idx) => (
                                     <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', backgroundColor: '#f9f9f9', padding: '8px', borderRadius: '4px' }}>
-                                      {item.image && <img src={item.image} alt={item.title} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px' }} />}
+                                      {item.image && (
+                                        <a href={item.image} target="_blank" rel="noreferrer" title="Click to view full image">
+                                          <img src={item.image} alt={item.title} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #ccc' }} />
+                                        </a>
+                                      )}
                                       <div style={{ flex: 1 }}>
                                         <p style={{ margin: 0, fontSize: '0.85rem', fontWeight: 'bold' }}>{item.title}</p>
                                         <p style={{ margin: 0, fontSize: '0.75rem', color: '#666' }}>Size: {item.size} | Qty: {item.quantity}</p>
