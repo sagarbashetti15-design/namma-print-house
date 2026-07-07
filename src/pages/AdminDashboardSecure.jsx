@@ -85,7 +85,7 @@ const AdminDashboardSecure = () => {
   // Add new product form state
   const [newProduct, setNewProduct] = useState({
     title: '',
-    price: '799',
+    price: '599',
     category: 'men',
     description: ''
   });
@@ -364,7 +364,7 @@ const AdminDashboardSecure = () => {
         addMessage('system', `🚀 *Live Database Sync Successful:*\n"${newProduct.title}" added to storefront with colors: ${colorKeys.join(', ')}!\n\n✅ Storefront updated behind the scenes!`);
         setIsAddFormOpen(false);
         setUploadedImages({});
-        setNewProduct({ title: '', price: '799', category: 'men', description: '' });
+        setNewProduct({ title: '', price: '599', category: 'men', description: '' });
       } catch (error) {
         console.error("API/Storage error:", error);
         addMessage('system', `❌ *Sync Error:*\nFailed to add product to live database.`);
