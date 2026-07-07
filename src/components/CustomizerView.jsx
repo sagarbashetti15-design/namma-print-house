@@ -16,9 +16,11 @@ const CustomizerView = ({ product }) => {
 
   const getMockupImage = () => {
     const colorLower = selectedColor.toLowerCase();
-    const genderLower = selectedGender.toLowerCase();
-    const sideLower = printSide.toLowerCase();
-    return `/images/model_${genderLower}_${colorLower}_${sideLower}.jpg`;
+    // Only front-view men's model images exist for these 5 colors
+    const availableColors = ['white', 'black', 'red', 'cream', 'brown'];
+    const safeColor = availableColors.includes(colorLower) ? colorLower : 'white';
+    // Always use front model image (back view images not available yet)
+    return `/images/model_men_${safeColor}_front.jpg`;
   };
   
   // Customizer canvas states
