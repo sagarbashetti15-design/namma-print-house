@@ -43,9 +43,19 @@ class ErrorBoundary extends React.Component {
           padding: '20px'
         }}>
           <h1 style={{ fontSize: '3rem', color: '#F8B400', marginBottom: '20px' }}>Oops! Something went wrong.</h1>
-          <p style={{ fontSize: '1.2rem', marginBottom: '30px', maxWidth: '600px' }}>
+          <p style={{ fontSize: '1.2rem', marginBottom: '10px', maxWidth: '600px' }}>
             We're sorry, but the application encountered an unexpected error. Our engineering team has been notified.
           </p>
+          <div style={{ backgroundColor: '#222', padding: '15px', borderRadius: '8px', marginBottom: '30px', textAlign: 'left', overflow: 'auto', maxWidth: '800px', width: '100%' }}>
+            <p style={{ color: '#ff6b6b', margin: 0, fontFamily: 'monospace' }}>
+              <strong>Error:</strong> {this.state.error?.message || this.state.error?.toString()}
+            </p>
+            {this.state.error?.stack && (
+              <pre style={{ color: '#aaa', fontSize: '0.85rem', marginTop: '10px', whiteSpace: 'pre-wrap' }}>
+                {this.state.error.stack}
+              </pre>
+            )}
+          </div>
           <button 
             onClick={() => window.location.href = '/'}
             style={{

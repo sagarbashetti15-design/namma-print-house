@@ -34,6 +34,7 @@ const AdminDashboardSecure = () => {
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('orders'); // 'catalog', 'marketing', or 'orders'
   const [orders, setOrders] = useState([]);
+  const [lightboxImage, setLightboxImage] = useState(null);
     
     // Fetch orders from Firestore
     useEffect(() => {
@@ -537,17 +538,13 @@ const AdminDashboardSecure = () => {
                                     <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', backgroundColor: '#f9f9f9', padding: '8px', borderRadius: '4px' }}>
                                       {item.image && (
                                         <a 
-                                          href={item.image} 
-                                          target="_blank" 
-                                          rel="noreferrer" 
-                                          title="Click to view full image"
+                                          href="#" 
                                           onClick={(e) => {
-                                            if (item.image.startsWith('data:')) {
-                                              e.preventDefault();
-                                              const win = window.open();
-                                              win.document.write(`<body style="margin:0;display:flex;justify-content:center;align-items:center;background:#0d2850;min-height:100vh;"><img src="${item.image}" style="max-width:100%;max-height:100vh;object-fit:contain;"/></body>`);
-                                            }
+                                            e.preventDefault();
+                                            setLightboxImage(item.image);
                                           }}
+                                          title="Click to view full image"
+                                          style={{ display: 'inline-block' }}
                                         >
                                           <img src={item.image} alt={item.title} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #ccc' }} />
                                         </a>
@@ -936,6 +933,30 @@ const AdminDashboardSecure = () => {
           }
         </div>
       </div>
+
+      {/* Image Lightbox */}
+      {lightboxImage && (
+        <div 
+          className="admin-lightbox-overlay" 
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.85)', zIndex: 9999, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          onClick={() => setLightboxImage(null)}
+        >
+          <div style={{ position: 'relative', width: '90%', height: '90%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <button 
+              onClick={() => setLightboxImage(null)} 
+              style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#FFB400', color: '#000', border: 'none', borderRadius: '50%', width: '40px', height: '40px', fontSize: '20px', cursor: 'pointer', zIndex: 10000 }}
+            >
+              ×
+            </button>
+            <img 
+              src={lightboxImage} 
+              alt="Full size view" 
+              style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', backgroundColor: '#fff', borderRadius: '8px' }}
+              onClick={(e) => e.stopPropagation()} 
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
