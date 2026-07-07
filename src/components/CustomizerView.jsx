@@ -20,15 +20,15 @@ const CustomizerView = ({ product }) => {
     const availableColors = ['white', 'black', 'red', 'cream', 'brown'];
     const safeColor = availableColors.includes(colorLower) ? colorLower : 'white';
     
+    // Using ?v=3 to bypass any cached 404 errors in the browser
     if (printSide === 'Back') {
       if (genderLower === 'women') {
-        return `/images/model_women_${safeColor}_back.jpg`;
+        return `/images/model_women_${safeColor}_back.jpg?v=3`;
       }
-      // For men, we still only have the generic ducati back image
-      return `/images/men-model-ducati-back.jpg`;
+      return `/images/men-model-ducati-back.jpg?v=3`;
     }
     
-    return `/images/model_${genderLower}_${safeColor}_front.jpg`;
+    return `/images/model_${genderLower}_${safeColor}_front.jpg?v=3`;
   };
   
   // Customizer canvas states
