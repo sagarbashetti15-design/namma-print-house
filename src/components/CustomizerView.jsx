@@ -14,17 +14,27 @@ const CustomizerView = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedGender, setSelectedGender] = useState('Men'); // Default to Men to show a model initially
 
-  const getMockupImage = () => {
-    const colorLower = selectedColor.toLowerCase();
-    // Only front-view men's model images exist for these 5 colors
-    const availableColors = ['white', 'black', 'red', 'cream', 'brown'];
-    const safeColor = availableColors.includes(colorLower) ? colorLower : 'white';
-    // Use back view image for Back side, color-specific front image for Front side
-    if (printSide === 'Back') {
-      return `/images/men-model-ducati-back.jpg`;
-    }
-    return `/images/model_men_${safeColor}_front.jpg`;
+  // Color map for plain t-shirt SVG tinting
+  const tshirtColorMap = {
+    'White':  'brightness(1.08) saturate(0)',
+    'Black':  'brightness(0.08) saturate(0)',
+    'Red':    'brightness(0.7) saturate(5) hue-rotate(330deg)',
+    'Cream':  'brightness(1.05) sepia(0.3) saturate(0.8)',
+    'Brown':  'brightness(0.5) sepia(1) saturate(1.5)',
   };
+
+  const getMockupImage = () => {
+    // Use plain SVG t-shirt for all colors, genders and sides
+    return printSide === 'Back'
+      ? `/images/plain-tshirt-back.svg`
+      : `/images/plain-tshirt-front.svg`;
+  };
+
+  const getMockupStyle = () => ({
+    filter: tshirtColorMap[selectedColor] || tshirtColorMap['White'],
+    transition: 'filter 0.3s ease',
+  });
+
   
   // Customizer canvas states
   const [printSide, setPrintSide] = useState('Front'); // 'Front' or 'Back'
@@ -286,8 +296,9 @@ const CustomizerView = ({ product }) => {
             <div className="tshirt-preview-wrapper">
               <img 
                 src={getMockupImage()} 
-                alt={`Blank T-Shirt ${selectedColor}`} 
+                alt={`Plain ${selectedColor} T-Shirt ${printSide} View`} 
                 className="base-tshirt" 
+                style={getMockupStyle()}
               />
               
               {/* Dynamic Print Bounds Overlay */}
