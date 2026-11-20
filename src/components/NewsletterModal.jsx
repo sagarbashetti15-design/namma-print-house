@@ -85,6 +85,10 @@ const NewsletterModal = () => {
                   <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                     <input 
                       type="email" 
+                      id="newsletter-email"
+                      name="email"
+                      autoComplete="email"
+                      aria-label="Enter your email address"
                       placeholder="Enter your email address" 
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}

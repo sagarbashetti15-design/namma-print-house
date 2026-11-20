@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useToast } from '../context/ToastContext';
 import './Footer.css';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const { showToast } = useToast();
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      showToast('Thank you for subscribing to Namma Print House! 🎉', 'success');
+      setEmail('');
+    }
+  };
   return (
     <footer className="footer">
       <div className="container footer-container">
@@ -65,9 +76,19 @@ const Footer = () => {
         <div className="footer-col newsletter-col">
           <h2 className="footer-heading">NEWSLETTER</h2>
           <p className="footer-desc" style={{marginBottom: '15px'}}>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
-          <form className="newsletter-form">
-            <input type="email" placeholder="Enter your email" required />
-            <button type="submit">→</button>
+          <form className="newsletter-form" onSubmit={handleSubscribe}>
+            <input 
+              type="email" 
+              id="footer-email"
+              name="email"
+              autoComplete="email"
+              aria-label="Enter your email for newsletter"
+              placeholder="Enter your email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required 
+            />
+            <button type="submit" aria-label="Subscribe">→</button>
           </form>
         </div>
         

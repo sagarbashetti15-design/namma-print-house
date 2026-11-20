@@ -481,6 +481,9 @@ ${itemsText}
               <div className="form-row">
                 <input 
                   type="text" 
+                  id="checkout-first-name"
+                  name="firstName"
+                  autoComplete="given-name"
                   placeholder="First Name" 
                   required 
                   value={formData.firstName}
@@ -488,6 +491,9 @@ ${itemsText}
                 />
                 <input 
                   type="text" 
+                  id="checkout-last-name"
+                  name="lastName"
+                  autoComplete="family-name"
                   placeholder="Last Name" 
                   required 
                   value={formData.lastName}
@@ -496,6 +502,9 @@ ${itemsText}
               </div>
               <input 
                 type="email" 
+                id="checkout-email"
+                name="email"
+                autoComplete="email"
                 placeholder="Email Address" 
                 required 
                 value={formData.email}
@@ -503,6 +512,9 @@ ${itemsText}
               />
               <input 
                 type="tel" 
+                id="checkout-phone"
+                name="phone"
+                autoComplete="tel"
                 placeholder="Mobile Number (10-digit)" 
                 required 
                 maxLength={10}
@@ -513,6 +525,9 @@ ${itemsText}
               />
               <input 
                 type="text" 
+                id="checkout-address"
+                name="streetAddress"
+                autoComplete="street-address"
                 placeholder="Street Address" 
                 required 
                 value={formData.address}
@@ -521,6 +536,9 @@ ${itemsText}
               <div className="form-row">
                 <input 
                   type="text" 
+                  id="checkout-city"
+                  name="city"
+                  autoComplete="address-level2"
                   placeholder="City" 
                   required 
                   value={formData.city}
@@ -528,6 +546,9 @@ ${itemsText}
                 />
                 <input 
                   type="text" 
+                  id="checkout-state"
+                  name="state"
+                  autoComplete="address-level1"
                   placeholder="State/Province" 
                   required 
                   value={formData.state}
@@ -535,6 +556,9 @@ ${itemsText}
                 />
                 <input 
                   type="text" 
+                  id="checkout-pincode"
+                  name="postalCode"
+                  autoComplete="postal-code"
                   placeholder="Pin Code" 
                   required 
                   maxLength={6}
@@ -635,6 +659,9 @@ ${itemsText}
               <form onSubmit={handleApplyCoupon} className="coupon-form" style={{ display: 'flex', gap: '8px', margin: '20px 0' }}>
                 <input 
                   type="text" 
+                  id="checkout-coupon"
+                  name="couponCode"
+                  aria-label="Promo code"
                   placeholder="PROMO CODE" 
                   value={couponInput}
                   onChange={(e) => setCouponInput(e.target.value)}

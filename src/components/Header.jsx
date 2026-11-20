@@ -194,6 +194,8 @@ const Header = () => {
                 <IoSearchOutline size={18} className="search-icon" aria-hidden="true" />
                 <input 
                   type="text" 
+                  id="header-search-input"
+                  name="search"
                   placeholder="Search products..." 
                   aria-label="Search products"
                   value={searchQuery}
