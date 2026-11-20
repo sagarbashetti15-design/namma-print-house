@@ -113,12 +113,12 @@ const Checkout = () => {
     }
 
     // Default promo codes
-    if (code === 'NAMMAPRINT10') {
+    if (code === 'NAMMAPRINT10' || code === 'REDDIT10') {
       const amt = Math.round(totalPrice * 0.1);
       setDiscountAmount(amt);
-      setAppliedCoupon('NAMMAPRINT10');
+      setAppliedCoupon(code);
       setCouponInput('');
-      showToast('10% Discount Applied!', 'success');
+      showToast('10% Community Discount Applied!', 'success');
     } else if (code === 'PREPAID5') {
       const amt = Math.round(totalPrice * 0.05);
       setDiscountAmount(amt);
